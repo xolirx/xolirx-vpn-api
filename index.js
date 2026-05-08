@@ -3,6 +3,7 @@ import cors from "cors"
 import fs from "fs"
 import path from "path"
 import crypto from "crypto"
+import fetch from "node-fetch"
 
 const app = express()
 
@@ -164,6 +165,8 @@ app.post("/api/create-subscription", (req, res) => {
         })
 
     } catch (error) {
+        console.error(error)
+
         res.json({
             success: false,
             error: error.message
@@ -231,6 +234,8 @@ app.get("/api/user-info/:token", (req, res) => {
         })
 
     } catch (error) {
+        console.error(error)
+
         res.json({
             success: false,
             error: error.message
@@ -513,15 +518,9 @@ app.get("/sub/:token", async (req, res) => {
         )
 
         if (!user) {
-            if (isHappClient) {
-                return res
-                    .status(404)
-                    .send("Subscription not found")
-            }
-
-            return res.redirect(
-                "https://xolirx-vpn.vercel.app/"
-            )
+            return res
+                .status(404)
+                .send("Subscription not found")
         }
 
         const now = new Date()
@@ -534,15 +533,9 @@ app.get("/sub/:token", async (req, res) => {
             now > expiresAt
 
         if (!user.active || isExpired) {
-            if (isHappClient) {
-                return res
-                    .status(403)
-                    .send("Subscription expired")
-            }
-
-            return res.redirect(
-                "https://xolirx-vpn.vercel.app/"
-            )
+            return res
+                .status(403)
+                .send("Subscription expired")
         }
 
         user.last_ip =
@@ -567,12 +560,18 @@ app.get("/sub/:token", async (req, res) => {
 
         if (isHappClient) {
 
-            const response = await fetch(
+            const githubResponse = await fetch(
                 "https://raw.githubusercontent.com/xolirx/xolirx-vpn-api/main/data/vpn.txt"
             )
 
+            if (!githubResponse.ok) {
+                return res
+                    .status(500)
+                    .send("GitHub VPN file error")
+            }
+
             const vpnContent =
-                await response.text()
+                await githubResponse.text()
 
             res.setHeader(
                 "Content-Type",
@@ -612,23 +611,32 @@ app.get("/sub/:token", async (req, res) => {
         )
 
     } catch (error) {
-        console.error(error)
-
-        res.status(500).send(
-            "Internal Server Error"
+        console.error(
+            "SUB ERROR:",
+            error
         )
+
+        return res
+            .status(500)
+            .send(error.message)
     }
 })
 
 app.get("/vpn", async (req, res) => {
     try {
 
-        const response = await fetch(
+        const githubResponse = await fetch(
             "https://raw.githubusercontent.com/xolirx/xolirx-vpn-api/main/data/vpn.txt"
         )
 
+        if (!githubResponse.ok) {
+            return res
+                .status(500)
+                .send("GitHub VPN file error")
+        }
+
         const vpnContent =
-            await response.text()
+            await githubResponse.text()
 
         res.setHeader(
             "Content-Type",
@@ -638,9 +646,14 @@ app.get("/vpn", async (req, res) => {
         res.send(vpnContent)
 
     } catch (error) {
-        console.error(error)
+        console.error(
+            "VPN ERROR:",
+            error
+        )
 
-        res.status(500).send("error")
+        return res
+            .status(500)
+            .send(error.message)
     }
 })
 
