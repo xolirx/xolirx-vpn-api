@@ -16,11 +16,13 @@ const DATA_DIR = path.join(process.cwd(), "data")
 const VPN_FILE = path.join(DATA_DIR, "vpn.txt")
 const JSON_FILE = path.join(DATA_DIR, "servers.json")
 const USERS_FILE = path.join(process.cwd(), "users.json")
+const DEVICES_FILE = path.join(process.cwd(), "devices.json")
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR)
 if (!fs.existsSync(VPN_FILE)) fs.writeFileSync(VPN_FILE, "", "utf-8")
 if (!fs.existsSync(JSON_FILE)) fs.writeFileSync(JSON_FILE, "[]", "utf-8")
 if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, "[]", "utf-8")
+if (!fs.existsSync(DEVICES_FILE)) fs.writeFileSync(DEVICES_FILE, "{}", "utf-8")
 
 function loadUsers() {
     return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"))
@@ -30,18 +32,87 @@ function saveUsers(users) {
     fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2), "utf-8")
 }
 
+function loadDevices() {
+    return JSON.parse(fs.readFileSync(DEVICES_FILE, "utf-8"))
+}
+
+function saveDevices(devices) {
+    fs.writeFileSync(DEVICES_FILE, JSON.stringify(devices, null, 2), "utf-8")
+}
+
 function generateToken() {
     return crypto.randomBytes(16).toString("hex")
 }
 
-function getDayWord(days) {
-    if (days % 10 === 1 && days % 100 !== 11) return "день"
-    if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) return "дня"
-    return "дней"
+function getDeviceFingerprint(req) {
+    const ua = req.headers["user-agent"] || "Unknown"
+    const ip = req.ip || req.headers["x-forwarded-for"] || "Unknown"
+    return crypto.createHash("md5").update(ua + ip).digest("hex")
+}
+
+function parseUserAgent(ua) {
+    let device = "Unknown"
+    let os = "Unknown"
+    let browser = "Unknown"
+    
+    if (ua.includes("iPhone")) {
+        device = "iPhone"
+        os = "iOS"
+    } else if (ua.includes("iPad")) {
+        device = "iPad"
+        os = "iOS"
+    } else if (ua.includes("Android")) {
+        device = "Android Phone"
+        os = "Android"
+        if (ua.includes("SM-") || ua.includes("Galaxy")) device = "Samsung Galaxy"
+        if (ua.includes("Pixel")) device = "Google Pixel"
+        if (ua.includes("Xiaomi") || ua.includes("Redmi")) device = "Xiaomi"
+    } else if (ua.includes("Windows")) {
+        device = "PC"
+        os = "Windows"
+    } else if (ua.includes("Mac")) {
+        device = "MacBook"
+        os = "macOS"
+    } else if (ua.includes("Linux")) {
+        device = "PC"
+        os = "Linux"
+    }
+    
+    if (ua.includes("Chrome") && !ua.includes("Edg")) browser = "Chrome"
+    else if (ua.includes("Firefox")) browser = "Firefox"
+    else if (ua.includes("Safari") && !ua.includes("Chrome")) browser = "Safari"
+    else if (ua.includes("Edg")) browser = "Edge"
+    else if (ua.includes("Opera")) browser = "Opera"
+    
+    return { device, os, browser }
 }
 
 app.post("/api/create-subscription", (req, res) => {
     try {
+        const fingerprint = getDeviceFingerprint(req)
+        const devices = loadDevices()
+        
+        if (devices[fingerprint]) {
+            const existingToken = devices[fingerprint]
+            const users = loadUsers()
+            const existingUser = users.find(u => u.token === existingToken)
+            
+            if (existingUser && existingUser.active) {
+                const now = new Date()
+                const expiresAt = new Date(existingUser.expires_at)
+                const isExpired = now > expiresAt
+                
+                if (!isExpired) {
+                    return res.json({ 
+                        success: false, 
+                        error: "active_subscription",
+                        token: existingToken,
+                        message: "У вас уже есть активная подписка"
+                    })
+                }
+            }
+        }
+        
         const users = loadUsers()
         const token = generateToken()
         const expires_at = new Date()
@@ -53,13 +124,17 @@ app.post("/api/create-subscription", (req, res) => {
             created_at: new Date().toISOString(),
             expires_at: expires_at.toISOString(),
             total_requests: 0,
-            os: "Unknown",
-            last_ip: null,
-            last_seen: null
+            last_ip: req.ip || req.headers["x-forwarded-for"] || "Unknown",
+            last_seen: new Date().toISOString(),
+            user_agent: req.headers["user-agent"] || "Unknown",
+            device_info: parseUserAgent(req.headers["user-agent"] || "Unknown")
         }
         
         users.push(user)
         saveUsers(users)
+        
+        devices[fingerprint] = token
+        saveDevices(devices)
         
         res.json({ success: true, token: token })
     } catch (error) {
@@ -82,6 +157,7 @@ app.get("/api/user-info/:token", (req, res) => {
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
         const createdDate = new Date(user.created_at)
         const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
+        const usedDays = totalDays - daysLeft
         const isExpired = now > expiresAt
         
         res.json({
@@ -90,9 +166,13 @@ app.get("/api/user-info/:token", (req, res) => {
             active: user.active && !isExpired,
             daysLeft: daysLeft,
             totalDays: totalDays,
+            usedDays: usedDays,
             expires_at: user.expires_at,
             total_requests: user.total_requests || 0,
-            created_at: user.created_at
+            created_at: user.created_at,
+            last_ip: user.last_ip || "Unknown",
+            last_seen: user.last_seen,
+            device_info: user.device_info || { device: "Unknown", os: "Unknown", browser: "Unknown" }
         })
     } catch (error) {
         res.json({ success: false, error: error.message })
@@ -111,14 +191,20 @@ app.get("/api/admin/users", (req, res) => {
     const usersWithInfo = users.map(user => {
         const expiresAt = new Date(user.expires_at)
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+        const createdDate = new Date(user.created_at)
+        const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
         return {
             token: user.token,
             active: user.active,
             daysLeft: daysLeft,
+            totalDays: totalDays,
             isExpired: now > expiresAt,
             total_requests: user.total_requests || 0,
             created_at: user.created_at,
-            expires_at: user.expires_at
+            expires_at: user.expires_at,
+            last_ip: user.last_ip || "Unknown",
+            last_seen: user.last_seen,
+            device_info: user.device_info || { device: "Unknown", os: "Unknown", browser: "Unknown" }
         }
     })
     
@@ -135,9 +221,15 @@ app.post("/api/admin/create-user", (req, res) => {
     expires_at.setDate(expires_at.getDate() + (days || 7))
     
     users.push({
-        token, active: true, created_at: new Date().toISOString(),
-        expires_at: expires_at.toISOString(), total_requests: 0,
-        os: "Unknown", last_ip: null, last_seen: null
+        token: token,
+        active: true,
+        created_at: new Date().toISOString(),
+        expires_at: expires_at.toISOString(),
+        total_requests: 0,
+        os: "Unknown",
+        last_ip: null,
+        last_seen: null,
+        device_info: { device: "Unknown", os: "Unknown", browser: "Unknown" }
     })
     saveUsers(users)
     res.json({ success: true, token: token })
@@ -188,6 +280,25 @@ app.post("/api/admin/extend", (req, res) => {
     res.json({ success: true })
 })
 
+app.post("/api/admin/extend-all", (req, res) => {
+    const { days, key } = req.body
+    if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
+    
+    const users = loadUsers()
+    const now = new Date()
+    
+    for (const user of users) {
+        if (user.active) {
+            const currentExpiry = new Date(user.expires_at)
+            const newExpiry = new Date(Math.max(currentExpiry.getTime(), now.getTime()))
+            newExpiry.setDate(newExpiry.getDate() + (days || 7))
+            user.expires_at = newExpiry.toISOString()
+        }
+    }
+    saveUsers(users)
+    res.json({ success: true, extended: users.filter(u => u.active).length })
+})
+
 app.get("/sub/:token", (req, res) => {
     try {
         const token = req.params.token
@@ -209,16 +320,14 @@ app.get("/sub/:token", (req, res) => {
         const vpn = fs.readFileSync(VPN_FILE, "utf-8")
         const servers = vpn.split("\n").filter(l => l.startsWith("vless://")).join("\n")
         
+        const ua = req.headers["user-agent"] || "Unknown"
+        const deviceInfo = parseUserAgent(ua)
+        
         user.last_ip = req.ip || req.headers['x-forwarded-for'] || 'Unknown'
         user.last_seen = new Date().toISOString()
         user.total_requests = (user.total_requests || 0) + 1
-        
-        const ua = req.headers["user-agent"] || "Unknown"
-        if (ua.includes("Windows")) user.os = "Windows"
-        else if (ua.includes("Android")) user.os = "Android"
-        else if (ua.includes("iPhone")) user.os = "iOS"
-        else if (ua.includes("Mac")) user.os = "MacOS"
-        else if (ua.includes("Linux")) user.os = "Linux"
+        user.device_info = deviceInfo
+        user.user_agent = ua
         
         saveUsers(users)
         
@@ -258,3 +367,9 @@ app.listen(PORT, () => {
     console.log(`XolirX VPN API running on port ${PORT}`)
     console.log(`Admin key: ${ADMIN_KEY}`)
 })
+
+function getDayWord(days) {
+    if (days % 10 === 1 && days % 100 !== 11) return "день"
+    if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) return "дня"
+    return "дней"
+}
