@@ -357,16 +357,16 @@ app.get("/sub/:token", async (req, res) => {
             const servers = vpn.split("\n").filter(l => l.startsWith("vless://")).join("\n")
             
             res.setHeader("Content-Type", "text/plain; charset=utf-8")
-            res.setHeader("Profile-Title", "XolirX VPN")
+            res.setHeader("Profile-Title", "XolirX 🌑")
             res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
             res.setHeader("Profile-Update-Interval", "1")
             res.setHeader("Support-Url", "https://t.me/xolirx")
             
-            let result = `#profile-title: XolirX VPN\n`
+            let result = `#profile-title: XolirX 🌑\n`
             result += `#profile-update-interval: 1\n`
             result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
             result += `#support-url: https://t.me/xolirx\n`
-            result += `#announce: 🔒 Безопасность | ⚡ Скорость | 📅 Осталось ${daysLeft} ${getDayWord(daysLeft)} | ✨ Продление: @xolirx\n\n`
+            result += `#announce: #announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐 | 📅 Осталось ${daysLeft} ${getDayWord(daysLeft)} | ✨ Продление: @xolirx\n\n`
             result += servers
             return res.send(result)
         }
