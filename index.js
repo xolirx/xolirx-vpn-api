@@ -61,13 +61,27 @@ function getUserSubscription(token) {
     
     const now = new Date()
     const expiresAt = new Date(user.expires_at)
+    const createdDate = new Date(user.created_at)
     const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+    const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
+    const usedDays = totalDays - daysLeft
+    const progressPercent = totalDays > 0 ? (daysLeft / totalDays) * 100 : 0
     
     return {
         ...user,
         daysLeft,
-        isExpired: now > expiresAt
+        totalDays,
+        usedDays,
+        progressPercent,
+        isExpired: now > expiresAt,
+        expiresAtDate: expiresAt
     }
+}
+
+function getDayWord(days) {
+    if (days % 10 === 1 && days % 100 !== 11) return "день"
+    if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) return "дня"
+    return "дней"
 }
 
 app.get("/", async (req, res) => {
@@ -85,39 +99,45 @@ app.get("/", async (req, res) => {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>XolirX VPN | Подписка недействительна</title>
                     <style>
+                        * { margin: 0; padding: 0; box-sizing: border-box; }
                         body {
-                            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-                            font-family: 'Inter', sans-serif;
-                            color: #fff;
+                            background: #0a0c10;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                             min-height: 100vh;
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                            padding: 20px;
                         }
                         .card {
-                            background: rgba(255,255,255,0.05);
-                            backdrop-filter: blur(10px);
-                            border-radius: 2rem;
-                            padding: 2rem;
-                            text-align: center;
+                            background: #14161c;
+                            border: 1px solid #1f2230;
+                            border-radius: 32px;
+                            padding: 40px;
                             max-width: 500px;
+                            width: 100%;
+                            text-align: center;
                         }
+                        h2 { color: #fff; margin-bottom: 16px; font-size: 28px; }
+                        p { color: #6b7280; margin-bottom: 24px; line-height: 1.6; }
                         .btn {
                             display: inline-block;
-                            margin-top: 1rem;
-                            padding: 0.8rem 1.5rem;
-                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                            border-radius: 0.8rem;
+                            padding: 12px 28px;
+                            background: #2563eb;
                             color: white;
                             text-decoration: none;
+                            border-radius: 40px;
+                            font-weight: 500;
+                            transition: 0.2s;
                         }
+                        .btn:hover { background: #1d4ed8; transform: translateY(-2px); }
                     </style>
                 </head>
                 <body>
                     <div class="card">
                         <h2>⛔ Подписка недействительна</h2>
                         <p>Ваша подписка истекла или была отключена.</p>
-                        <p>Для продления напишите в Telegram: <strong>@xolirx</strong></p>
+                        <p>Для продления напишите в Telegram: <strong style="color:#2563eb">@xolirx</strong></p>
                         <a href="/" class="btn">На главную</a>
                     </div>
                 </body>
@@ -141,207 +161,141 @@ app.get("/", async (req, res) => {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>XolirX VPN | Ваша подписка</title>
+                <title>XolirX VPN | Моя подписка</title>
                 <style>
-                    * {
-                        margin: 0;
-                        padding: 0;
-                        box-sizing: border-box;
-                    }
-                    
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
                     body {
-                        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-                        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                        background: #0a0c10;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                         color: #fff;
-                        min-height: 100vh;
                     }
+                    .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
                     
-                    .container {
-                        max-width: 1200px;
-                        margin: 0 auto;
-                        padding: 2rem;
-                    }
-                    
-                    .header {
-                        text-align: center;
-                        padding: 3rem 0;
-                    }
-                    
-                    .logo {
-                        font-size: 3rem;
-                        font-weight: 800;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        -webkit-background-clip: text;
-                        background-clip: text;
-                        color: transparent;
-                        margin-bottom: 0.5rem;
-                    }
-                    
-                    .subtitle {
-                        color: #888;
-                        font-size: 1.1rem;
-                    }
+                    .header { text-align: center; margin-bottom: 48px; }
+                    .logo { font-size: 42px; font-weight: 700; background: linear-gradient(135deg, #2563eb, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 8px; }
+                    .subtitle { color: #6b7280; font-size: 16px; }
                     
                     .subscription-card {
-                        background: rgba(255, 255, 255, 0.05);
-                        backdrop-filter: blur(10px);
-                        border-radius: 2rem;
-                        padding: 2rem;
-                        margin: 2rem 0;
-                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 32px;
+                        padding: 32px;
+                        margin-bottom: 32px;
                     }
-                    
-                    .section-title {
-                        font-size: 1.5rem;
-                        margin-bottom: 1.5rem;
-                        color: #667eea;
-                    }
+                    .section-title { font-size: 20px; font-weight: 600; margin-bottom: 24px; color: #e5e7eb; }
                     
                     .url-box {
-                        background: #000;
-                        padding: 1rem;
-                        border-radius: 1rem;
+                        background: #0a0c10;
+                        padding: 16px;
+                        border-radius: 16px;
                         font-family: monospace;
                         word-break: break-all;
-                        margin: 1rem 0;
-                        border: 1px solid #333;
+                        border: 1px solid #1f2230;
+                        margin-bottom: 20px;
                     }
                     
-                    .button-group {
-                        display: flex;
-                        gap: 1rem;
-                        flex-wrap: wrap;
-                        margin: 1.5rem 0;
-                    }
-                    
+                    .button-group { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
                     .btn {
-                        padding: 0.8rem 1.5rem;
+                        padding: 12px 24px;
                         border: none;
-                        border-radius: 0.8rem;
-                        font-size: 1rem;
-                        font-weight: 600;
+                        border-radius: 40px;
+                        font-size: 14px;
+                        font-weight: 500;
                         cursor: pointer;
-                        transition: all 0.3s ease;
+                        transition: all 0.2s;
                         text-decoration: none;
                         display: inline-block;
                     }
+                    .btn-primary { background: #2563eb; color: white; }
+                    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+                    .btn-secondary { background: #1f2230; color: #e5e7eb; border: 1px solid #2d3040; }
+                    .btn-secondary:hover { background: #2d3040; transform: translateY(-2px); }
                     
-                    .btn-primary {
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        color: white;
-                    }
-                    
-                    .btn-primary:hover {
-                        transform: translateY(-2px);
-                        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-                    }
-                    
-                    .btn-secondary {
-                        background: rgba(255, 255, 255, 0.1);
-                        color: white;
-                        border: 1px solid rgba(255, 255, 255, 0.2);
-                    }
-                    
-                    .btn-secondary:hover {
-                        background: rgba(255, 255, 255, 0.2);
-                    }
-                    
-                    .qr-container {
-                        text-align: center;
-                        padding: 2rem;
-                        background: white;
-                        border-radius: 1rem;
-                        display: inline-block;
-                    }
+                    .qr-section { text-align: center; margin-top: 24px; }
+                    .qr-section h3 { font-size: 16px; font-weight: 500; margin-bottom: 16px; color: #9ca3af; }
+                    .qr-code { background: white; padding: 16px; border-radius: 24px; display: inline-block; }
+                    .qr-code img { width: 180px; height: 180px; }
                     
                     .stats-grid {
                         display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                        gap: 1.5rem;
-                        margin: 2rem 0;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 20px;
+                        margin-bottom: 32px;
                     }
-                    
                     .stat-card {
-                        background: rgba(255, 255, 255, 0.03);
-                        border-radius: 1rem;
-                        padding: 1.5rem;
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 24px;
+                        padding: 24px;
                         text-align: center;
-                        border: 1px solid rgba(255, 255, 255, 0.05);
                     }
+                    .stat-value { font-size: 32px; font-weight: 700; color: #2563eb; }
+                    .stat-label { color: #6b7280; font-size: 14px; margin-top: 8px; }
                     
-                    .stat-value {
-                        font-size: 2rem;
-                        font-weight: bold;
-                        color: #667eea;
+                    .progress-section {
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 24px;
+                        padding: 24px;
+                        margin-bottom: 32px;
                     }
-                    
-                    .stat-label {
-                        color: #888;
-                        margin-top: 0.5rem;
-                    }
-                    
-                    .expiry-warning {
-                        background: rgba(255, 193, 7, 0.1);
-                        border: 1px solid rgba(255, 193, 7, 0.3);
-                        border-radius: 1rem;
-                        padding: 1rem;
-                        margin: 1rem 0;
+                    .progress-header { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: #9ca3af; }
+                    .progress-bar { background: #1f2230; border-radius: 40px; height: 8px; overflow: hidden; }
+                    .progress-fill { width: ${subscription.progressPercent}%; height: 100%; background: linear-gradient(135deg, #2563eb, #60a5fa); border-radius: 40px; transition: width 0.3s; }
+                    .expiry-box {
+                        background: rgba(37, 99, 235, 0.1);
+                        border: 1px solid rgba(37, 99, 235, 0.2);
+                        border-radius: 16px;
+                        padding: 16px;
                         text-align: center;
+                        margin-top: 16px;
                     }
                     
                     .steps {
                         display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                        gap: 2rem;
-                        margin: 2rem 0;
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        gap: 24px;
+                        margin-bottom: 32px;
                     }
-                    
                     .step {
-                        background: rgba(255, 255, 255, 0.03);
-                        border-radius: 1rem;
-                        padding: 1.5rem;
-                        border: 1px solid rgba(255, 255, 255, 0.05);
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 24px;
+                        padding: 24px;
                     }
-                    
                     .step-number {
                         width: 40px;
                         height: 40px;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        border-radius: 50%;
+                        background: #2563eb;
+                        border-radius: 40px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        margin-bottom: 1rem;
-                        font-weight: bold;
+                        font-weight: 700;
+                        margin-bottom: 16px;
                     }
+                    .step h3 { font-size: 18px; margin-bottom: 8px; }
+                    .step p { color: #6b7280; font-size: 14px; line-height: 1.5; }
                     
-                    .footer {
-                        text-align: center;
-                        padding: 3rem 0;
-                        color: #888;
-                        border-top: 1px solid rgba(255, 255, 255, 0.05);
-                        margin-top: 3rem;
-                    }
-                    
+                    .footer { text-align: center; padding: 32px 0; color: #6b7280; font-size: 13px; border-top: 1px solid #1f2230; margin-top: 32px; }
                     .admin-link {
                         position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: rgba(0,0,0,0.7);
-                        padding: 0.5rem 1rem;
-                        border-radius: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #888;
+                        bottom: 24px;
+                        right: 24px;
+                        background: #1f2230;
+                        padding: 10px 20px;
+                        border-radius: 40px;
+                        font-size: 13px;
+                        color: #9ca3af;
                         text-decoration: none;
+                        transition: 0.2s;
                     }
+                    .admin-link:hover { background: #2d3040; color: #fff; }
                     
                     @media (max-width: 768px) {
-                        .container {
-                            padding: 1rem;
-                        }
-                        .logo {
-                            font-size: 2rem;
-                        }
+                        .container { padding: 20px 16px; }
+                        .logo { font-size: 32px; }
+                        .subscription-card { padding: 20px; }
                     }
                 </style>
             </head>
@@ -349,30 +303,20 @@ app.get("/", async (req, res) => {
                 <div class="container">
                     <div class="header">
                         <div class="logo">XolirX VPN</div>
-                        <div class="subtitle">Бесплатный VLESS · Анонимность · Безопасность</div>
+                        <div class="subtitle">Безопасный и анонимный доступ в интернет</div>
                     </div>
                     
                     <div class="subscription-card">
-                        <h2 class="section-title">Ваша подписка</h2>
-                        ${subscription.daysLeft <= 3 ? `
-                            <div class="expiry-warning">
-                                ⚠️ Подписка истекает через ${subscription.daysLeft} ${getDayWord(subscription.daysLeft)}!
-                                Для продления напишите @xolirx
-                            </div>
-                        ` : `
-                            <div class="expiry-warning" style="background: rgba(102, 126, 234, 0.1); border-color: rgba(102, 126, 234, 0.3);">
-                                ✅ Подписка активна до ${new Date(subscription.expires_at).toLocaleDateString()} (осталось ${subscription.daysLeft} ${getDayWord(subscription.daysLeft)})
-                            </div>
-                        `}
+                        <h2 class="section-title">🔗 Ваша подписка</h2>
                         <div class="url-box" id="subscriptionUrl">${subscriptionUrl}</div>
                         <div class="button-group">
                             <button class="btn btn-primary" onclick="copyUrl()">📋 Копировать ссылку</button>
                             <a href="${subscriptionUrl}" class="btn btn-secondary">🔗 Открыть подписку</a>
                         </div>
-                        <div style="text-align: center; margin-top: 2rem;">
-                            <h3>📱 Сканируй для добавления подписки</h3>
-                            <div style="margin-top: 1rem;">
-                                <img src="${qrCode}" style="max-width: 200px; background: white; padding: 1rem; border-radius: 1rem;" alt="QR Code">
+                        <div class="qr-section">
+                            <h3>📱 Сканируй для быстрого добавления</h3>
+                            <div class="qr-code">
+                                <img src="${qrCode}" alt="QR Code">
                             </div>
                         </div>
                     </div>
@@ -380,7 +324,7 @@ app.get("/", async (req, res) => {
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-value">${servers.length}</div>
-                            <div class="stat-label">Серверов</div>
+                            <div class="stat-label">Серверов в сети</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-value">VLESS</div>
@@ -392,28 +336,44 @@ app.get("/", async (req, res) => {
                         </div>
                     </div>
                     
-                    <h2 class="section-title">Как подключиться</h2>
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span>📅 Прогресс подписки</span>
+                            <span>${subscription.usedDays} / ${subscription.totalDays} дней</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="expiry-box">
+                            ${subscription.daysLeft <= 3 ? 
+                                `<span>⚠️ Подписка истекает через ${subscription.daysLeft} ${getDayWord(subscription.daysLeft)}</span>` :
+                                `<span>✅ Подписка активна до ${subscription.expiresAtDate.toLocaleDateString()} (осталось ${subscription.daysLeft} ${getDayWord(subscription.daysLeft)})</span>`
+                            }
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title">📖 Как подключиться</h2>
                     <div class="steps">
                         <div class="step">
                             <div class="step-number">1</div>
                             <h3>Скачай приложение</h3>
-                            <p style="color: #888; margin-top: 0.5rem;">Happ, v2rayNG или Nekobox для Android/iOS</p>
+                            <p>Happ, v2rayNG или Nekobox для Android/iOS</p>
                         </div>
                         <div class="step">
                             <div class="step-number">2</div>
                             <h3>Добавь подписку</h3>
-                            <p style="color: #888; margin-top: 0.5rem;">Скопируй ссылку или отсканируй QR-код</p>
+                            <p>Скопируй ссылку или отсканируй QR-код</p>
                         </div>
                         <div class="step">
                             <div class="step-number">3</div>
                             <h3>Обновляй раз в день</h3>
-                            <p style="color: #888; margin-top: 0.5rem;">Новые серверы подтянутся автоматически</p>
+                            <p>Новые серверы подтянутся автоматически</p>
                         </div>
                     </div>
                     
                     <div class="footer">
                         <p>XolirX VPN — анонимность и свобода в интернете</p>
-                        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Никаких логов. Только VLESS.</p>
+                        <p style="margin-top: 8px; font-size: 12px;">Никаких логов. Только VLESS.</p>
                     </div>
                 </div>
                 
@@ -430,6 +390,9 @@ app.get("/", async (req, res) => {
             </html>
         `)
     } else {
+        const users = loadUsers()
+        const servers = loadServers()
+        
         res.send(`
             <!DOCTYPE html>
             <html lang="ru">
@@ -438,170 +401,126 @@ app.get("/", async (req, res) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>XolirX VPN | Главная</title>
                 <style>
-                    * {
-                        margin: 0;
-                        padding: 0;
-                        box-sizing: border-box;
-                    }
-                    
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
                     body {
-                        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-                        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                        background: #0a0c10;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                         color: #fff;
                         min-height: 100vh;
                     }
+                    .container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
                     
-                    .container {
-                        max-width: 1200px;
-                        margin: 0 auto;
-                        padding: 2rem;
-                    }
+                    .header { text-align: center; margin-bottom: 60px; }
+                    .logo { font-size: 56px; font-weight: 800; background: linear-gradient(135deg, #2563eb, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 16px; }
+                    .tagline { font-size: 20px; color: #6b7280; margin-bottom: 8px; }
+                    .sub { color: #374151; font-size: 14px; }
                     
-                    .header {
+                    .generate-card {
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 32px;
+                        padding: 48px;
                         text-align: center;
-                        padding: 3rem 0;
+                        margin-bottom: 60px;
                     }
-                    
-                    .logo {
-                        font-size: 3rem;
-                        font-weight: 800;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        -webkit-background-clip: text;
-                        background-clip: text;
-                        color: transparent;
-                        margin-bottom: 0.5rem;
-                    }
-                    
-                    .subtitle {
-                        color: #888;
-                        font-size: 1.1rem;
-                    }
-                    
-                    .form-card {
-                        background: rgba(255, 255, 255, 0.05);
-                        backdrop-filter: blur(10px);
-                        border-radius: 2rem;
-                        padding: 2rem;
-                        margin: 2rem 0;
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                        text-align: center;
-                    }
-                    
-                    .input-group {
-                        max-width: 400px;
-                        margin: 1rem auto;
-                    }
-                    
-                    input {
-                        width: 100%;
-                        padding: 1rem;
-                        border-radius: 0.8rem;
-                        border: 1px solid rgba(255, 255, 255, 0.2);
-                        background: rgba(0, 0, 0, 0.5);
+                    .generate-card h2 { font-size: 28px; margin-bottom: 16px; }
+                    .generate-card p { color: #6b7280; margin-bottom: 32px; }
+                    .generate-btn {
+                        background: #2563eb;
                         color: white;
-                        font-size: 1rem;
-                    }
-                    
-                    .btn {
-                        padding: 0.8rem 1.5rem;
                         border: none;
-                        border-radius: 0.8rem;
-                        font-size: 1rem;
+                        padding: 16px 48px;
+                        font-size: 18px;
                         font-weight: 600;
+                        border-radius: 48px;
                         cursor: pointer;
-                        transition: all 0.3s ease;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        color: white;
+                        transition: all 0.2s;
                     }
+                    .generate-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
                     
-                    .btn:hover {
-                        transform: translateY(-2px);
-                        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-                    }
-                    
-                    .stats-grid {
+                    .features {
                         display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                        gap: 1.5rem;
-                        margin: 2rem 0;
+                        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                        gap: 32px;
+                        margin-bottom: 60px;
                     }
-                    
-                    .stat-card {
-                        background: rgba(255, 255, 255, 0.03);
-                        border-radius: 1rem;
-                        padding: 1.5rem;
+                    .feature {
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 28px;
+                        padding: 32px;
                         text-align: center;
-                        border: 1px solid rgba(255, 255, 255, 0.05);
                     }
-                    
-                    .stat-icon {
-                        font-size: 2rem;
-                        margin-bottom: 1rem;
-                    }
-                    
-                    .stat-title {
-                        font-size: 1.2rem;
-                        font-weight: bold;
-                        margin-bottom: 0.5rem;
-                    }
-                    
-                    .stat-desc {
-                        color: #888;
-                    }
+                    .feature-icon { font-size: 48px; margin-bottom: 20px; }
+                    .feature h3 { font-size: 22px; margin-bottom: 12px; }
+                    .feature p { color: #6b7280; line-height: 1.6; }
                     
                     .steps {
                         display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                        gap: 2rem;
-                        margin: 2rem 0;
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        gap: 24px;
+                        margin-bottom: 60px;
                     }
-                    
                     .step {
-                        background: rgba(255, 255, 255, 0.03);
-                        border-radius: 1rem;
-                        padding: 1.5rem;
-                        border: 1px solid rgba(255, 255, 255, 0.05);
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 24px;
+                        padding: 28px;
                     }
-                    
                     .step-number {
-                        width: 40px;
-                        height: 40px;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        border-radius: 50%;
+                        width: 48px;
+                        height: 48px;
+                        background: #2563eb;
+                        border-radius: 48px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        margin-bottom: 1rem;
-                        font-weight: bold;
+                        font-size: 20px;
+                        font-weight: 700;
+                        margin-bottom: 20px;
                     }
+                    .step h3 { font-size: 20px; margin-bottom: 10px; }
+                    .step p { color: #6b7280; line-height: 1.5; }
                     
-                    .footer {
+                    .token-section {
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 24px;
+                        padding: 24px;
+                        margin-top: 20px;
                         text-align: center;
-                        padding: 3rem 0;
-                        color: #888;
-                        border-top: 1px solid rgba(255, 255, 255, 0.05);
-                        margin-top: 3rem;
+                    }
+                    .token-section.hidden { display: none; }
+                    .token-box {
+                        background: #0a0c10;
+                        padding: 16px;
+                        border-radius: 16px;
+                        margin: 20px 0;
+                        word-break: break-all;
+                        font-family: monospace;
+                        font-size: 14px;
                     }
                     
+                    .footer { text-align: center; padding: 32px 0; color: #6b7280; font-size: 13px; border-top: 1px solid #1f2230; }
                     .admin-link {
                         position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: rgba(0,0,0,0.7);
-                        padding: 0.5rem 1rem;
-                        border-radius: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #888;
+                        bottom: 24px;
+                        right: 24px;
+                        background: #1f2230;
+                        padding: 10px 20px;
+                        border-radius: 40px;
+                        font-size: 13px;
+                        color: #9ca3af;
                         text-decoration: none;
+                        transition: 0.2s;
                     }
+                    .admin-link:hover { background: #2d3040; color: #fff; }
                     
                     @media (max-width: 768px) {
-                        .container {
-                            padding: 1rem;
-                        }
-                        .logo {
-                            font-size: 2rem;
-                        }
+                        .container { padding: 32px 16px; }
+                        .logo { font-size: 40px; }
+                        .generate-card { padding: 32px 24px; }
+                        .generate-btn { padding: 14px 32px; font-size: 16px; }
                     }
                 </style>
             </head>
@@ -609,74 +528,106 @@ app.get("/", async (req, res) => {
                 <div class="container">
                     <div class="header">
                         <div class="logo">XolirX VPN</div>
-                        <div class="subtitle">Бесплатный VLESS · Анонимность · Безопасность</div>
+                        <div class="tagline">Бесплатный VLESS · Анонимность · Безопасность</div>
+                        <div class="sub">Современное шифрование · Никаких логов · Оптимизированные сервера</div>
                     </div>
                     
-                    <div class="form-card">
-                        <h2>VPN by xolirx</h2>
-                        <p style="color: #888; margin: 1rem 0;">Введите токен подписки для доступа к конфигурациям</p>
-                        <div class="input-group">
-                            <input type="text" id="tokenInput" placeholder="Введите ваш токен..." onkeypress="handleKeyPress(event)">
-                        </div>
-                        <button class="btn" onclick="checkToken()">Получить подписку</button>
-                    </div>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon">🔒</div>
-                            <div class="stat-title">Безопасность</div>
-                            <div class="stat-desc">Современное шифрование VLESS</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">👻</div>
-                            <div class="stat-title">Анонимность</div>
-                            <div class="stat-desc">Ни логов, ни следов</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">⚡</div>
-                            <div class="stat-title">Скорость</div>
-                            <div class="stat-desc">Оптимизированные сервера</div>
+                    <div class="generate-card">
+                        <h2>🚀 Начни использовать VPN бесплатно</h2>
+                        <p>Сгенерируй персональную подписку и получи доступ к защищенному интернету</p>
+                        <button class="generate-btn" onclick="generateSubscription()">✨ Сгенерировать подписку</button>
+                        
+                        <div id="tokenResult" class="token-section hidden">
+                            <h3>🎉 Ваша подписка готова!</h3>
+                            <p>Сохраните эту ссылку — она понадобится для подключения</p>
+                            <div class="token-box" id="subscriptionLink"></div>
+                            <button class="btn-primary" style="background:#2563eb; padding:10px 24px; border-radius:40px; border:none; color:white; cursor:pointer; margin-right:12px;" onclick="copySubscription()">📋 Копировать ссылку</button>
+                            <button class="btn-secondary" style="background:#1f2230; padding:10px 24px; border-radius:40px; border:1px solid #2d3040; color:white; cursor:pointer;" onclick="openSubscription()">🔗 Открыть</button>
+                            <p style="margin-top: 20px; font-size: 13px; color:#6b7280;">Подписка активна 7 дней. Для продления обратитесь к @xolirx</p>
                         </div>
                     </div>
                     
-                    <h2 style="color: #667eea; margin: 2rem 0 1rem;">Как подключиться</h2>
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">🔒</div>
+                            <h3>Безопасность</h3>
+                            <p>Современное шифрование VLESS. Никаких компромиссов с твоей безопасностью.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">👻</div>
+                            <h3>Анонимность</h3>
+                            <p>Ни логов, ни следов. Только ты и интернет. Твои данные под защитой.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Скорость</h3>
+                            <p>Оптимизированные сервера для быстрого соединения без потери скорости.</p>
+                        </div>
+                    </div>
+                    
+                    <h2 style="font-size: 28px; text-align: center; margin-bottom: 32px;">Как подключиться</h2>
                     <div class="steps">
                         <div class="step">
                             <div class="step-number">1</div>
                             <h3>Скачай приложение</h3>
-                            <p style="color: #888; margin-top: 0.5rem;">Happ для Android или iOS</p>
+                            <p>Установи Happ, v2rayNG или Nekobox для твоего устройства</p>
                         </div>
                         <div class="step">
                             <div class="step-number">2</div>
                             <h3>Добавь подписку</h3>
-                            <p style="color: #888; margin-top: 0.5rem;">Скопируй ссылку или отсканируй QR-код</p>
+                            <p>Вставь полученную ссылку или отсканируй QR-код</p>
                         </div>
                         <div class="step">
                             <div class="step-number">3</div>
-                            <h3>Обновляй раз в день</h3>
-                            <p style="color: #888; margin-top: 0.5rem;">Новые серверы подтянутся автоматически</p>
+                            <h3>Наслаждайся</h3>
+                            <p>Включи VPN и пользуйся интернетом без ограничений</p>
                         </div>
                     </div>
                     
                     <div class="footer">
                         <p>XolirX VPN — анонимность и свобода в интернете</p>
+                        <p style="margin-top: 8px;">По вопросам сотрудничества: @xolirx</p>
                     </div>
                 </div>
                 
                 <a href="/admin" class="admin-link">🔐 Админ панель</a>
                 
                 <script>
-                    function handleKeyPress(event) {
-                        if (event.key === 'Enter') checkToken()
+                    async function generateSubscription() {
+                        const btn = document.querySelector('.generate-btn')
+                        const originalText = btn.innerText
+                        btn.innerText = '⏳ Генерация...'
+                        btn.disabled = true
+                        
+                        try {
+                            const response = await fetch('/api/create-subscription', { method: 'POST' })
+                            const data = await response.json()
+                            
+                            if (data.success) {
+                                const link = \`\${window.location.origin}/?token=\${data.token}\`
+                                document.getElementById('subscriptionLink').innerText = link
+                                document.getElementById('tokenResult').classList.remove('hidden')
+                                document.getElementById('tokenResult').scrollIntoView({ behavior: 'smooth' })
+                            } else {
+                                alert('Ошибка при генерации подписки')
+                            }
+                        } catch (error) {
+                            alert('Ошибка сети. Попробуйте позже.')
+                        } finally {
+                            btn.innerText = originalText
+                            btn.disabled = false
+                        }
                     }
                     
-                    function checkToken() {
-                        const token = document.getElementById('tokenInput').value.trim()
-                        if (token) {
-                            window.location.href = '/?token=' + encodeURIComponent(token)
-                        } else {
-                            alert('Введите токен подписки')
-                        }
+                    function copySubscription() {
+                        const link = document.getElementById('subscriptionLink').innerText
+                        navigator.clipboard.writeText(link)
+                        alert('Ссылка скопирована!')
+                    }
+                    
+                    function openSubscription() {
+                        const link = document.getElementById('subscriptionLink').innerText
+                        window.open(link, '_blank')
                     }
                 </script>
             </body>
@@ -685,11 +636,32 @@ app.get("/", async (req, res) => {
     }
 })
 
-function getDayWord(days) {
-    if (days % 10 === 1 && days % 100 !== 11) return "день"
-    if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) return "дня"
-    return "дней"
-}
+app.post("/api/create-subscription", (req, res) => {
+    try {
+        const users = loadUsers()
+        const token = generateToken()
+        const expires_at = new Date()
+        expires_at.setDate(expires_at.getDate() + 7)
+        
+        const user = {
+            token: token,
+            active: true,
+            created_at: new Date().toISOString(),
+            expires_at: expires_at.toISOString(),
+            total_requests: 0,
+            os: "Unknown",
+            last_ip: null,
+            last_seen: null
+        }
+        
+        users.push(user)
+        saveUsers(users)
+        
+        res.json({ success: true, token: token })
+    } catch (error) {
+        res.json({ success: false, error: error.message })
+    }
+})
 
 app.get("/admin", (req, res) => {
     const adminKey = req.query.key
@@ -703,58 +675,64 @@ app.get("/admin", (req, res) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>XolirX VPN | Админ панель</title>
                 <style>
+                    * { margin: 0; padding: 0; box-sizing: border-box; }
                     body {
-                        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-                        font-family: 'Inter', sans-serif;
-                        color: white;
+                        background: #0a0c10;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                         min-height: 100vh;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        padding: 20px;
                     }
                     .login-card {
-                        background: rgba(255,255,255,0.05);
-                        backdrop-filter: blur(10px);
-                        border-radius: 2rem;
-                        padding: 2rem;
-                        border: 1px solid rgba(255,255,255,0.1);
-                        max-width: 400px;
-                        width: 90%;
+                        background: #14161c;
+                        border: 1px solid #1f2230;
+                        border-radius: 32px;
+                        padding: 48px;
+                        max-width: 420px;
+                        width: 100%;
+                        text-align: center;
                     }
+                    .login-card h2 { font-size: 28px; margin-bottom: 8px; color: #fff; }
+                    .login-card p { color: #6b7280; margin-bottom: 32px; }
                     input {
                         width: 100%;
-                        padding: 1rem;
-                        border-radius: 0.8rem;
-                        border: 1px solid rgba(255,255,255,0.2);
-                        background: rgba(0,0,0,0.5);
+                        padding: 16px;
+                        background: #0a0c10;
+                        border: 1px solid #1f2230;
+                        border-radius: 48px;
                         color: white;
-                        margin: 1rem 0;
+                        font-size: 16px;
+                        margin-bottom: 20px;
                     }
+                    input:focus { outline: none; border-color: #2563eb; }
                     button {
                         width: 100%;
-                        padding: 1rem;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        padding: 16px;
+                        background: #2563eb;
                         border: none;
-                        border-radius: 0.8rem;
+                        border-radius: 48px;
                         color: white;
-                        font-weight: bold;
+                        font-size: 16px;
+                        font-weight: 600;
                         cursor: pointer;
+                        transition: 0.2s;
                     }
+                    button:hover { background: #1d4ed8; }
                 </style>
             </head>
             <body>
                 <div class="login-card">
                     <h2>🔐 Админ панель</h2>
-                    <input type="password" id="keyInput" placeholder="Введите ключ доступа" onkeypress="handleKeyPress(event)">
+                    <p>Введите ключ доступа для управления подписками</p>
+                    <input type="password" id="keyInput" placeholder="Ключ доступа" onkeypress="if(event.key==='Enter') login()">
                     <button onclick="login()">Войти</button>
                 </div>
                 <script>
-                    function handleKeyPress(event) {
-                        if (event.key === 'Enter') login()
-                    }
                     function login() {
                         const key = document.getElementById('keyInput').value
-                        window.location.href = '/admin/dashboard?key=' + encodeURIComponent(key)
+                        if(key) window.location.href = '/admin/dashboard?key=' + encodeURIComponent(key)
                     }
                 </script>
             </body>
@@ -779,10 +757,18 @@ app.get("/admin/dashboard", (req, res) => {
     
     users = users.map(user => {
         const expiresAt = new Date(user.expires_at)
+        const createdDate = new Date(user.created_at)
+        const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+        const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
+        const usedDays = totalDays - daysLeft
         return {
             ...user,
             expires_at_formatted: expiresAt.toLocaleDateString(),
-            daysLeft: Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24))),
+            created_at_formatted: createdDate.toLocaleDateString(),
+            daysLeft,
+            totalDays,
+            usedDays,
+            progressPercent: totalDays > 0 ? (daysLeft / totalDays) * 100 : 0,
             isExpired: now > expiresAt
         }
     })
@@ -795,133 +781,109 @@ app.get("/admin/dashboard", (req, res) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>XolirX VPN | Админ панель</title>
             <style>
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
+                * { margin: 0; padding: 0; box-sizing: border-box; }
                 body {
-                    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-                    font-family: 'Inter', sans-serif;
+                    background: #0a0c10;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                     color: #fff;
-                    padding: 2rem;
+                    padding: 24px;
                 }
-                .container {
-                    max-width: 1400px;
-                    margin: 0 auto;
-                }
+                .container { max-width: 1600px; margin: 0 auto; }
+                
                 .header {
-                    background: rgba(255,255,255,0.05);
-                    backdrop-filter: blur(10px);
-                    border-radius: 1rem;
-                    padding: 1.5rem;
-                    margin-bottom: 2rem;
-                    border: 1px solid rgba(255,255,255,0.1);
+                    background: #14161c;
+                    border: 1px solid #1f2230;
+                    border-radius: 28px;
+                    padding: 24px 32px;
+                    margin-bottom: 32px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     flex-wrap: wrap;
+                    gap: 20px;
                 }
-                .stats {
-                    display: flex;
-                    gap: 1rem;
-                    flex-wrap: wrap;
-                }
+                .header h2 { font-size: 24px; }
+                .stats { display: flex; gap: 16px; flex-wrap: wrap; }
                 .stat {
-                    background: rgba(0,0,0,0.5);
-                    padding: 0.5rem 1rem;
-                    border-radius: 0.5rem;
+                    background: #0a0c10;
+                    padding: 8px 20px;
+                    border-radius: 40px;
+                    border: 1px solid #1f2230;
                 }
-                .stat span {
-                    color: #667eea;
-                    font-weight: bold;
+                .stat span { color: #2563eb; font-weight: 700; }
+                
+                .create-card {
+                    background: #14161c;
+                    border: 1px solid #1f2230;
+                    border-radius: 28px;
+                    padding: 28px 32px;
+                    margin-bottom: 32px;
+                }
+                .create-card h3 { margin-bottom: 20px; font-size: 20px; }
+                .form-row { display: flex; gap: 16px; align-items: flex-end; flex-wrap: wrap; }
+                .form-group { display: flex; flex-direction: column; gap: 8px; }
+                .form-group label { font-size: 13px; color: #6b7280; }
+                select, .form-group input {
+                    background: #0a0c10;
+                    border: 1px solid #1f2230;
+                    padding: 12px 20px;
+                    border-radius: 40px;
+                    color: white;
+                    font-size: 14px;
+                    cursor: pointer;
                 }
                 .btn {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    padding: 0.5rem 1rem;
-                    border-radius: 0.5rem;
-                    text-decoration: none;
-                    color: white;
-                    transition: all 0.3s;
+                    background: #2563eb;
                     border: none;
-                    cursor: pointer;
-                    font-size: 0.9rem;
-                }
-                .btn:hover {
-                    transform: translateY(-2px);
-                }
-                .btn-danger {
-                    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-                }
-                .btn-success {
-                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-                }
-                table {
-                    width: 100%;
-                    background: rgba(255,255,255,0.03);
-                    border-radius: 1rem;
-                    overflow: hidden;
-                    border-collapse: collapse;
-                }
-                th, td {
-                    padding: 1rem;
-                    text-align: left;
-                    border-bottom: 1px solid rgba(255,255,255,0.05);
-                }
-                th {
-                    background: rgba(0,0,0,0.3);
-                    color: #667eea;
-                }
-                .badge {
-                    padding: 0.25rem 0.5rem;
-                    border-radius: 0.25rem;
-                    font-size: 0.8rem;
-                }
-                .badge-active {
-                    background: rgba(0,255,0,0.2);
-                    color: #0f0;
-                }
-                .badge-inactive {
-                    background: rgba(255,0,0,0.2);
-                    color: #f00;
-                }
-                .badge-expired {
-                    background: rgba(255,0,0,0.2);
-                    color: #f00;
-                }
-                .badge-soon {
-                    background: rgba(255,193,7,0.2);
-                    color: #ffc107;
-                }
-                .action-buttons {
-                    display: flex;
-                    gap: 0.5rem;
-                    flex-wrap: wrap;
-                }
-                select {
-                    padding: 0.25rem;
-                    border-radius: 0.25rem;
-                    background: #000;
+                    padding: 12px 28px;
+                    border-radius: 40px;
                     color: white;
-                    border: 1px solid #333;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-decoration: none;
+                    display: inline-block;
+                    transition: 0.2s;
                 }
-                .create-form {
-                    background: rgba(255,255,255,0.05);
-                    border-radius: 1rem;
-                    padding: 1.5rem;
-                    margin-bottom: 2rem;
+                .btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+                .btn-danger { background: #dc2626; }
+                .btn-danger:hover { background: #b91c1c; }
+                .btn-success { background: #10b981; }
+                .btn-success:hover { background: #059669; }
+                .btn-sm { padding: 6px 14px; font-size: 12px; }
+                
+                .table-wrapper {
+                    background: #14161c;
+                    border: 1px solid #1f2230;
+                    border-radius: 28px;
+                    overflow-x: auto;
                 }
+                table { width: 100%; border-collapse: collapse; }
+                th, td { padding: 16px; text-align: left; border-bottom: 1px solid #1f2230; }
+                th { color: #6b7280; font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+                td { font-size: 14px; }
+                .badge {
+                    padding: 4px 10px;
+                    border-radius: 40px;
+                    font-size: 12px;
+                    font-weight: 500;
+                    display: inline-block;
+                }
+                .badge-active { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+                .badge-inactive { background: rgba(220, 38, 38, 0.2); color: #ef4444; }
+                .badge-expired { background: rgba(220, 38, 38, 0.2); color: #ef4444; }
+                .badge-soon { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+                
+                .progress-mini { width: 80px; background: #1f2230; border-radius: 40px; height: 4px; overflow: hidden; display: inline-block; margin-left: 8px; }
+                .progress-mini-fill { height: 100%; background: #2563eb; border-radius: 40px; }
+                
+                .action-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+                
+                .footer { text-align: center; padding: 32px 0; color: #6b7280; font-size: 13px; }
+                
                 @media (max-width: 768px) {
-                    body {
-                        padding: 1rem;
-                    }
-                    th, td {
-                        padding: 0.5rem;
-                        font-size: 0.8rem;
-                    }
-                    .action-buttons {
-                        flex-direction: column;
-                    }
+                    body { padding: 16px; }
+                    th, td { padding: 12px; }
+                    .action-buttons { flex-direction: column; }
                 }
             </style>
         </head>
@@ -937,172 +899,194 @@ app.get("/admin/dashboard", (req, res) => {
                     </div>
                 </div>
                 
-                <div class="create-form">
+                <div class="create-card">
                     <h3>➕ Создать нового пользователя</h3>
-                    <form method="GET" action="/admin/create-user" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                        <input type="hidden" name="key" value="${adminKey}">
-                        <label>Дней подписки: 
-                            <select name="days">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Срок подписки</label>
+                            <select id="createDays">
                                 <option value="7">7 дней</option>
                                 <option value="14">14 дней</option>
                                 <option value="30">30 дней</option>
                                 <option value="60">60 дней</option>
                                 <option value="90">90 дней</option>
                             </select>
-                        </label>
-                        <button type="submit" class="btn">Создать подписку</button>
-                    </form>
+                        </div>
+                        <button class="btn" onclick="createUser()">Создать подписку</button>
+                    </div>
                 </div>
                 
-                <table>
-                    <thead>
-                        <tr><th>Статус</th><th>Токен</th><th>Создан</th><th>Истекает</th><th>Дней</th><th>Запросы</th><th>OS</th><th>Действия</th></tr>
-                    </thead>
-                    <tbody>
-                        ${users.map(user => {
-                            let statusClass = ''
-                            let statusText = ''
-                            if (!user.active) {
-                                statusClass = 'badge-inactive'
-                                statusText = '✗ Отключен'
-                            } else if (user.isExpired) {
-                                statusClass = 'badge-expired'
-                                statusText = '⛔ Истекла'
-                            } else if (user.daysLeft <= 3) {
-                                statusClass = 'badge-soon'
-                                statusText = '⚠️ Скоро'
-                            } else {
-                                statusClass = 'badge-active'
-                                statusText = '✓ Активен'
-                            }
-                            return `
-                                <tr>
-                                    <td><span class="badge ${statusClass}">${statusText}</span></td>
-                                    <td><code>${user.token.substring(0, 16)}...</code><br><small style="color:#888">${user.token.substring(16, 32)}</small></td>
-                                    <td>${new Date(user.created_at).toLocaleDateString()}</td>
-                                    <td>${user.expires_at_formatted}</td>
-                                    <td>${user.daysLeft} ${getDayWord(user.daysLeft)}</td>
-                                    <td>${user.total_requests || 0}</td>
-                                    <td>${user.os || 'Unknown'}</td>
-                                    <td>
-                                        <div class="action-buttons">
-                                            ${user.active && !user.isExpired ? 
-                                                `<a href="/admin/disable/${user.token}?key=${adminKey}" class="btn btn-danger" onclick="return confirm('Отключить пользователя ${user.token.substring(0, 8)}?')">🔴 Отключить</a>` : 
-                                                (user.isExpired || !user.active) ?
-                                                `<a href="/admin/enable/${user.token}?key=${adminKey}&days=7" class="btn btn-success" onclick="return confirm('Продлить подписку на 7 дней?')">🟢 Продлить 7д</a>` :
-                                                `<a href="/admin/enable/${user.token}?key=${adminKey}&days=7" class="btn btn-success" onclick="return confirm('Включить подписку на 7 дней?')">🟢 Включить</a>`
-                                            }
-                                            <form method="GET" action="/admin/extend/${user.token}" style="display: inline;">
-                                                <input type="hidden" name="key" value="${adminKey}">
-                                                <select name="days" style="padding: 0.25rem;">
-                                                    <option value="7">+7 дней</option>
-                                                    <option value="14">+14 дней</option>
-                                                    <option value="30">+30 дней</option>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Статус</th><th>Токен</th><th>Создан</th><th>Истекает</th><th>Осталось</th><th>Прогресс</th><th>Запросы</th><th>OS</th><th>Действия</th></tr>
+                        </thead>
+                        <tbody>
+                            ${users.map(user => {
+                                let statusClass = ''
+                                let statusText = ''
+                                if (!user.active) {
+                                    statusClass = 'badge-inactive'
+                                    statusText = '✗ Отключен'
+                                } else if (user.isExpired) {
+                                    statusClass = 'badge-expired'
+                                    statusText = '⛔ Истекла'
+                                } else if (user.daysLeft <= 3) {
+                                    statusClass = 'badge-soon'
+                                    statusText = `⚠️ ${user.daysLeft} дн.`
+                                } else {
+                                    statusClass = 'badge-active'
+                                    statusText = '✓ Активен'
+                                }
+                                return `
+                                    <tr>
+                                        <td><span class="badge ${statusClass}">${statusText}</span></td>
+                                        <td><code style="font-size: 11px;">${user.token.substring(0, 16)}...</code></td>
+                                        <td style="font-size: 12px;">${user.created_at_formatted}</td>
+                                        <td style="font-size: 12px;">${user.expires_at_formatted}</td>
+                                        <td style="font-size: 13px; font-weight: 500;">${user.daysLeft} ${getDayWord(user.daysLeft)}</td>
+                                        <td>
+                                            <span style="font-size: 11px;">${user.usedDays}/${user.totalDays}</span>
+                                            <div class="progress-mini">
+                                                <div class="progress-mini-fill" style="width: ${100 - user.progressPercent}%"></div>
+                                            </div>
+                                        </td>
+                                        <td>${user.total_requests || 0}</td>
+                                        <td style="font-size: 12px;">${user.os || 'Unknown'}</td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                ${user.active && !user.isExpired ? 
+                                                    `<button class="btn btn-danger btn-sm" onclick="disableUser('${user.token}')">🔴 Откл</button>` : 
+                                                    `<button class="btn btn-success btn-sm" onclick="enableUser('${user.token}', 7)">🟢 Вкл/7д</button>`
+                                                }
+                                                <select id="extendDays_${user.token}" style="padding: 4px 8px; font-size: 11px;">
+                                                    <option value="7">+7</option>
+                                                    <option value="14">+14</option>
+                                                    <option value="30">+30</option>
                                                 </select>
-                                                <button type="submit" class="btn" onclick="return confirm('Продлить подписку?')">📅 Продлить</button>
-                                            </form>
-                                            <a href="/?token=${user.token}" target="_blank" class="btn">👁️ Просмотр</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            `
-                        }).join('')}
-                    </tbody>
-                </table>
+                                                <button class="btn btn-sm" style="background:#374151;" onclick="extendUser('${user.token}')">📅 Продл</button>
+                                                <a href="/?token=${user.token}" target="_blank" class="btn btn-sm" style="background:#1f2230;">👁️</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
                 
-                <div style="margin-top: 2rem; text-align: center;">
-                    <a href="/" class="btn">← На главную</a>
+                <div class="footer">
+                    <a href="/" style="color:#2563eb; text-decoration:none;">← На главную</a>
                 </div>
             </div>
+            
+            <script>
+                function createUser() {
+                    const days = document.getElementById('createDays').value
+                    fetch('/api/admin/create-user', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ days: parseInt(days), key: '${adminKey}' })
+                    }).then(() => location.reload())
+                }
+                
+                function disableUser(token) {
+                    if(confirm('Отключить пользователя?')) {
+                        fetch('/api/admin/disable', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ token, key: '${adminKey}' })
+                        }).then(() => location.reload())
+                    }
+                }
+                
+                function enableUser(token, days) {
+                    if(confirm('Включить/продлить подписку на ' + days + ' дней?')) {
+                        fetch('/api/admin/enable', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ token, days, key: '${adminKey}' })
+                        }).then(() => location.reload())
+                    }
+                }
+                
+                function extendUser(token) {
+                    const days = document.getElementById('extendDays_' + token).value
+                    if(confirm('Продлить подписку на ' + days + ' дней?')) {
+                        fetch('/api/admin/extend', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ token, days: parseInt(days), key: '${adminKey}' })
+                        }).then(() => location.reload())
+                    }
+                }
+            </script>
         </body>
         </html>
     `)
 })
 
-app.get("/admin/create-user", (req, res) => {
-    const adminKey = req.query.key
-    
-    if (!adminKey || adminKey !== ADMIN_KEY) {
-        return res.redirect("/admin")
-    }
+app.post("/api/admin/create-user", (req, res) => {
+    const { days, key } = req.body
+    if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
     
     const users = loadUsers()
     const token = generateToken()
-    const days = parseInt(req.query.days) || 7
     const expires_at = new Date()
-    expires_at.setDate(expires_at.getDate() + days)
+    expires_at.setDate(expires_at.getDate() + (days || 7))
     
-    const user = {
-        token: token,
-        active: true,
-        created_at: new Date().toISOString(),
-        expires_at: expires_at.toISOString(),
-        total_requests: 0,
-        os: "Unknown",
-        last_ip: null,
-        last_seen: null
-    }
-    
-    users.push(user)
+    users.push({
+        token, active: true, created_at: new Date().toISOString(),
+        expires_at: expires_at.toISOString(), total_requests: 0,
+        os: "Unknown", last_ip: null, last_seen: null
+    })
     saveUsers(users)
-    
-    res.redirect(`/admin/dashboard?key=${adminKey}`)
+    res.json({ success: true })
 })
 
-app.get("/admin/extend/:token", (req, res) => {
-    const adminKey = req.query.key
-    
-    if (!adminKey || adminKey !== ADMIN_KEY) {
-        return res.redirect("/admin")
-    }
+app.post("/api/admin/disable", (req, res) => {
+    const { token, key } = req.body
+    if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
     
     const users = loadUsers()
-    const user = users.find(u => u.token === req.params.token)
+    const user = users.find(u => u.token === token)
+    if (user) user.active = false
+    saveUsers(users)
+    res.json({ success: true })
+})
+
+app.post("/api/admin/enable", (req, res) => {
+    const { token, days, key } = req.body
+    if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
+    
+    const users = loadUsers()
+    const user = users.find(u => u.token === token)
     if (user) {
-        const days = parseInt(req.query.days) || 7
+        const newExpiry = new Date()
+        newExpiry.setDate(newExpiry.getDate() + (days || 7))
+        user.expires_at = newExpiry.toISOString()
+        user.active = true
+    }
+    saveUsers(users)
+    res.json({ success: true })
+})
+
+app.post("/api/admin/extend", (req, res) => {
+    const { token, days, key } = req.body
+    if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
+    
+    const users = loadUsers()
+    const user = users.find(u => u.token === token)
+    if (user) {
         const currentExpiry = new Date(user.expires_at)
         const now = new Date()
         const newExpiry = new Date(Math.max(currentExpiry.getTime(), now.getTime()))
-        newExpiry.setDate(newExpiry.getDate() + days)
+        newExpiry.setDate(newExpiry.getDate() + (days || 7))
         user.expires_at = newExpiry.toISOString()
         user.active = true
     }
     saveUsers(users)
-    res.redirect(`/admin/dashboard?key=${adminKey}`)
-})
-
-app.get("/admin/disable/:token", (req, res) => {
-    const adminKey = req.query.key
-    
-    if (!adminKey || adminKey !== ADMIN_KEY) {
-        return res.redirect("/admin")
-    }
-    
-    const users = loadUsers()
-    const user = users.find(u => u.token === req.params.token)
-    if (user) user.active = false
-    saveUsers(users)
-    res.redirect(`/admin/dashboard?key=${adminKey}`)
-})
-
-app.get("/admin/enable/:token", (req, res) => {
-    const adminKey = req.query.key
-    
-    if (!adminKey || adminKey !== ADMIN_KEY) {
-        return res.redirect("/admin")
-    }
-    
-    const users = loadUsers()
-    const user = users.find(u => u.token === req.params.token)
-    if (user) {
-        const days = parseInt(req.query.days) || 7
-        const newExpiry = new Date()
-        newExpiry.setDate(newExpiry.getDate() + days)
-        user.expires_at = newExpiry.toISOString()
-        user.active = true
-    }
-    saveUsers(users)
-    res.redirect(`/admin/dashboard?key=${adminKey}`)
+    res.json({ success: true })
 })
 
 app.get("/sub/:token", (req, res) => {
@@ -1111,9 +1095,7 @@ app.get("/sub/:token", (req, res) => {
         const users = loadUsers()
         const user = users.find(x => x.token === token)
         
-        if (!user) {
-            return res.status(403).send("Subscription not found")
-        }
+        if (!user) return res.status(403).send("Subscription not found")
         
         const now = new Date()
         const expiresAt = new Date(user.expires_at)
@@ -1140,18 +1122,24 @@ app.get("/sub/:token", (req, res) => {
         saveUsers(users)
         
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+        const createdDate = new Date(user.created_at)
+        const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
+        const usedDays = totalDays - daysLeft
+        const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
         
         res.setHeader("Content-Type", "text/plain; charset=utf-8")
         res.setHeader("Profile-Title", "XolirX VPN")
-        res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=0`)
+        res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
         res.setHeader("Profile-Update-Interval", "1")
         res.setHeader("Support-Url", "https://t.me/xolirx")
         
         let result = `#profile-title: XolirX VPN\n`
         result += `#profile-update-interval: 1\n`
-        result += `#subscription-userinfo: upload=0; download=0; total=0; expire=0\n`
+        result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
         result += `#support-url: https://t.me/xolirx\n`
-        result += `#announce: 🌐 Осталось дней: ${daysLeft} 🌐 Для продления пиши @xolirx\n\n`
+        result += `#announce: 🌐 Подписка активна до ${expiresAt.toLocaleDateString()} (осталось ${daysLeft} ${getDayWord(daysLeft)}) 🌐\n`
+        result += `#announce: 📅 Использовано ${usedDays} из ${totalDays} дней\n`
+        result += `#announce: ✨ Для продления пиши @xolirx\n\n`
         result += servers
         
         res.send(result)
