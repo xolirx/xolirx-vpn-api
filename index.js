@@ -54,15 +54,75 @@ function loadServers() {
     }
 }
 
+function getUserSubscription(token) {
+    const users = loadUsers()
+    const user = users.find(u => u.token === token)
+    if (!user) return null
+    
+    const now = new Date()
+    const expiresAt = new Date(user.expires_at)
+    const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+    
+    return {
+        ...user,
+        daysLeft,
+        isExpired: now > expiresAt
+    }
+}
+
 app.get("/", async (req, res) => {
     const token = req.query.token
     
     if (token) {
-        const users = loadUsers()
-        const user = users.find(u => u.token === token && u.active === true)
+        const subscription = getUserSubscription(token)
         
-        if (!user) {
-            return res.redirect("/?error=invalid")
+        if (!subscription || !subscription.active || subscription.isExpired) {
+            return res.send(`
+                <!DOCTYPE html>
+                <html lang="ru">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>XolirX VPN | Подписка недействительна</title>
+                    <style>
+                        body {
+                            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+                            font-family: 'Inter', sans-serif;
+                            color: #fff;
+                            min-height: 100vh;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        .card {
+                            background: rgba(255,255,255,0.05);
+                            backdrop-filter: blur(10px);
+                            border-radius: 2rem;
+                            padding: 2rem;
+                            text-align: center;
+                            max-width: 500px;
+                        }
+                        .btn {
+                            display: inline-block;
+                            margin-top: 1rem;
+                            padding: 0.8rem 1.5rem;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            border-radius: 0.8rem;
+                            color: white;
+                            text-decoration: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="card">
+                        <h2>⛔ Подписка недействительна</h2>
+                        <p>Ваша подписка истекла или была отключена.</p>
+                        <p>Для продления напишите в Telegram: <strong>@xolirx</strong></p>
+                        <a href="/" class="btn">На главную</a>
+                    </div>
+                </body>
+                </html>
+            `)
         }
         
         const servers = loadServers()
@@ -220,6 +280,15 @@ app.get("/", async (req, res) => {
                         margin-top: 0.5rem;
                     }
                     
+                    .expiry-warning {
+                        background: rgba(255, 193, 7, 0.1);
+                        border: 1px solid rgba(255, 193, 7, 0.3);
+                        border-radius: 1rem;
+                        padding: 1rem;
+                        margin: 1rem 0;
+                        text-align: center;
+                    }
+                    
                     .steps {
                         display: grid;
                         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -254,6 +323,18 @@ app.get("/", async (req, res) => {
                         margin-top: 3rem;
                     }
                     
+                    .admin-link {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        background: rgba(0,0,0,0.7);
+                        padding: 0.5rem 1rem;
+                        border-radius: 0.5rem;
+                        font-size: 0.8rem;
+                        color: #888;
+                        text-decoration: none;
+                    }
+                    
                     @media (max-width: 768px) {
                         .container {
                             padding: 1rem;
@@ -273,6 +354,16 @@ app.get("/", async (req, res) => {
                     
                     <div class="subscription-card">
                         <h2 class="section-title">Ваша подписка</h2>
+                        ${subscription.daysLeft <= 3 ? `
+                            <div class="expiry-warning">
+                                ⚠️ Подписка истекает через ${subscription.daysLeft} ${getDayWord(subscription.daysLeft)}!
+                                Для продления напишите @xolirx
+                            </div>
+                        ` : `
+                            <div class="expiry-warning" style="background: rgba(102, 126, 234, 0.1); border-color: rgba(102, 126, 234, 0.3);">
+                                ✅ Подписка активна до ${new Date(subscription.expires_at).toLocaleDateString()} (осталось ${subscription.daysLeft} ${getDayWord(subscription.daysLeft)})
+                            </div>
+                        `}
                         <div class="url-box" id="subscriptionUrl">${subscriptionUrl}</div>
                         <div class="button-group">
                             <button class="btn btn-primary" onclick="copyUrl()">📋 Копировать ссылку</button>
@@ -296,7 +387,7 @@ app.get("/", async (req, res) => {
                             <div class="stat-label">Протокол</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-value">${user.total_requests || 0}</div>
+                            <div class="stat-value">${subscription.total_requests || 0}</div>
                             <div class="stat-label">Запросов</div>
                         </div>
                     </div>
@@ -325,6 +416,8 @@ app.get("/", async (req, res) => {
                         <p style="margin-top: 0.5rem; font-size: 0.8rem;">Никаких логов. Только VLESS.</p>
                     </div>
                 </div>
+                
+                <a href="/admin" class="admin-link">🔐 Админ панель</a>
                 
                 <script>
                     function copyUrl() {
@@ -592,6 +685,12 @@ app.get("/", async (req, res) => {
     }
 })
 
+function getDayWord(days) {
+    if (days % 10 === 1 && days % 100 !== 11) return "день"
+    if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) return "дня"
+    return "дней"
+}
+
 app.get("/admin", (req, res) => {
     const adminKey = req.query.key
     
@@ -673,9 +772,20 @@ app.get("/admin/dashboard", (req, res) => {
         return res.redirect("/admin")
     }
     
-    const users = loadUsers()
+    let users = loadUsers()
     const servers = loadServers()
     const totalRequests = users.reduce((sum, u) => sum + (u.total_requests || 0), 0)
+    const now = new Date()
+    
+    users = users.map(user => {
+        const expiresAt = new Date(user.expires_at)
+        return {
+            ...user,
+            expires_at_formatted: expiresAt.toLocaleDateString(),
+            daysLeft: Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24))),
+            isExpired: now > expiresAt
+        }
+    })
     
     res.send(`
         <!DOCTYPE html>
@@ -733,9 +843,18 @@ app.get("/admin/dashboard", (req, res) => {
                     text-decoration: none;
                     color: white;
                     transition: all 0.3s;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 0.9rem;
                 }
                 .btn:hover {
                     transform: translateY(-2px);
+                }
+                .btn-danger {
+                    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                }
+                .btn-success {
+                    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
                 }
                 table {
                     width: 100%;
@@ -766,27 +885,31 @@ app.get("/admin/dashboard", (req, res) => {
                     background: rgba(255,0,0,0.2);
                     color: #f00;
                 }
-                button {
-                    background: #ff4444;
-                    color: white;
-                    border: none;
-                    padding: 0.25rem 0.5rem;
+                .badge-expired {
+                    background: rgba(255,0,0,0.2);
+                    color: #f00;
+                }
+                .badge-soon {
+                    background: rgba(255,193,7,0.2);
+                    color: #ffc107;
+                }
+                .action-buttons {
+                    display: flex;
+                    gap: 0.5rem;
+                    flex-wrap: wrap;
+                }
+                select {
+                    padding: 0.25rem;
                     border-radius: 0.25rem;
-                    cursor: pointer;
+                    background: #000;
+                    color: white;
+                    border: 1px solid #333;
                 }
                 .create-form {
                     background: rgba(255,255,255,0.05);
                     border-radius: 1rem;
                     padding: 1.5rem;
                     margin-bottom: 2rem;
-                }
-                .create-form input {
-                    padding: 0.5rem;
-                    border-radius: 0.5rem;
-                    border: 1px solid rgba(255,255,255,0.2);
-                    background: rgba(0,0,0,0.5);
-                    color: white;
-                    margin-right: 1rem;
                 }
                 @media (max-width: 768px) {
                     body {
@@ -796,6 +919,9 @@ app.get("/admin/dashboard", (req, res) => {
                         padding: 0.5rem;
                         font-size: 0.8rem;
                     }
+                    .action-buttons {
+                        flex-direction: column;
+                    }
                 }
             </style>
         </head>
@@ -804,8 +930,8 @@ app.get("/admin/dashboard", (req, res) => {
                 <div class="header">
                     <h2>🔐 Админ панель XolirX VPN</h2>
                     <div class="stats">
-                        <div class="stat">👥 Пользователей: <span>${users.length}</span></div>
-                        <div class="stat">🟢 Активных: <span>${users.filter(u => u.active).length}</span></div>
+                        <div class="stat">👥 Всего: <span>${users.length}</span></div>
+                        <div class="stat">🟢 Активных: <span>${users.filter(u => u.active && !u.isExpired).length}</span></div>
                         <div class="stat">📊 Запросов: <span>${totalRequests}</span></div>
                         <div class="stat">🖥️ Серверов: <span>${servers.length}</span></div>
                     </div>
@@ -813,31 +939,74 @@ app.get("/admin/dashboard", (req, res) => {
                 
                 <div class="create-form">
                     <h3>➕ Создать нового пользователя</h3>
-                    <form method="GET" action="/admin/create-user">
+                    <form method="GET" action="/admin/create-user" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                         <input type="hidden" name="key" value="${adminKey}">
+                        <label>Дней подписки: 
+                            <select name="days">
+                                <option value="7">7 дней</option>
+                                <option value="14">14 дней</option>
+                                <option value="30">30 дней</option>
+                                <option value="60">60 дней</option>
+                                <option value="90">90 дней</option>
+                            </select>
+                        </label>
                         <button type="submit" class="btn">Создать подписку</button>
                     </form>
                 </div>
                 
                 <table>
                     <thead>
-                        <tr><th>Статус</th><th>Токен</th><th>Запросы</th><th>OS</th><th>IP</th><th>Last Seen</th><th>Действия</th></tr>
+                        <tr><th>Статус</th><th>Токен</th><th>Создан</th><th>Истекает</th><th>Дней</th><th>Запросы</th><th>OS</th><th>Действия</th></tr>
                     </thead>
                     <tbody>
-                        ${users.map(user => `
-                            <tr>
-                                <td><span class="badge ${user.active ? 'badge-active' : 'badge-inactive'}">${user.active ? '✓ Активен' : '✗ Отключен'}</span></td>
-                                <td><code>${user.token.substr(0, 16)}...</code></td>
-                                <td>${user.total_requests || 0}</td>
-                                <td>${user.os || 'Unknown'}</td>
-                                <td>${user.last_ip || '-'}</td>
-                                <td>${user.last_seen ? new Date(user.last_seen).toLocaleDateString() : '-'}</td>
-                                <td>
-                                    ${user.active ? `<a href="/admin/disable/${user.token}?key=${adminKey}" style="color: #ff4444; text-decoration: none;" onclick="return confirm('Отключить пользователя?')">🔴 Отключить</a>` : `<a href="/admin/enable/${user.token}?key=${adminKey}" style="color: #00ff00; text-decoration: none;">🟢 Включить</a>`}
-                                    <a href="/?token=${user.token}" style="color: #667eea; text-decoration: none; margin-left: 0.5rem;" target="_blank">👁️ Просмотр</a>
-                                </td>
-                            </tr>
-                        `).join('')}
+                        ${users.map(user => {
+                            let statusClass = ''
+                            let statusText = ''
+                            if (!user.active) {
+                                statusClass = 'badge-inactive'
+                                statusText = '✗ Отключен'
+                            } else if (user.isExpired) {
+                                statusClass = 'badge-expired'
+                                statusText = '⛔ Истекла'
+                            } else if (user.daysLeft <= 3) {
+                                statusClass = 'badge-soon'
+                                statusText = '⚠️ Скоро'
+                            } else {
+                                statusClass = 'badge-active'
+                                statusText = '✓ Активен'
+                            }
+                            return `
+                                <tr>
+                                    <td><span class="badge ${statusClass}">${statusText}</span></td>
+                                    <td><code>${user.token.substring(0, 16)}...</code><br><small style="color:#888">${user.token.substring(16, 32)}</small></td>
+                                    <td>${new Date(user.created_at).toLocaleDateString()}</td>
+                                    <td>${user.expires_at_formatted}</td>
+                                    <td>${user.daysLeft} ${getDayWord(user.daysLeft)}</td>
+                                    <td>${user.total_requests || 0}</td>
+                                    <td>${user.os || 'Unknown'}</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            ${user.active && !user.isExpired ? 
+                                                `<a href="/admin/disable/${user.token}?key=${adminKey}" class="btn btn-danger" onclick="return confirm('Отключить пользователя ${user.token.substring(0, 8)}?')">🔴 Отключить</a>` : 
+                                                (user.isExpired || !user.active) ?
+                                                `<a href="/admin/enable/${user.token}?key=${adminKey}&days=7" class="btn btn-success" onclick="return confirm('Продлить подписку на 7 дней?')">🟢 Продлить 7д</a>` :
+                                                `<a href="/admin/enable/${user.token}?key=${adminKey}&days=7" class="btn btn-success" onclick="return confirm('Включить подписку на 7 дней?')">🟢 Включить</a>`
+                                            }
+                                            <form method="GET" action="/admin/extend/${user.token}" style="display: inline;">
+                                                <input type="hidden" name="key" value="${adminKey}">
+                                                <select name="days" style="padding: 0.25rem;">
+                                                    <option value="7">+7 дней</option>
+                                                    <option value="14">+14 дней</option>
+                                                    <option value="30">+30 дней</option>
+                                                </select>
+                                                <button type="submit" class="btn" onclick="return confirm('Продлить подписку?')">📅 Продлить</button>
+                                            </form>
+                                            <a href="/?token=${user.token}" target="_blank" class="btn">👁️ Просмотр</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `
+                        }).join('')}
                     </tbody>
                 </table>
                 
@@ -859,11 +1028,15 @@ app.get("/admin/create-user", (req, res) => {
     
     const users = loadUsers()
     const token = generateToken()
+    const days = parseInt(req.query.days) || 7
+    const expires_at = new Date()
+    expires_at.setDate(expires_at.getDate() + days)
     
     const user = {
         token: token,
         active: true,
         created_at: new Date().toISOString(),
+        expires_at: expires_at.toISOString(),
         total_requests: 0,
         os: "Unknown",
         last_ip: null,
@@ -873,6 +1046,28 @@ app.get("/admin/create-user", (req, res) => {
     users.push(user)
     saveUsers(users)
     
+    res.redirect(`/admin/dashboard?key=${adminKey}`)
+})
+
+app.get("/admin/extend/:token", (req, res) => {
+    const adminKey = req.query.key
+    
+    if (!adminKey || adminKey !== ADMIN_KEY) {
+        return res.redirect("/admin")
+    }
+    
+    const users = loadUsers()
+    const user = users.find(u => u.token === req.params.token)
+    if (user) {
+        const days = parseInt(req.query.days) || 7
+        const currentExpiry = new Date(user.expires_at)
+        const now = new Date()
+        const newExpiry = new Date(Math.max(currentExpiry.getTime(), now.getTime()))
+        newExpiry.setDate(newExpiry.getDate() + days)
+        user.expires_at = newExpiry.toISOString()
+        user.active = true
+    }
+    saveUsers(users)
     res.redirect(`/admin/dashboard?key=${adminKey}`)
 })
 
@@ -899,7 +1094,13 @@ app.get("/admin/enable/:token", (req, res) => {
     
     const users = loadUsers()
     const user = users.find(u => u.token === req.params.token)
-    if (user) user.active = true
+    if (user) {
+        const days = parseInt(req.query.days) || 7
+        const newExpiry = new Date()
+        newExpiry.setDate(newExpiry.getDate() + days)
+        user.expires_at = newExpiry.toISOString()
+        user.active = true
+    }
     saveUsers(users)
     res.redirect(`/admin/dashboard?key=${adminKey}`)
 })
@@ -908,10 +1109,18 @@ app.get("/sub/:token", (req, res) => {
     try {
         const token = req.params.token
         const users = loadUsers()
-        const user = users.find(x => x.token === token && x.active === true)
+        const user = users.find(x => x.token === token)
         
         if (!user) {
-            return res.status(403).send("Subscription expired or invalid")
+            return res.status(403).send("Subscription not found")
+        }
+        
+        const now = new Date()
+        const expiresAt = new Date(user.expires_at)
+        const isExpired = now > expiresAt
+        
+        if (!user.active || isExpired) {
+            return res.status(403).send("Subscription expired or disabled. Contact @xolirx for renewal.")
         }
         
         const vpn = fs.readFileSync(VPN_FILE, "utf-8")
@@ -930,10 +1139,22 @@ app.get("/sub/:token", (req, res) => {
         
         saveUsers(users)
         
+        const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+        
         res.setHeader("Content-Type", "text/plain; charset=utf-8")
         res.setHeader("Profile-Title", "XolirX VPN")
         res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=0`)
-        res.send(servers)
+        res.setHeader("Profile-Update-Interval", "1")
+        res.setHeader("Support-Url", "https://t.me/xolirx")
+        
+        let result = `#profile-title: XolirX VPN\n`
+        result += `#profile-update-interval: 1\n`
+        result += `#subscription-userinfo: upload=0; download=0; total=0; expire=0\n`
+        result += `#support-url: https://t.me/xolirx\n`
+        result += `#announce: 🌐 Осталось дней: ${daysLeft} 🌐 Для продления пиши @xolirx\n\n`
+        result += servers
+        
+        res.send(result)
     } catch {
         res.status(500).send("Internal Server Error")
     }
