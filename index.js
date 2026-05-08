@@ -14,13 +14,11 @@ const ADMIN_KEY = process.env.ADMIN_KEY || "xolirx2024"
 
 const DATA_DIR = path.join(process.cwd(), "data")
 const VPN_FILE = path.join(DATA_DIR, "vpn.txt")
-const JSON_FILE = path.join(DATA_DIR, "servers.json")
 const USERS_FILE = path.join(process.cwd(), "users.json")
 const DEVICES_FILE = path.join(process.cwd(), "devices.json")
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR)
 if (!fs.existsSync(VPN_FILE)) fs.writeFileSync(VPN_FILE, "", "utf-8")
-if (!fs.existsSync(JSON_FILE)) fs.writeFileSync(JSON_FILE, "[]", "utf-8")
 if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, "[]", "utf-8")
 if (!fs.existsSync(DEVICES_FILE)) fs.writeFileSync(DEVICES_FILE, "{}", "utf-8")
 
@@ -354,20 +352,22 @@ app.get("/sub/:token", async (req, res) => {
         
         if (isHappClient) {
             const vpn = fs.readFileSync(VPN_FILE, "utf-8")
-            const servers = vpn.split("\n").filter(l => l.startsWith("vless://")).join("\n")
             
             res.setHeader("Content-Type", "text/plain; charset=utf-8")
             res.setHeader("Profile-Title", "XolirX 🌑")
             res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
             res.setHeader("Profile-Update-Interval", "1")
             res.setHeader("Support-Url", "https://t.me/xolirx")
+            res.setHeader("Profile-Web-Page-Url", "https://github.com/xolirx")
             
             let result = `#profile-title: XolirX 🌑\n`
             result += `#profile-update-interval: 1\n`
             result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
             result += `#support-url: https://t.me/xolirx\n`
-            result += `#announce: #announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐 | 📅 Осталось ${daysLeft} ${getDayWord(daysLeft)} | ✨ Продление: @xolirx\n\n`
-            result += servers
+            result += `#profile-web-page-url: https://github.com/xolirx\n`
+            result += `#announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐\n\n`
+            result += vpn
+            
             return res.send(result)
         }
         
