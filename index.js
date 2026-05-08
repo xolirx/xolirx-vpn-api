@@ -1,4 +1,3 @@
-```js
 import express from "express"
 import cors from "cors"
 import fs from "fs"
@@ -34,15 +33,18 @@ app.get("/", (req, res) => {
         endpoints: {
             vpn: "/vpn",
             servers: "/servers",
-            upload: "/upload",
-            stats: "/stats"
+            stats: "/stats",
+            upload: "/upload"
         }
     })
 })
 
 app.get("/vpn", (req, res) => {
     try {
-        const data = fs.readFileSync(VPN_FILE, "utf-8")
+        const data = fs.readFileSync(
+            VPN_FILE,
+            "utf-8"
+        )
 
         res.setHeader(
             "Content-Type",
@@ -53,14 +55,17 @@ app.get("/vpn", (req, res) => {
     } catch {
         res.status(500).json({
             error: true,
-            message: "failed to read vpn file"
+            message: "failed to read vpn"
         })
     }
 })
 
 app.get("/servers", (req, res) => {
     try {
-        const data = fs.readFileSync(JSON_FILE, "utf-8")
+        const data = fs.readFileSync(
+            JSON_FILE,
+            "utf-8"
+        )
 
         res.setHeader(
             "Content-Type",
@@ -78,15 +83,23 @@ app.get("/servers", (req, res) => {
 
 app.get("/stats", (req, res) => {
     try {
-        const vpn = fs.readFileSync(VPN_FILE, "utf-8")
+        const vpn = fs.readFileSync(
+            VPN_FILE,
+            "utf-8"
+        )
+
         const json = JSON.parse(
-            fs.readFileSync(JSON_FILE, "utf-8")
+            fs.readFileSync(
+                JSON_FILE,
+                "utf-8"
+            )
         )
 
         const countries = {}
 
         for (const server of json) {
-            const country = server.country || "Unknown"
+            const country =
+                server.country || "Unknown"
 
             countries[country] =
                 (countries[country] || 0) + 1
@@ -140,9 +153,11 @@ app.post("/upload", (req, res) => {
         res.json({
             success: true,
             updated: true,
-            vpn_endpoint: "/vpn",
-            servers_endpoint: "/servers",
-            stats_endpoint: "/stats"
+            endpoints: {
+                vpn: "/vpn",
+                servers: "/servers",
+                stats: "/stats"
+            }
         })
     } catch {
         res.status(500).json({
@@ -157,11 +172,19 @@ app.listen(PORT, () => {
     console.log("===================================")
     console.log(" XolirX VPN API")
     console.log("===================================")
-    console.log(` PORT: ${PORT}`)
-    console.log(` VPN: http://localhost:${PORT}/vpn`)
-    console.log(` JSON: http://localhost:${PORT}/servers`)
-    console.log(` STATS: http://localhost:${PORT}/stats`)
+    console.log("PORT:", PORT)
+    console.log(
+        "VPN:",
+        "http://localhost:" + PORT + "/vpn"
+    )
+    console.log(
+        "JSON:",
+        "http://localhost:" + PORT + "/servers"
+    )
+    console.log(
+        "STATS:",
+        "http://localhost:" + PORT + "/stats"
+    )
     console.log("===================================")
     console.log("")
 })
-```
