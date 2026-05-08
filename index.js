@@ -276,18 +276,23 @@ app.post("/api/admin/extend-all", (req, res) => {
 app.get("/sub/:token", async (req, res) => {
     try {
         const token = req.params.token
+        const format = req.query.format
         
         if (!token || token.length < 10) {
             return res.status(400).send("Invalid token")
         }
         
         const userAgent = req.headers["user-agent"] || ""
-        
-        const isHappClient = userAgent.includes("Happ") || 
+        const isHappClient = format === "happ" || 
+                            format === "text" ||
+                            userAgent.includes("Happ") || 
                             userAgent.includes("v2rayNG") || 
                             userAgent.includes("Nekobox") ||
                             userAgent.includes("Clash") ||
-                            userAgent.includes("Shadowrocket")
+                            userAgent.includes("Shadowrocket") ||
+                            userAgent.includes("Sing-box") ||
+                            (userAgent.includes("Android") && !userAgent.includes("Chrome")) ||
+                            (userAgent.includes("iOS") && !userAgent.includes("Safari"))
         
         const users = loadUsers()
         const user = users.find(x => x.token === token)
@@ -317,7 +322,6 @@ app.get("/sub/:token", async (req, res) => {
         
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
         const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
-        
         const vpnContent = fs.readFileSync(VPN_FILE, "utf-8")
         
         if (isHappClient) {
@@ -336,7 +340,8 @@ app.get("/sub/:token", async (req, res) => {
             result += `#announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐\n\n`
             
             if (vpnContent && vpnContent.trim().length > 0) {
-                result += vpnContent
+                const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
+                result += lines.join("\n")
             } else {
                 result += `# Нет доступных серверов\n# Обновите подписку позже\n`
             }
@@ -349,10 +354,10 @@ app.get("/sub/:token", async (req, res) => {
         const usedDays = totalDays - daysLeft
         const percent = (daysLeft / totalDays) * 100
         
-        let serversList = ""
+        let serversHtml = ""
         if (vpnContent && vpnContent.trim().length > 0) {
             const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
-            serversList = `<div class="servers-list"><h3>ДОСТУПНЫЕ СЕРВЕРА (${lines.length})</h3><div class="text-secondary" style="font-size:10px;word-break:break-all;">${lines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
+            serversHtml = `<div class="servers-list"><h3>ДОСТУПНЫЕ СЕРВЕРА (${lines.length})</h3><div class="text-secondary" style="font-size:10px;word-break:break-all;">${lines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
         }
         
         const html = `<!DOCTYPE html>
@@ -384,6 +389,8 @@ hr{border-color:#1f2230;margin:20px 0;}
 .progress-fill{background:#fff;height:100%;border-radius:4px;width:${percent}%;}
 .footer{text-align:center;color:#888;font-size:10px;margin-top:40px;}
 .servers-list{margin-top:20px;padding-top:16px;border-top:1px solid #1f2230;}
+.hint{background:#1a1c22;padding:12px;border-radius:8px;margin-top:16px;text-align:center;}
+code{background:#000;padding:2px 6px;border-radius:4px;font-size:10px;}
 </style>
 </head>
 <body>
@@ -406,28 +413,31 @@ hr{border-color:#1f2230;margin:20px 0;}
 </div>
 <div class="progress-bar"><div class="progress-fill"></div></div>
 <p class="text-secondary">Истекает: ${expiresAt.toLocaleDateString()}</p>
-${serversList}
+${serversHtml}
+<div class="hint">
+<p class="text-secondary" style="font-size:10px;">ДЛЯ HAPP ИСПОЛЬЗУЙТЕ ССЫЛКУ С ПАРАМЕТРОМ:<br><code>${subscriptionUrl}?format=happ</code></p>
+</div>
 </div>
 <div class="card">
 <h2>ИНСТРУКЦИЯ</h2>
-<p class="text-secondary">1. Скачай Happ</p>
+<p class="text-secondary">1. Скачай приложение Happ</p>
 <p class="text-secondary">2. Нажми КОПИРОВАТЬ ССЫЛКУ</p>
 <p class="text-secondary">3. В Happ нажми + → Вставить</p>
-<p class="text-secondary">4. Обновляй раз в день</p>
-<p class="text-secondary" style="margin-top:12px;">Сервера обновляются автоматически из GitHub</p>
+<p class="text-secondary">4. Обновляй подписку раз в день</p>
+<p class="text-secondary" style="margin-top:12px;">Сервера обновляются автоматически</p>
 </div>
 <div class="footer">XOLIRX VPN | @xolirx</div>
 </div>
 <script>
 var subUrl = '${subscriptionUrl}';
 document.getElementById('copyBtn').onclick = function() {
-    navigator.clipboard.writeText(subUrl);
-    alert('Ссылка скопирована');
+    navigator.clipboard.writeText(subUrl + '?format=happ');
+    alert('Ссылка для Happ скопирована');
 };
 document.getElementById('happBtn').onclick = function() {
-    window.location.href = 'happ://add/' + subUrl;
+    window.location.href = 'happ://add/' + subUrl + '?format=happ';
 };
-QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl, {
+QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl + '?format=happ', {
     width: 160, margin: 1, color: { dark: '#000000', light: '#FFFFFF' }
 });
 </script>
@@ -439,7 +449,7 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl, {
         
     } catch (error) {
         console.error("Sub error:", error)
-        res.status(500).send("Internal Server Error: " + error.message)
+        res.status(500).send("Internal Server Error")
     }
 })
 
