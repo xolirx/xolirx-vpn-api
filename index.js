@@ -318,9 +318,9 @@ app.get("/sub/:token", async (req, res) => {
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
         const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
         
+        const vpnContent = fs.readFileSync(VPN_FILE, "utf-8")
+        
         if (isHappClient) {
-            const vpn = fs.readFileSync(VPN_FILE, "utf-8")
-            
             res.setHeader("Content-Type", "text/plain; charset=utf-8")
             res.setHeader("Profile-Title", "XolirX 🌑")
             res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
@@ -334,7 +334,12 @@ app.get("/sub/:token", async (req, res) => {
             result += `#support-url: https://t.me/xolirx\n`
             result += `#profile-web-page-url: https://github.com/xolirx\n`
             result += `#announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐\n\n`
-            result += vpn
+            
+            if (vpnContent && vpnContent.trim().length > 0) {
+                result += vpnContent
+            } else {
+                result += `# Нет доступных серверов\n# Обновите подписку позже\n`
+            }
             
             return res.send(result)
         }
@@ -343,6 +348,12 @@ app.get("/sub/:token", async (req, res) => {
         const totalDays = 7
         const usedDays = totalDays - daysLeft
         const percent = (daysLeft / totalDays) * 100
+        
+        let serversList = ""
+        if (vpnContent && vpnContent.trim().length > 0) {
+            const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
+            serversList = `<div class="servers-list"><h3>ДОСТУПНЫЕ СЕРВЕРА (${lines.length})</h3><div class="text-secondary" style="font-size:10px;word-break:break-all;">${lines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
+        }
         
         const html = `<!DOCTYPE html>
 <html>
@@ -372,6 +383,7 @@ hr{border-color:#1f2230;margin:20px 0;}
 .progress-bar{background:#1f2230;height:4px;border-radius:4px;margin:16px 0;}
 .progress-fill{background:#fff;height:100%;border-radius:4px;width:${percent}%;}
 .footer{text-align:center;color:#888;font-size:10px;margin-top:40px;}
+.servers-list{margin-top:20px;padding-top:16px;border-top:1px solid #1f2230;}
 </style>
 </head>
 <body>
@@ -394,6 +406,7 @@ hr{border-color:#1f2230;margin:20px 0;}
 </div>
 <div class="progress-bar"><div class="progress-fill"></div></div>
 <p class="text-secondary">Истекает: ${expiresAt.toLocaleDateString()}</p>
+${serversList}
 </div>
 <div class="card">
 <h2>ИНСТРУКЦИЯ</h2>
@@ -401,6 +414,7 @@ hr{border-color:#1f2230;margin:20px 0;}
 <p class="text-secondary">2. Нажми КОПИРОВАТЬ ССЫЛКУ</p>
 <p class="text-secondary">3. В Happ нажми + → Вставить</p>
 <p class="text-secondary">4. Обновляй раз в день</p>
+<p class="text-secondary" style="margin-top:12px;">Сервера обновляются автоматически из GitHub</p>
 </div>
 <div class="footer">XOLIRX VPN | @xolirx</div>
 </div>
@@ -424,8 +438,8 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl, {
         res.send(html)
         
     } catch (error) {
-        console.error(error)
-        res.status(500).send("Internal Server Error")
+        console.error("Sub error:", error)
+        res.status(500).send("Internal Server Error: " + error.message)
     }
 })
 
@@ -441,5 +455,5 @@ app.get("/vpn", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`XolirX VPN running on port ${PORT}`)
-    console.log(`Admin key: ${ADMIN_KEY})
+    console.log(`Admin key: ${ADMIN_KEY}`)
 })
