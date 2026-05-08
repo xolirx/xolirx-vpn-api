@@ -55,6 +55,8 @@ function parseUserAgent(ua) {
     let os = "Unknown"
     let browser = "Unknown"
     
+    ua = ua || ""
+    
     if (ua.includes("iPhone")) {
         device = "iPhone"
         os = "iOS"
@@ -65,8 +67,9 @@ function parseUserAgent(ua) {
         device = "Android Phone"
         os = "Android"
         if (ua.includes("SM-") || ua.includes("Galaxy")) device = "Samsung Galaxy"
-        if (ua.includes("Pixel")) device = "Google Pixel"
-        if (ua.includes("Xiaomi") || ua.includes("Redmi")) device = "Xiaomi"
+        else if (ua.includes("Pixel")) device = "Google Pixel"
+        else if (ua.includes("Xiaomi") || ua.includes("Redmi")) device = "Xiaomi"
+        else if (ua.includes("OnePlus")) device = "OnePlus"
     } else if (ua.includes("Windows")) {
         device = "PC"
         os = "Windows"
@@ -86,6 +89,8 @@ function parseUserAgent(ua) {
     
     return { device, os, browser }
 }
+
+// --- API ENDPOINTS ---
 
 app.post("/api/create-subscription", (req, res) => {
     try {
@@ -127,7 +132,7 @@ app.post("/api/create-subscription", (req, res) => {
             last_ip: req.ip || req.headers["x-forwarded-for"] || "Unknown",
             last_seen: new Date().toISOString(),
             user_agent: req.headers["user-agent"] || "Unknown",
-            device_info: parseUserAgent(req.headers["user-agent"] || "Unknown")
+            device_info: parseUserAgent(req.headers["user-agent"] || "")
         }
         
         users.push(user)
@@ -226,7 +231,6 @@ app.post("/api/admin/create-user", (req, res) => {
         created_at: new Date().toISOString(),
         expires_at: expires_at.toISOString(),
         total_requests: 0,
-        os: "Unknown",
         last_ip: null,
         last_seen: null,
         device_info: { device: "Unknown", os: "Unknown", browser: "Unknown" }
@@ -299,14 +303,26 @@ app.post("/api/admin/extend-all", (req, res) => {
     res.json({ success: true, extended: users.filter(u => u.active).length })
 })
 
-app.get("/sub/:token", (req, res) => {
+// ГЛАВНЫЙ ЭНДПОИНТ ПОДПИСКИ - ОТДАЕТ HTML ДЛЯ БРАУЗЕРА
+app.get("/sub/:token", async (req, res) => {
     try {
         const token = req.params.token
+        const userAgent = req.headers["user-agent"] || ""
+        const isHapp = userAgent.includes("Happ") || userAgent.includes("Android") && !userAgent.includes("Chrome") || userAgent.includes("iOS") && !userAgent.includes("Safari")
+        
         const users = loadUsers()
         const user = users.find(x => x.token === token)
         
         if (!user) {
-            return res.status(403).send("Subscription not found")
+            return res.status(404).send(`
+                <!DOCTYPE html>
+                <html>
+                <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ошибка | XolirX VPN</title>
+                <style>body{background:#0a0c10;color:#fff;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.card{background:#14161c;border:1px solid #1f2230;padding:40px;border-radius:16px;text-align:center}.btn{display:inline-block;margin-top:20px;padding:10px 24px;border:1px solid #fff;color:#fff;text-decoration:none}</style>
+                </head>
+                <body><div class="card"><h2>Ошибка</h2><p>Подписка не найдена</p><a href="/" class="btn">На главную</a></div></body>
+                </html>
+            `)
         }
         
         const now = new Date()
@@ -314,41 +330,208 @@ app.get("/sub/:token", (req, res) => {
         const isExpired = now > expiresAt
         
         if (!user.active || isExpired) {
-            return res.status(403).send("Subscription expired or disabled. Contact @xolirx for renewal.")
+            return res.status(403).send(`
+                <!DOCTYPE html>
+                <html>
+                <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Подписка неактивна | XolirX VPN</title>
+                <style>body{background:#0a0c10;color:#fff;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.card{background:#14161c;border:1px solid #1f2230;padding:40px;border-radius:16px;text-align:center}.btn{display:inline-block;margin-top:20px;padding:10px 24px;border:1px solid #fff;color:#fff;text-decoration:none}</style>
+                </head>
+                <body><div class="card"><h2>Подписка неактивна</h2><p>Срок действия истек или подписка отключена</p><p>Для продления: @xolirx</p><a href="/" class="btn">На главную</a></div></body>
+                </html>
+            `)
         }
         
-        const vpn = fs.readFileSync(VPN_FILE, "utf-8")
-        const servers = vpn.split("\n").filter(l => l.startsWith("vless://")).join("\n")
+        // Если запрос от приложения (Happ) - отдаем текстовый файл
+        if (isHapp) {
+            const vpn = fs.readFileSync(VPN_FILE, "utf-8")
+            const servers = vpn.split("\n").filter(l => l.startsWith("vless://")).join("\n")
+            
+            user.last_ip = req.ip || req.headers['x-forwarded-for'] || 'Unknown'
+            user.last_seen = new Date().toISOString()
+            user.total_requests = (user.total_requests || 0) + 1
+            user.device_info = parseUserAgent(userAgent)
+            user.user_agent = userAgent
+            saveUsers(users)
+            
+            const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+            const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
+            
+            res.setHeader("Content-Type", "text/plain; charset=utf-8")
+            res.setHeader("Profile-Title", "XolirX VPN")
+            res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
+            res.setHeader("Profile-Update-Interval", "1")
+            res.setHeader("Support-Url", "https://t.me/xolirx")
+            
+            let result = `#profile-title: XolirX VPN\n`
+            result += `#profile-update-interval: 1\n`
+            result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
+            result += `#support-url: https://t.me/xolirx\n`
+            result += `#announce: 🔒 Безопасность | ⚡ Скорость | 📅 Осталось ${daysLeft} дней | ✨ Продление: @xolirx\n\n`
+            result += servers
+            return res.send(result)
+        }
         
-        const ua = req.headers["user-agent"] || "Unknown"
-        const deviceInfo = parseUserAgent(ua)
-        
-        user.last_ip = req.ip || req.headers['x-forwarded-for'] || 'Unknown'
-        user.last_seen = new Date().toISOString()
-        user.total_requests = (user.total_requests || 0) + 1
-        user.device_info = deviceInfo
-        user.user_agent = ua
-        
-        saveUsers(users)
-        
+        // Если запрос от браузера - отдаем HTML страницу
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
-        const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
+        const createdDate = new Date(user.created_at)
+        const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
+        const usedDays = totalDays - daysLeft
+        const percent = (daysLeft / totalDays) * 100
         
-        res.setHeader("Content-Type", "text/plain; charset=utf-8")
-        res.setHeader("Profile-Title", "XolirX VPN")
-        res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
-        res.setHeader("Profile-Update-Interval", "1")
-        res.setHeader("Support-Url", "https://t.me/xolirx")
+        const subscriptionUrl = `${req.protocol}://${req.get("host")}/sub/${token}`
         
-        let result = `#profile-title: XolirX VPN\n`
-        result += `#profile-update-interval: 1\n`
-        result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
-        result += `#support-url: https://t.me/xolirx\n`
-        result += `#announce: 🔒 Безопасность | ⚡ Скорость | 📅 Осталось ${daysLeft} ${getDayWord(daysLeft)} | ✨ Продление в тг: @xolirx\n\n`
-        result += servers
+        const html = `
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XolirX VPN | Моя подписка</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0c10;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            min-height: 100vh;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .card {
+            background: #14161c;
+            border: 1px solid #1f2230;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 24px; margin-bottom: 8px; }
+        h2 { font-size: 18px; margin-bottom: 16px; letter-spacing: 1px; }
+        .text-secondary { color: #888; font-size: 12px; }
+        .key-box {
+            background: #0a0c10;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 11px;
+            word-break: break-all;
+            margin: 16px 0;
+            border: 1px solid #1f2230;
+        }
+        .flex-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
+        .btn {
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 12px 24px;
+            font-family: monospace;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .btn:hover { background: #fff; color: #000; }
+        .btn-accent { background: #fff; color: #000; border: none; }
+        .btn-accent:hover { opacity: 0.85; }
+        .stats { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
+        .stat { flex: 1; min-width: 100px; }
+        .stat-value { font-size: 24px; font-weight: bold; }
+        .stat-label { color: #888; font-size: 10px; text-transform: uppercase; }
+        .progress-bar { background: #1f2230; height: 4px; border-radius: 4px; margin: 16px 0; }
+        .progress-fill { background: #fff; height: 100%; border-radius: 4px; width: ${percent}%; }
+        .qr-container { text-align: center; margin: 20px 0; }
+        .qr-container canvas { background: #fff; padding: 12px; border-radius: 12px; }
+        hr { border: none; border-top: 1px solid #1f2230; margin: 20px 0; }
+        .footer { text-align: center; color: #888; font-size: 10px; margin-top: 40px; }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            .card { padding: 20px; }
+            .stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>XOLIRX VPN</h1>
+            <p class="text-secondary">ПЕРСОНАЛЬНАЯ ПОДПИСКА</p>
+            
+            <div class="key-box" id="subUrl">${subscriptionUrl}</div>
+            
+            <div class="flex-row">
+                <button class="btn btn-accent" onclick="copyUrl()">КОПИРОВАТЬ ССЫЛКУ</button>
+                <button class="btn" onclick="addToHapp()">ДОБАВИТЬ В HAPP</button>
+            </div>
+            
+            <div class="qr-container">
+                <div id="qrcode"></div>
+                <p class="text-secondary" style="margin-top: 12px;">QR-КОД ДЛЯ HAPP</p>
+            </div>
+            
+            <hr>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">${daysLeft}</div>
+                    <div class="stat-label">ОСТАЛОСЬ ДНЕЙ</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">${user.total_requests || 0}</div>
+                    <div class="stat-label">ЗАПРОСОВ</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">${usedDays}/${totalDays}</div>
+                    <div class="stat-label">ПРОГРЕСС</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            
+            <p class="text-secondary" style="margin-top: 16px;">Истекает: ${expiresAt.toLocaleDateString()}</p>
+        </div>
         
-        res.send(result)
-    } catch {
+        <div class="card">
+            <h2>КАК ПОДКЛЮЧИТЬСЯ</h2>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>1.</strong> Скачай приложение Happ</p>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>2.</strong> Нажми «ДОБАВИТЬ В HAPP» или скопируй ссылку</p>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>3.</strong> В Happ нажми «+» → «Вставить из буфера обмена»</p>
+            <p class="text-secondary"><strong>4.</strong> Обновляй подписку раз в день</p>
+        </div>
+        
+        <div class="footer">
+            <p>XOLIRX VPN | @xolirx</p>
+        </div>
+    </div>
+    
+    <script>
+        function copyUrl() {
+            const url = document.getElementById('subUrl').innerText;
+            navigator.clipboard.writeText(url);
+            alert('Ссылка скопирована');
+        }
+        
+        function addToHapp() {
+            const url = document.getElementById('subUrl').innerText;
+            window.location.href = 'happ://add/' + url;
+        }
+        
+        const url = document.getElementById('subUrl').innerText;
+        QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + url, {
+            width: 160,
+            margin: 1,
+            color: { dark: '#000000', light: '#FFFFFF' }
+        });
+    </script>
+</body>
+</html>
+        `
+        res.setHeader("Content-Type", "text/html; charset=utf-8")
+        res.send(html)
+        
+    } catch (error) {
+        console.error(error)
         res.status(500).send("Internal Server Error")
     }
 })
@@ -367,9 +550,3 @@ app.listen(PORT, () => {
     console.log(`XolirX VPN API running on port ${PORT}`)
     console.log(`Admin key: ${ADMIN_KEY}`)
 })
-
-function getDayWord(days) {
-    if (days % 10 === 1 && days % 100 !== 11) return "день"
-    if (days % 10 >= 2 && days % 10 <= 4 && (days % 100 < 10 || days % 100 >= 20)) return "дня"
-    return "дней"
-}
