@@ -11,8 +11,14 @@ app.use(express.json({ limit: "50mb" }))
 const PORT = process.env.PORT || 3000
 
 const DATA_DIR = path.join(process.cwd(), "data")
+
 const VPN_FILE = path.join(DATA_DIR, "vpn.txt")
 const JSON_FILE = path.join(DATA_DIR, "servers.json")
+
+const USERS_FILE = path.join(
+    process.cwd(),
+    "users.json"
+)
 
 if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR)
@@ -26,22 +32,24 @@ if (!fs.existsSync(JSON_FILE)) {
     fs.writeFileSync(JSON_FILE, "[]", "utf-8")
 }
 
+if (!fs.existsSync(USERS_FILE)) {
+    fs.writeFileSync(
+        USERS_FILE,
+        "[]",
+        "utf-8"
+    )
+}
+
 app.get("/", (req, res) => {
     res.json({
         name: "XolirX VPN API",
-        status: "online",
-        endpoints: {
-            vpn: "/vpn",
-            servers: "/servers",
-            stats: "/stats",
-            upload: "/upload"
-        }
+        status: "online"
     })
 })
 
 app.get("/vpn", (req, res) => {
     try {
-        const data = fs.readFileSync(
+        const vpn = fs.readFileSync(
             VPN_FILE,
             "utf-8"
         )
@@ -51,18 +59,58 @@ app.get("/vpn", (req, res) => {
             "text/plain; charset=utf-8"
         )
 
-        res.send(data)
+        res.send(vpn)
     } catch {
         res.status(500).json({
-            error: true,
-            message: "failed to read vpn"
+            error: true
         })
+    }
+})
+
+app.get("/sub/:token", (req, res) => {
+    try {
+        const token = req.params.token
+
+        const users = JSON.parse(
+            fs.readFileSync(
+                USERS_FILE,
+                "utf-8"
+            )
+        )
+
+        const user = users.find(
+            x =>
+                x.token === token &&
+                x.active === true
+        )
+
+        if (!user) {
+            return res.status(403).send(
+                "Subscription expired"
+            )
+        }
+
+        const vpn = fs.readFileSync(
+            VPN_FILE,
+            "utf-8"
+        )
+
+        res.setHeader(
+            "Content-Type",
+            "text/plain; charset=utf-8"
+        )
+
+        res.send(vpn)
+    } catch {
+        res.status(500).send(
+            "Internal Server Error"
+        )
     }
 })
 
 app.get("/servers", (req, res) => {
     try {
-        const data = fs.readFileSync(
+        const json = fs.readFileSync(
             JSON_FILE,
             "utf-8"
         )
@@ -72,97 +120,10 @@ app.get("/servers", (req, res) => {
             "application/json"
         )
 
-        res.send(data)
+        res.send(json)
     } catch {
         res.status(500).json({
-            error: true,
-            message: "failed to read servers"
-        })
-    }
-})
-
-app.get("/stats", (req, res) => {
-    try {
-        const vpn = fs.readFileSync(
-            VPN_FILE,
-            "utf-8"
-        )
-
-        const json = JSON.parse(
-            fs.readFileSync(
-                JSON_FILE,
-                "utf-8"
-            )
-        )
-
-        const countries = {}
-
-        for (const server of json) {
-            const country =
-                server.country || "Unknown"
-
-            countries[country] =
-                (countries[country] || 0) + 1
-        }
-
-        res.json({
-            online: true,
-            total_servers: json.length,
-            total_configs: vpn
-                .split("\n")
-                .filter(x => x.trim())
-                .length,
-            countries
-        })
-    } catch {
-        res.status(500).json({
-            error: true,
-            message: "failed to load stats"
-        })
-    }
-})
-
-app.post("/upload", (req, res) => {
-    try {
-        const {
-            txt,
-            json
-        } = req.body
-
-        if (!txt) {
-            return res.status(400).json({
-                error: true,
-                message: "txt required"
-            })
-        }
-
-        fs.writeFileSync(
-            VPN_FILE,
-            txt,
-            "utf-8"
-        )
-
-        if (json) {
-            fs.writeFileSync(
-                JSON_FILE,
-                JSON.stringify(json, null, 2),
-                "utf-8"
-            )
-        }
-
-        res.json({
-            success: true,
-            updated: true,
-            endpoints: {
-                vpn: "/vpn",
-                servers: "/servers",
-                stats: "/stats"
-            }
-        })
-    } catch {
-        res.status(500).json({
-            error: true,
-            message: "upload failed"
+            error: true
         })
     }
 })
@@ -178,12 +139,8 @@ app.listen(PORT, () => {
         "http://localhost:" + PORT + "/vpn"
     )
     console.log(
-        "JSON:",
-        "http://localhost:" + PORT + "/servers"
-    )
-    console.log(
-        "STATS:",
-        "http://localhost:" + PORT + "/stats"
+        "SUB:",
+        "http://localhost:" + PORT + "/sub/xolirx_free_01"
     )
     console.log("===================================")
     console.log("")
