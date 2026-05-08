@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import fs from "fs"
 import path from "path"
+import crypto from "crypto"
 
 const app = express()
 
@@ -40,6 +41,29 @@ if (!fs.existsSync(USERS_FILE)) {
     )
 }
 
+function loadUsers() {
+    return JSON.parse(
+        fs.readFileSync(
+            USERS_FILE,
+            "utf-8"
+        )
+    )
+}
+
+function saveUsers(users) {
+    fs.writeFileSync(
+        USERS_FILE,
+        JSON.stringify(users, null, 2),
+        "utf-8"
+    )
+}
+
+function generateToken() {
+    return crypto
+        .randomBytes(16)
+        .toString("hex")
+}
+
 app.get("/", (req, res) => {
     res.json({
         name: "XolirX VPN API",
@@ -71,12 +95,7 @@ app.get("/sub/:token", (req, res) => {
     try {
         const token = req.params.token
 
-        const users = JSON.parse(
-            fs.readFileSync(
-                USERS_FILE,
-                "utf-8"
-            )
-        )
+        const users = loadUsers()
 
         const user = users.find(
             x =>
@@ -85,9 +104,9 @@ app.get("/sub/:token", (req, res) => {
         )
 
         if (!user) {
-            return res.status(403).send(
-                "Subscription expired"
-            )
+            return res
+                .status(403)
+                .send("Subscription expired")
         }
 
         const vpn = fs.readFileSync(
@@ -108,19 +127,82 @@ app.get("/sub/:token", (req, res) => {
     }
 })
 
-app.get("/servers", (req, res) => {
+app.get("/create-user", (req, res) => {
     try {
-        const json = fs.readFileSync(
-            JSON_FILE,
-            "utf-8"
+        const users = loadUsers()
+
+        const token = generateToken()
+
+        const user = {
+            token,
+            active: true,
+            created_at: new Date()
+                .toISOString()
+        }
+
+        users.push(user)
+
+        saveUsers(users)
+
+        const sub =
+            req.protocol +
+            "://" +
+            req.get("host") +
+            "/sub/" +
+            token
+
+        res.json({
+            success: true,
+            token,
+            subscription: sub
+        })
+    } catch {
+        res.status(500).json({
+            error: true
+        })
+    }
+})
+
+app.get("/users", (req, res) => {
+    try {
+        const users = loadUsers()
+
+        res.json({
+            total: users.length,
+            users
+        })
+    } catch {
+        res.status(500).json({
+            error: true
+        })
+    }
+})
+
+app.get("/disable/:token", (req, res) => {
+    try {
+        const token = req.params.token
+
+        const users = loadUsers()
+
+        const user = users.find(
+            x => x.token === token
         )
 
-        res.setHeader(
-            "Content-Type",
-            "application/json"
-        )
+        if (!user) {
+            return res.status(404).json({
+                error: true,
+                message: "user not found"
+            })
+        }
 
-        res.send(json)
+        user.active = false
+
+        saveUsers(users)
+
+        res.json({
+            success: true,
+            disabled: token
+        })
     } catch {
         res.status(500).json({
             error: true
@@ -139,8 +221,8 @@ app.listen(PORT, () => {
         "http://localhost:" + PORT + "/vpn"
     )
     console.log(
-        "SUB:",
-        "http://localhost:" + PORT + "/sub/xolirx_free_01"
+        "CREATE USER:",
+        "http://localhost:" + PORT + "/create-user"
     )
     console.log("===================================")
     console.log("")
