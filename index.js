@@ -136,23 +136,13 @@ app.get("/api/admin/users", (req, res) => {
 app.post("/api/admin/create-user", (req, res) => {
     const { days, key } = req.body
     if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
-    
     const users = loadUsers()
     const token = generateToken()
     const expires_at = new Date()
     expires_at.setDate(expires_at.getDate() + (days || 7))
-    
-    users.push({
-        token: token,
-        active: true,
-        created_at: new Date().toISOString(),
-        expires_at: expires_at.toISOString(),
-        total_requests: 0,
-        last_ip: null,
-        last_seen: null
-    })
+    users.push({ token, active: true, created_at: new Date().toISOString(), expires_at: expires_at.toISOString(), total_requests: 0, last_ip: null, last_seen: null })
     saveUsers(users)
-    res.json({ success: true, token: token })
+    res.json({ success: true, token })
 })
 
 app.post("/api/admin/disable", (req, res) => {
@@ -214,29 +204,14 @@ app.post("/api/admin/extend-all", (req, res) => {
     res.json({ success: true })
 })
 
-// ГЛАВНЫЙ ЭНДПОИНТ - ОТДАЕТ HTML ДЛЯ БРАУЗЕРА, НО ДЛЯ HAPP TXT
+// ГЛАВНЫЙ ЭНДПОИНТ
 app.get("/sub/:token", async (req, res) => {
     try {
         const token = req.params.token
-        const format = req.query.format
-        const userAgent = req.headers["user-agent"] || ""
-        
-        const isHapp = format === "happ" || 
-                       format === "text" ||
-                       userAgent.includes("Happ") || 
-                       userAgent.includes("v2rayNG") || 
-                       userAgent.includes("Nekobox") ||
-                       userAgent.includes("Clash") ||
-                       userAgent.includes("Shadowrocket") ||
-                       userAgent.includes("Sing-box") ||
-                       (userAgent.includes("Android") && !userAgent.includes("Chrome")) ||
-                       (userAgent.includes("iOS") && !userAgent.includes("Safari"))
-        
         const users = loadUsers()
         const user = users.find(x => x.token === token)
         
         if (!user) {
-            if (isHapp) return res.status(404).send("Subscription not found")
             return res.redirect("https://xolirx-vpn.vercel.app/")
         }
         
@@ -245,7 +220,6 @@ app.get("/sub/:token", async (req, res) => {
         const isExpired = now > expiresAt
         
         if (!user.active || isExpired) {
-            if (isHapp) return res.status(403).send("Subscription expired. Contact @xolirx")
             return res.redirect("https://xolirx-vpn.vercel.app/")
         }
         
@@ -258,8 +232,18 @@ app.get("/sub/:token", async (req, res) => {
         const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
         const vpnContent = fs.readFileSync(VPN_FILE, "utf-8")
         
-        // ЕСЛИ ЭТО HAPP - ОТДАЕМ ТЕКСТОВЫЙ ФАЙЛ
-        if (isHapp) {
+        // ПРОВЕРЯЕМ: если запрос от приложения - отдаём текстовый файл
+        const userAgent = req.headers["user-agent"] || ""
+        const isApp = userAgent.includes("Happ") || 
+                      userAgent.includes("v2rayNG") || 
+                      userAgent.includes("Nekobox") ||
+                      userAgent.includes("Clash") ||
+                      userAgent.includes("Shadowrocket") ||
+                      userAgent.includes("Sing-box") ||
+                      userAgent.includes("FlClash") ||
+                      req.headers["user-agent"]?.toLowerCase().includes("clash")
+        
+        if (isApp) {
             res.setHeader("Content-Type", "text/plain; charset=utf-8")
             res.setHeader("Profile-Title", "XolirX 🌑")
             res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
@@ -277,14 +261,12 @@ app.get("/sub/:token", async (req, res) => {
             if (vpnContent && vpnContent.trim().length > 0) {
                 const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
                 result += lines.join("\n")
-            } else {
-                result += "# Нет доступных серверов\n# Обновите подписку позже\n"
             }
             
             return res.send(result)
         }
         
-        // ЕСЛИ ЭТО БРАУЗЕР - ОТДАЕМ КРАСИВУЮ HTML СТРАНИЦУ
+        // ДЛЯ БРАУЗЕРА - КРАСИВАЯ СТРАНИЦА
         const subscriptionUrl = `https://xolirx-vpn-api.onrender.com/sub/${token}`
         const totalDays = 7
         const usedDays = totalDays - daysLeft
@@ -293,7 +275,7 @@ app.get("/sub/:token", async (req, res) => {
         let serversHtml = ""
         if (vpnContent && vpnContent.trim().length > 0) {
             const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
-            serversHtml = `<div class="servers-list"><h3>ДОСТУПНЫЕ СЕРВЕРА (${lines.length})</h3><div class="text-secondary" style="font-size:10px;word-break:break-all;">${lines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
+            serversHtml = `<div style="margin-top:20px;padding-top:16px;border-top:1px solid #1f2230;"><h3>ДОСТУПНЫЕ СЕРВЕРА (${lines.length})</h3><div style="color:#888;font-size:10px;word-break:break-all;">${lines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
         }
         
         const html = `<!DOCTYPE html>
@@ -324,9 +306,6 @@ hr{border-color:#1f2230;margin:20px 0;}
 .progress-bar{background:#1f2230;height:4px;border-radius:4px;margin:16px 0;}
 .progress-fill{background:#fff;height:100%;border-radius:4px;width:${percent}%;}
 .footer{text-align:center;color:#888;font-size:10px;margin-top:40px;}
-.servers-list{margin-top:20px;padding-top:16px;border-top:1px solid #1f2230;}
-.hint{background:#1a1c22;padding:12px;border-radius:8px;margin-top:16px;text-align:center;}
-code{background:#000;padding:2px 6px;border-radius:4px;font-size:10px;}
 </style>
 </head>
 <body>
@@ -340,7 +319,7 @@ code{background:#000;padding:2px 6px;border-radius:4px;font-size:10px;}
 <button class="btn" id="happBtn">ДОБАВИТЬ В HAPP</button>
 <a href="https://xolirx-vpn.vercel.app/?token=${token}" class="btn">ПАНЕЛЬ УПРАВЛЕНИЯ</a>
 </div>
-<div class="qr-container"><div id="qrcode"></div><p class="text-secondary" style="margin-top:12px;">QR-КОД ДЛЯ HAPP</p></div>
+<div class="qr-container"><div id="qrcode"></div><p class="text-secondary" style="margin-top:12px;">QR-КОД ДЛЯ ПОДПИСКИ</p></div>
 <hr>
 <div class="stats">
 <div><div class="stat-value">${daysLeft}</div><div class="stat-label">ДНЕЙ</div></div>
@@ -350,15 +329,12 @@ code{background:#000;padding:2px 6px;border-radius:4px;font-size:10px;}
 <div class="progress-bar"><div class="progress-fill"></div></div>
 <p class="text-secondary">Истекает: ${expiresAt.toLocaleDateString()}</p>
 ${serversHtml}
-<div class="hint">
-<p class="text-secondary" style="font-size:10px;">ДЛЯ HAPP ИСПОЛЬЗУЙТЕ ССЫЛКУ С ПАРАМЕТРОМ:<br><code>${subscriptionUrl}?format=happ</code></p>
-</div>
 </div>
 <div class="card">
 <h2>ИНСТРУКЦИЯ</h2>
 <p class="text-secondary">1. Скачай приложение Happ</p>
 <p class="text-secondary">2. Нажми КОПИРОВАТЬ ССЫЛКУ</p>
-<p class="text-secondary">3. В Happ нажми + → Вставить</p>
+<p class="text-secondary">3. В приложении нажми + → Вставить</p>
 <p class="text-secondary">4. Обновляй подписку раз в день</p>
 </div>
 <div class="footer">XOLIRX VPN | @xolirx</div>
@@ -366,13 +342,13 @@ ${serversHtml}
 <script>
 var subUrl = '${subscriptionUrl}';
 document.getElementById('copyBtn').onclick = function() {
-    navigator.clipboard.writeText(subUrl + '?format=happ');
-    alert('Ссылка для Happ скопирована');
+    navigator.clipboard.writeText(subUrl);
+    alert('Ссылка скопирована');
 };
 document.getElementById('happBtn').onclick = function() {
-    window.location.href = 'happ://add/' + subUrl + '?format=happ';
+    window.location.href = 'happ://add/' + subUrl;
 };
-QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl + '?format=happ', {
+QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl, {
     width: 160, margin: 1, color: { dark: '#000000', light: '#FFFFFF' }
 });
 </script>
@@ -383,8 +359,8 @@ QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + subUrl + '?fo
         res.send(html)
         
     } catch (error) {
-        console.error("Sub error:", error)
-        res.status(500).send("Internal Server Error: " + error.message)
+        console.error(error)
+        res.status(500).send("Internal Error")
     }
 })
 
