@@ -143,7 +143,8 @@ app.post("/api/create-subscription", (req, res) => {
         devices[fingerprint] = token
         saveDevices(devices)
         
-        res.json({ success: true, token: token })
+        const subscriptionUrl = `${req.protocol}://${req.get("host")}/sub/${token}`
+        res.json({ success: true, token: token, url: subscriptionUrl })
     } catch (error) {
         res.json({ success: false, error: error.message })
     }
@@ -308,6 +309,12 @@ app.post("/api/admin/extend-all", (req, res) => {
 app.get("/sub/:token", async (req, res) => {
     try {
         const token = req.params.token
+        
+        if (!token || token.length < 10) {
+            console.error("Invalid token:", token)
+            return res.status(400).send("Invalid token format")
+        }
+        
         const userAgent = req.headers["user-agent"] || ""
         
         const isHappClient = userAgent.includes("Happ") || 
@@ -420,7 +427,7 @@ app.get("/sub/:token", async (req, res) => {
             <div class="flex-row">
                 <button class="btn btn-accent" onclick="copyUrl()">КОПИРОВАТЬ ССЫЛКУ</button>
                 <button class="btn" onclick="addToHapp()">ДОБАВИТЬ В HAPP</button>
-                <a href="https://xolirx-vpn.vercel.app/?token=${token}" class="btn">ПАНЕЛЬ УПРАВЛЕНИЯ</a>
+                <a href="https://xolirx-vpn.vercel.app/?token=${token}" class="btn" target="_blank">ПАНЕЛЬ УПРАВЛЕНИЯ</a>
             </div>
             <div class="qr-container">
                 <div id="qrcode"></div>
@@ -449,7 +456,7 @@ app.get("/sub/:token", async (req, res) => {
         <div class="card">
             <h2>КАК ПОДКЛЮЧИТЬСЯ</h2>
             <p class="text-secondary" style="margin-bottom: 12px;"><strong>1.</strong> Скачай приложение Happ</p>
-            <p class="text-secondary" style="margin-bottom: 12px;"><strong>2.</strong> Нажми «ДОБАВИТЬ В HAPP» или скопируй ссылку</p>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>2.</strong> Нажми «КОПИРОВАТЬ ССЫЛКУ»</p>
             <p class="text-secondary" style="margin-bottom: 12px;"><strong>3.</strong> В Happ нажми «+» → «Вставить из буфера обмена»</p>
             <p class="text-secondary"><strong>4.</strong> Обновляй подписку раз в день</p>
         </div>
@@ -458,19 +465,40 @@ app.get("/sub/:token", async (req, res) => {
         </div>
     </div>
     <script>
+        var subscriptionUrl = '${subscriptionUrl}';
+        
         function copyUrl() {
-            const url = document.getElementById('subUrl').innerText;
-            navigator.clipboard.writeText(url);
-            alert('Ссылка скопирована');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(subscriptionUrl).then(function() {
+                    alert('Ссылка скопирована');
+                }).catch(function() {
+                    alert('Не удалось скопировать');
+                });
+            } else {
+                var textarea = document.createElement('textarea');
+                textarea.value = subscriptionUrl;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Ссылка скопирована');
+            }
         }
+        
         function addToHapp() {
-            const url = document.getElementById('subUrl').innerText;
-            window.location.href = 'happ://add/' + url;
+            window.location.href = 'happ://add/' + subscriptionUrl;
         }
-        const url = document.getElementById('subUrl').innerText;
-        QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + url, {
-            width: 160, margin: 1, color: { dark: '#000000', light: '#FFFFFF' }
-        });
+        
+        var qrCanvas = document.getElementById('qrcode');
+        if (qrCanvas) {
+            QRCode.toCanvas(qrCanvas, 'happ://add/' + subscriptionUrl, {
+                width: 160,
+                margin: 1,
+                color: { dark: '#000000', light: '#FFFFFF' }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+        }
     </script>
 </body>
 </html>`
@@ -479,8 +507,8 @@ app.get("/sub/:token", async (req, res) => {
         res.send(html)
         
     } catch (error) {
-        console.error(error)
-        res.status(500).send("Internal Server Error")
+        console.error("Sub error:", error)
+        res.status(500).send("Internal Server Error: " + error.message)
     }
 })
 
