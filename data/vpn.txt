@@ -6,13 +6,13 @@
 #announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐
 
 
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@27.50.48.191:443?ed=2560&eh=Sec-WebSocket-Protocol&encryption=none&host=sni.my111000.tech&path=Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%40WangCai2%2F&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@14.102.229.191:443?allowInsecure=1&encryption=none&host=sni.my111000.tech&path=%2F&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@167.68.42.191:443?host=sni.my111000.tech&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.142.120.191:2096?allowInsecure=1&encryption=none&host=sni.my111000.tech&path=Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%40WangCai2%2F&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@31.43.179.191:443?allowInsecure=1&encryption=none&host=sni.my111000.tech&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@27.50.48.191:2096?ed=2560&eh=Sec-WebSocket-Protocol&encryption=none&host=sni.my111000.tech&path=Telegram%25F0%259F%2587%25A8%25F0%259F%2587%25B3%40WangCai2%2F&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@25.25.25.191:2096?allowInsecure=1&encryption=none&host=sni.my111000.tech&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@5.10.247.191:2096?encryption=none&security=tls&sni=sni.my111000.tech&type=ws&host=sni.my111000.tech&path=Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2%2F%3Fed%3D2560#🇱🇻 | ⚫ | Латвия
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.8.211.191:443?allowInsecure=1&encryption=none&host=sni.my111000.tech&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
-vless://ada16414-ea27-433b-b448-f77744493deb@api.cloudconsole.ru:443?type=xhttp&security=reality&fp=chrome&pbk=xejt7baNPj-ZmBgQVNW0MikXcVuLSro14gb6EyW4rAA&sid=ab&sni=vk.com&host=vk.com&mode=auto&spx=/#🇬🇧 | ⚫ | Великобритания
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@25.129.197.191:2096?encryption=none&security=tls&sni=sni.my111000.tech&type=ws&host=sni.my111000.tech&path=Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2%2F%3Fed%3D2560#🇱🇻 | ⚫ | Латвия
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@139.28.96.83:443?encryption=none&fp=chrome&host=sni.latonyamadeline.ndjp.net&security=tls&sni=sni.latonyamadeline.ndjp.net&type=ws#🇱🇻 | ⚫ | Латвия
-vless://30143e07-b734-4bd6-867c-7daf4782cccb@45.140.204.119:443?type=tcp&security=reality&fp=chrome&pbk=vl5WQd9UDA3DvLxPPS1yF9ivUipxkxoxhaBRHpnyLho&sid=67fb&sni=yahoo.com#🌍 | ⚫ | PL
-vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@84.22.149.236:8443?security=tls&type=ws&path=%2F&host=177-e06.pages.dev&sni=177-e06.pages.dev&fp=chrome#🌍 | ⚫ | SE
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.205.0.191:2096?host=sni.my111000.tech&path=Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2%2F%3Fed%3D2560&security=tls&sni=sni.my111000.tech&type=ws#🇱🇻 | ⚫ | Латвия
+vless://30143e07-b734-4bd6-867c-7daf4782cccb@45.140.204.119:443?&security=reality&pbk=vl5WQd9UDA3DvLxPPS1yF9ivUipxkxoxhaBRHpnyLho&sid=67fb&fp=chrome&sni=yahoo.com&type=tcp&headerType=none&host=yahoo.com&path=%2F#🌍 | ⚫ | PL
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@45.43.79.121:443?encryption=none&security=tls&sni=sni.111000.v6.navy&insecure=0&allowInsecure=0&type=ws&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%40WangCai2#🇱🇻 | ⚫ | Латвия
+vless://3e7f67de-648e-4871-b51a-a225214d41ee@8.218.99.8:443?encryption=none&fp=chrome&pbk=TRP10HqKUXEQ3O-cfsq93DycfBmbJe9KM36yvSa8Mmw&security=reality&sni=j.6sc.co&type=tcp#🌍 | ⚫ | HK
+vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@84.22.149.236:8443?security=tls&type=ws&path=%2F&host=177-e06.pages.dev&sni=177-e06.pages.dev&fp=chrome#🌍 | ⚫ | AT
