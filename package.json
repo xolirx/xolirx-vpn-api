@@ -1,7 +1,6 @@
 {
   "name": "xolirx-vpn-api",
   "version": "1.0.0",
-  "description": "XolirX VPN API",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -9,6 +8,6 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.21.2"
   }
 }
