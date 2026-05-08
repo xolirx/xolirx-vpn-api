@@ -99,6 +99,32 @@ app.get("/api/user-info/:token", (req, res) => {
     }
 })
 
+app.get("/api/admin/users", (req, res) => {
+    const key = req.query.key
+    if (key !== ADMIN_KEY) {
+        return res.json({ success: false, error: "Unauthorized" })
+    }
+    
+    const users = loadUsers()
+    const now = new Date()
+    
+    const usersWithInfo = users.map(user => {
+        const expiresAt = new Date(user.expires_at)
+        const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+        return {
+            token: user.token,
+            active: user.active,
+            daysLeft: daysLeft,
+            isExpired: now > expiresAt,
+            total_requests: user.total_requests || 0,
+            created_at: user.created_at,
+            expires_at: user.expires_at
+        }
+    })
+    
+    res.json({ success: true, users: usersWithInfo })
+})
+
 app.post("/api/admin/create-user", (req, res) => {
     const { days, key } = req.body
     if (key !== ADMIN_KEY) return res.status(403).json({ error: "Unauthorized" })
@@ -209,7 +235,7 @@ app.get("/sub/:token", (req, res) => {
         result += `#profile-update-interval: 1\n`
         result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
         result += `#support-url: https://t.me/xolirx\n`
-        result += `#announce: Безопасность | Скорость | Продление в тг: @xolirx\n\n`
+        result += `#announce: 🔒 Безопасность | ⚡ Скорость | 📅 Осталось ${daysLeft} ${getDayWord(daysLeft)} | ✨ Продление в тг: @xolirx\n\n`
         result += servers
         
         res.send(result)
