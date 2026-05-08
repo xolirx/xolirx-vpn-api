@@ -14,11 +14,13 @@ const ADMIN_KEY = process.env.ADMIN_KEY || "xolirx2024"
 
 const DATA_DIR = path.join(process.cwd(), "data")
 const VPN_FILE = path.join(DATA_DIR, "vpn.txt")
+const JSON_FILE = path.join(DATA_DIR, "servers.json")
 const USERS_FILE = path.join(process.cwd(), "users.json")
 const DEVICES_FILE = path.join(process.cwd(), "devices.json")
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR)
 if (!fs.existsSync(VPN_FILE)) fs.writeFileSync(VPN_FILE, "", "utf-8")
+if (!fs.existsSync(JSON_FILE)) fs.writeFileSync(JSON_FILE, "[]", "utf-8")
 if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, "[]", "utf-8")
 if (!fs.existsSync(DEVICES_FILE)) fs.writeFileSync(DEVICES_FILE, "{}", "utf-8")
 
@@ -51,16 +53,41 @@ function getDeviceFingerprint(req) {
 function parseUserAgent(ua) {
     let device = "Unknown"
     let os = "Unknown"
+    let browser = "Unknown"
     
     ua = ua || ""
-    if (ua.includes("iPhone")) { device = "iPhone"; os = "iOS" }
-    else if (ua.includes("iPad")) { device = "iPad"; os = "iOS" }
-    else if (ua.includes("Android")) { device = "Android"; os = "Android" }
-    else if (ua.includes("Windows")) { device = "PC"; os = "Windows" }
-    else if (ua.includes("Mac")) { device = "MacBook"; os = "macOS" }
-    else if (ua.includes("Linux")) { device = "PC"; os = "Linux" }
     
-    return { device, os }
+    if (ua.includes("iPhone")) {
+        device = "iPhone"
+        os = "iOS"
+    } else if (ua.includes("iPad")) {
+        device = "iPad"
+        os = "iOS"
+    } else if (ua.includes("Android")) {
+        device = "Android Phone"
+        os = "Android"
+        if (ua.includes("SM-") || ua.includes("Galaxy")) device = "Samsung Galaxy"
+        else if (ua.includes("Pixel")) device = "Google Pixel"
+        else if (ua.includes("Xiaomi") || ua.includes("Redmi")) device = "Xiaomi"
+        else if (ua.includes("OnePlus")) device = "OnePlus"
+    } else if (ua.includes("Windows")) {
+        device = "PC"
+        os = "Windows"
+    } else if (ua.includes("Mac")) {
+        device = "MacBook"
+        os = "macOS"
+    } else if (ua.includes("Linux")) {
+        device = "PC"
+        os = "Linux"
+    }
+    
+    if (ua.includes("Chrome") && !ua.includes("Edg")) browser = "Chrome"
+    else if (ua.includes("Firefox")) browser = "Firefox"
+    else if (ua.includes("Safari") && !ua.includes("Chrome")) browser = "Safari"
+    else if (ua.includes("Edg")) browser = "Edge"
+    else if (ua.includes("Opera")) browser = "Opera"
+    
+    return { device, os, browser }
 }
 
 function getDayWord(days) {
@@ -88,7 +115,8 @@ app.post("/api/create-subscription", (req, res) => {
                     return res.json({ 
                         success: false, 
                         error: "active_subscription",
-                        token: existingToken
+                        token: existingToken,
+                        message: "У вас уже есть активная подписка"
                     })
                 }
             }
@@ -153,7 +181,7 @@ app.get("/api/user-info/:token", (req, res) => {
             created_at: user.created_at,
             last_ip: user.last_ip || "Unknown",
             last_seen: user.last_seen,
-            device_info: user.device_info || { device: "Unknown", os: "Unknown" }
+            device_info: user.device_info || { device: "Unknown", os: "Unknown", browser: "Unknown" }
         })
     } catch (error) {
         res.json({ success: false, error: error.message })
@@ -172,14 +200,20 @@ app.get("/api/admin/users", (req, res) => {
     const usersWithInfo = users.map(user => {
         const expiresAt = new Date(user.expires_at)
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
+        const createdDate = new Date(user.created_at)
+        const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
         return {
             token: user.token,
             active: user.active,
             daysLeft: daysLeft,
+            totalDays: totalDays,
             isExpired: now > expiresAt,
             total_requests: user.total_requests || 0,
+            created_at: user.created_at,
+            expires_at: user.expires_at,
             last_ip: user.last_ip || "Unknown",
-            device_info: user.device_info || { device: "Unknown", os: "Unknown" }
+            last_seen: user.last_seen,
+            device_info: user.device_info || { device: "Unknown", os: "Unknown", browser: "Unknown" }
         }
     })
     
@@ -203,7 +237,7 @@ app.post("/api/admin/create-user", (req, res) => {
         total_requests: 0,
         last_ip: null,
         last_seen: null,
-        device_info: { device: "Unknown", os: "Unknown" }
+        device_info: { device: "Unknown", os: "Unknown", browser: "Unknown" }
     })
     saveUsers(users)
     res.json({ success: true, token: token })
@@ -270,24 +304,22 @@ app.post("/api/admin/extend-all", (req, res) => {
         }
     }
     saveUsers(users)
-    res.json({ success: true })
+    res.json({ success: true, extended: users.filter(u => u.active).length })
 })
 
 app.get("/sub/:token", async (req, res) => {
     try {
         const token = req.params.token
-        
-        if (!token || token.length < 10) {
-            return res.status(400).send("Invalid token")
-        }
-        
         const userAgent = req.headers["user-agent"] || ""
         
         const isHappClient = userAgent.includes("Happ") || 
                             userAgent.includes("v2rayNG") || 
                             userAgent.includes("Nekobox") ||
                             userAgent.includes("Clash") ||
-                            userAgent.includes("Shadowrocket")
+                            userAgent.includes("Shadowrocket") ||
+                            userAgent.includes("Sing-box") ||
+                            (userAgent.includes("Android") && !userAgent.includes("Chrome") && !userAgent.includes("Firefox")) ||
+                            (userAgent.includes("iOS") && !userAgent.includes("Safari") && !userAgent.includes("Chrome"))
         
         const users = loadUsers()
         const user = users.find(x => x.token === token)
@@ -296,7 +328,7 @@ app.get("/sub/:token", async (req, res) => {
             if (isHappClient) {
                 return res.status(404).send("Subscription not found")
             }
-            return res.redirect("https://xolirx-vpn.vercel.app/")
+            return res.status(404).send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>404 | XolirX VPN</title><style>body{background:#0a0c10;color:#fff;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.card{background:#14161c;border:1px solid #1f2230;padding:40px;border-radius:16px;text-align:center}.btn{display:inline-block;margin-top:20px;padding:10px 24px;border:1px solid #fff;color:#fff;text-decoration:none}</style></head><body><div class="card"><h2>404</h2><p>Подписка не найдена</p><a href="https://xolirx-vpn.vercel.app/" class="btn">На главную</a></div></body></html>`)
         }
         
         const now = new Date()
@@ -307,12 +339,14 @@ app.get("/sub/:token", async (req, res) => {
             if (isHappClient) {
                 return res.status(403).send("Subscription expired. Contact @xolirx")
             }
-            return res.redirect("https://xolirx-vpn.vercel.app/")
+            return res.status(403).send(`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Подписка истекла | XolirX VPN</title><style>body{background:#0a0c10;color:#fff;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}.card{background:#14161c;border:1px solid #1f2230;padding:40px;border-radius:16px;text-align:center}.btn{display:inline-block;margin-top:20px;padding:10px 24px;border:1px solid #fff;color:#fff;text-decoration:none}</style></head><body><div class="card"><h2>Подписка истекла</h2><p>Срок действия подписки закончился</p><p>Для продления: <strong>@xolirx</strong></p><a href="https://xolirx-vpn.vercel.app/" class="btn">На главную</a></div></body></html>`)
         }
         
         user.last_ip = req.ip || req.headers['x-forwarded-for'] || 'Unknown'
         user.last_seen = new Date().toISOString()
         user.total_requests = (user.total_requests || 0) + 1
+        user.device_info = parseUserAgent(userAgent)
+        user.user_agent = userAgent
         saveUsers(users)
         
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
@@ -320,57 +354,61 @@ app.get("/sub/:token", async (req, res) => {
         
         if (isHappClient) {
             const vpn = fs.readFileSync(VPN_FILE, "utf-8")
+            const servers = vpn.split("\n").filter(l => l.startsWith("vless://")).join("\n")
             
             res.setHeader("Content-Type", "text/plain; charset=utf-8")
-            res.setHeader("Profile-Title", "XolirX 🌑")
+            res.setHeader("Profile-Title", "XolirX VPN")
             res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
             res.setHeader("Profile-Update-Interval", "1")
             res.setHeader("Support-Url", "https://t.me/xolirx")
-            res.setHeader("Profile-Web-Page-Url", "https://github.com/xolirx")
             
-            let result = `#profile-title: XolirX 🌑\n`
+            let result = `#profile-title: XolirX VPN\n`
             result += `#profile-update-interval: 1\n`
             result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
             result += `#support-url: https://t.me/xolirx\n`
-            result += `#profile-web-page-url: https://github.com/xolirx\n`
-            result += `#announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐\n\n`
-            result += vpn
-            
+            result += `#announce: 🔒 Безопасность | ⚡ Скорость | 📅 Осталось ${daysLeft} ${getDayWord(daysLeft)} | ✨ Продление: @xolirx\n\n`
+            result += servers
             return res.send(result)
         }
         
-        const subscriptionUrl = `https://xolirx-vpn-api.onrender.com/sub/${token}`
-        const shortUrl = `https://xolirx-vpn-api.onrender.com/sub/${token}`
+        const createdDate = new Date(user.created_at)
+        const totalDays = Math.ceil((expiresAt - createdDate) / (1000 * 60 * 60 * 24))
+        const usedDays = totalDays - daysLeft
+        const percent = (daysLeft / totalDays) * 100
+        const subscriptionUrl = `${req.protocol}://${req.get("host")}/sub/${token}`
         
         const html = `<!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XolirX VPN</title>
+    <title>XolirX VPN | Моя подписка</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0a0c10; font-family: monospace; color: #fff; padding: 40px 20px; }
-        .container { max-width: 700px; margin: 0 auto; }
+        body { background: #0a0c10; font-family: 'Courier New', monospace; color: #fff; min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         .card { background: #14161c; border: 1px solid #1f2230; border-radius: 16px; padding: 32px; margin-bottom: 20px; }
         h1 { font-size: 24px; margin-bottom: 8px; }
+        h2 { font-size: 18px; margin-bottom: 16px; letter-spacing: 1px; }
         .text-secondary { color: #888; font-size: 12px; }
-        .key-box { background: #0a0c10; padding: 16px; border-radius: 8px; font-size: 11px; word-break: break-all; margin: 16px 0; border: 1px solid #1f2230; }
+        .key-box { background: #0a0c10; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 11px; word-break: break-all; margin: 16px 0; border: 1px solid #1f2230; }
         .flex-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
-        .btn { background: transparent; border: 1px solid #fff; color: #fff; padding: 12px 24px; font-family: monospace; font-size: 12px; cursor: pointer; }
+        .btn { background: transparent; border: 1px solid #fff; color: #fff; padding: 12px 24px; font-family: monospace; font-size: 12px; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.2s; }
         .btn:hover { background: #fff; color: #000; }
         .btn-accent { background: #fff; color: #000; border: none; }
+        .btn-accent:hover { opacity: 0.85; }
+        .stats { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
+        .stat { flex: 1; min-width: 100px; }
+        .stat-value { font-size: 24px; font-weight: bold; }
+        .stat-label { color: #888; font-size: 10px; text-transform: uppercase; }
+        .progress-bar { background: #1f2230; height: 4px; border-radius: 4px; margin: 16px 0; }
+        .progress-fill { background: #fff; height: 100%; border-radius: 4px; width: ${percent}%; }
         .qr-container { text-align: center; margin: 20px 0; }
         .qr-container canvas { background: #fff; padding: 12px; border-radius: 12px; }
-        hr { border-color: #1f2230; margin: 20px 0; }
-        .stats { display: flex; gap: 20px; justify-content: space-between; margin: 20px 0; flex-wrap: wrap; }
-        .stat-value { font-size: 28px; font-weight: bold; }
-        .stat-label { color: #888; font-size: 10px; }
-        .progress-bar { background: #1f2230; height: 4px; border-radius: 4px; margin: 16px 0; }
-        .progress-fill { background: #fff; height: 100%; border-radius: 4px; width: ${(daysLeft / 7) * 100}%; }
+        hr { border: none; border-top: 1px solid #1f2230; margin: 20px 0; }
         .footer { text-align: center; color: #888; font-size: 10px; margin-top: 40px; }
-        @media (max-width: 600px) { .card { padding: 20px; } }
+        @media (max-width: 600px) { .container { padding: 20px 16px; } .card { padding: 20px; } .stats { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -380,9 +418,9 @@ app.get("/sub/:token", async (req, res) => {
             <p class="text-secondary">ПЕРСОНАЛЬНАЯ ПОДПИСКА</p>
             <div class="key-box" id="subUrl">${subscriptionUrl}</div>
             <div class="flex-row">
-                <button class="btn btn-accent" id="copyBtn">КОПИРОВАТЬ ССЫЛКУ</button>
-                <button class="btn" id="happBtn">ДОБАВИТЬ В HAPP</button>
-                <a href="https://xolirx-vpn.vercel.app/?token=${token}" class="btn" target="_blank">ПАНЕЛЬ</a>
+                <button class="btn btn-accent" onclick="copyUrl()">КОПИРОВАТЬ ССЫЛКУ</button>
+                <button class="btn" onclick="addToHapp()">ДОБАВИТЬ В HAPP</button>
+                <a href="https://xolirx-vpn.vercel.app/?token=${token}" class="btn">ПАНЕЛЬ УПРАВЛЕНИЯ</a>
             </div>
             <div class="qr-container">
                 <div id="qrcode"></div>
@@ -390,39 +428,47 @@ app.get("/sub/:token", async (req, res) => {
             </div>
             <hr>
             <div class="stats">
-                <div><div class="stat-value">${daysLeft}</div><div class="stat-label">ДНЕЙ</div></div>
-                <div><div class="stat-value">${user.total_requests || 0}</div><div class="stat-label">ЗАПРОСОВ</div></div>
+                <div class="stat">
+                    <div class="stat-value">${daysLeft}</div>
+                    <div class="stat-label">ОСТАЛОСЬ ДНЕЙ</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">${user.total_requests || 0}</div>
+                    <div class="stat-label">ЗАПРОСОВ</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">${usedDays}/${totalDays}</div>
+                    <div class="stat-label">ПРОГРЕСС</div>
+                </div>
             </div>
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <p class="text-secondary">Истекает: ${expiresAt.toLocaleDateString()}</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="text-secondary" style="margin-top: 16px;">Истекает: ${expiresAt.toLocaleDateString()}</p>
         </div>
         <div class="card">
-            <h2>ИНСТРУКЦИЯ</h2>
-            <p class="text-secondary">1. Скачай Happ</p>
-            <p class="text-secondary">2. Нажми «КОПИРОВАТЬ ССЫЛКУ»</p>
-            <p class="text-secondary">3. В Happ нажми «+» → «Вставить»</p>
-            <p class="text-secondary">4. Обновляй раз в день</p>
+            <h2>КАК ПОДКЛЮЧИТЬСЯ</h2>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>1.</strong> Скачай приложение Happ</p>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>2.</strong> Нажми «ДОБАВИТЬ В HAPP» или скопируй ссылку</p>
+            <p class="text-secondary" style="margin-bottom: 12px;"><strong>3.</strong> В Happ нажми «+» → «Вставить из буфера обмена»</p>
+            <p class="text-secondary"><strong>4.</strong> Обновляй подписку раз в день</p>
         </div>
-        <div class="footer">XOLIRX VPN | @xolirx</div>
+        <div class="footer">
+            <p>XOLIRX VPN | @xolirx</p>
+        </div>
     </div>
     <script>
-        var subUrl = '${subscriptionUrl}';
-        var shortSubUrl = '${shortUrl}';
-        
-        document.getElementById('copyBtn').onclick = function() {
-            navigator.clipboard.writeText(subUrl).then(function() {
-                alert('Ссылка скопирована');
-            });
-        };
-        
-        document.getElementById('happBtn').onclick = function() {
-            window.location.href = 'happ://add/' + shortSubUrl + '?enforce=1';
-            setTimeout(function() {
-                window.location.href = subUrl;
-            }, 500);
-        };
-        
-        QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + shortSubUrl, {
+        function copyUrl() {
+            const url = document.getElementById('subUrl').innerText;
+            navigator.clipboard.writeText(url);
+            alert('Ссылка скопирована');
+        }
+        function addToHapp() {
+            const url = document.getElementById('subUrl').innerText;
+            window.location.href = 'happ://add/' + url;
+        }
+        const url = document.getElementById('subUrl').innerText;
+        QRCode.toCanvas(document.getElementById('qrcode'), 'happ://add/' + url, {
             width: 160, margin: 1, color: { dark: '#000000', light: '#FFFFFF' }
         });
     </script>
@@ -434,7 +480,7 @@ app.get("/sub/:token", async (req, res) => {
         
     } catch (error) {
         console.error(error)
-        res.status(500).send("Internal Error")
+        res.status(500).send("Internal Server Error")
     }
 })
 
@@ -449,5 +495,6 @@ app.get("/vpn", (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`XolirX VPN running on port ${PORT}`)
+    console.log(`XolirX VPN API running on port ${PORT}`)
+    console.log(`Admin key: ${ADMIN_KEY}`)
 })
