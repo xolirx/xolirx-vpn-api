@@ -204,7 +204,6 @@ app.post("/api/admin/extend-all", (req, res) => {
     res.json({ success: true })
 })
 
-// ГЛАВНЫЙ ЭНДПОИНТ
 app.get("/sub/:token", async (req, res) => {
     try {
         const token = req.params.token
@@ -230,9 +229,22 @@ app.get("/sub/:token", async (req, res) => {
         
         const daysLeft = Math.max(0, Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24)))
         const expireTimestamp = Math.floor(expiresAt.getTime() / 1000)
-        const vpnContent = fs.readFileSync(VPN_FILE, "utf-8")
         
-        // ПРОВЕРЯЕМ: если запрос от приложения - отдаём текстовый файл
+        // Читаем vpn.txt
+        let vpnContent = fs.readFileSync(VPN_FILE, "utf-8")
+        
+        // Удаляем дублирующиеся заголовки из vpn.txt если они там есть
+        const lines = vpnContent.split("\n")
+        const cleanLines = lines.filter(line => {
+            return !line.startsWith("#profile-title") &&
+                   !line.startsWith("#profile-update-interval") &&
+                   !line.startsWith("#subscription-userinfo") &&
+                   !line.startsWith("#support-url") &&
+                   !line.startsWith("#profile-web-page-url") &&
+                   !line.startsWith("#announce")
+        })
+        const cleanVpnContent = cleanLines.join("\n").trim()
+        
         const userAgent = req.headers["user-agent"] || ""
         const isApp = userAgent.includes("Happ") || 
                       userAgent.includes("v2rayNG") || 
@@ -241,26 +253,26 @@ app.get("/sub/:token", async (req, res) => {
                       userAgent.includes("Shadowrocket") ||
                       userAgent.includes("Sing-box") ||
                       userAgent.includes("FlClash") ||
-                      req.headers["user-agent"]?.toLowerCase().includes("clash")
+                      userAgent.toLowerCase().includes("clash")
         
         if (isApp) {
+            // Формируем правильный ответ для приложения
             res.setHeader("Content-Type", "text/plain; charset=utf-8")
-            res.setHeader("Profile-Title", "XolirX 🌑")
+            res.setHeader("Profile-Title", "XolirX VPN")
             res.setHeader("Subscription-Userinfo", `upload=0; download=0; total=0; expire=${expireTimestamp}`)
             res.setHeader("Profile-Update-Interval", "1")
             res.setHeader("Support-Url", "https://t.me/xolirx")
-            res.setHeader("Profile-Web-Page-Url", "https://github.com/xolirx")
             
-            let result = `#profile-title: XolirX 🌑\n`
+            let result = `#profile-title: XolirX VPN\n`
             result += `#profile-update-interval: 1\n`
             result += `#subscription-userinfo: upload=0; download=0; total=0; expire=${expireTimestamp}\n`
             result += `#support-url: https://t.me/xolirx\n`
-            result += `#profile-web-page-url: https://github.com/xolirx\n`
-            result += `#announce: 🌐 Бесплатно 🌐 Обход ограничений 🌐 ONLY VLESS 🌐\n\n`
+            result += `#announce: Бесплатный VLESS | Обход ограничений | Только VLESS\n\n`
             
-            if (vpnContent && vpnContent.trim().length > 0) {
-                const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
-                result += lines.join("\n")
+            if (cleanVpnContent && cleanVpnContent.length > 0) {
+                result += cleanVpnContent
+            } else {
+                result += "# Нет доступных серверов\n# Обновите подписку позже\n"
             }
             
             return res.send(result)
@@ -272,11 +284,8 @@ app.get("/sub/:token", async (req, res) => {
         const usedDays = totalDays - daysLeft
         const percent = (daysLeft / totalDays) * 100
         
-        let serversHtml = ""
-        if (vpnContent && vpnContent.trim().length > 0) {
-            const lines = vpnContent.split("\n").filter(l => l.startsWith("vless://"))
-            serversHtml = `<div style="margin-top:20px;padding-top:16px;border-top:1px solid #1f2230;"><h3>ДОСТУПНЫЕ СЕРВЕРА (${lines.length})</h3><div style="color:#888;font-size:10px;word-break:break-all;">${lines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
-        }
+        const serverLines = cleanVpnContent.split("\n").filter(l => l.startsWith("vless://"))
+        const serversHtml = `<div style="margin-top:20px;padding-top:16px;border-top:1px solid #1f2230;"><h3>ДОСТУПНЫЕ СЕРВЕРА (${serverLines.length})</h3><div style="color:#888;font-size:10px;word-break:break-all;">${serverLines.slice(0,5).map(l => l.substring(0, 80) + "...").join("<br>")}</div></div>`
         
         const html = `<!DOCTYPE html>
 <html>
