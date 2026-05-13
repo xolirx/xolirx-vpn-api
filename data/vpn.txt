@@ -6,4 +6,4 @@
 #announce: ♻ Бесплатно ♻ Обход ограничений ♻ ONLY VLESS ♻
 
 
-vless://e60f8ade-411b-4ceb-b3bd-2439676b4695@91.225.217.27:443?type=tcp&security=reality&fp=chrome&pbk=66I_EZijZ-HoERv8Xzmv5KydHjz4dp81Grb8CJpIy38&sid=cb89&sni=yahoo.com&spx=/#🇷🇸 | 🌐 | Сербия
+vless://e60f8ade-411b-4ceb-b3bd-2439676b4695@91.225.217.27:443?type=tcp&security=reality&fp=chrome&pbk=66I_EZijZ-HoERv8Xzmv5KydHjz4dp81Grb8CJpIy38&sid=cb89&sni=yahoo.com&spx=/# ТЕХ РАБОТЫ
