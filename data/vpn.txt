@@ -3,7 +3,7 @@
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: ♻ Бесплатно ♻ Обход ограничений ♻ ONLY VLESS ♻
+#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛
 
 
 vless://75807638-6f19-01f4-ae08-38492ee85c88@cl-de-2.edgeflux.ru:52006?encryption=none&flow=xtls-rprx-vision&security=tls&sni=cl-de-2.edgeflux.ru&fp=chrome&insecure=1&allowInsecure=1&type=tcp&headerType=none%5C%5C%22%2C#🇩🇪 | Германия
