@@ -3,16 +3,14 @@
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: ♻ Бесплатно ♻ Обход ограничений ♻ ONLY VLESS ♻
+#announce: ⚡ AUTO UPDATED ⚡ WHITE LISTS ⚡ REALITY ⚡ ONLY WORKING ⚡
 
 
-vless://75807638-6f19-01f4-ae08-38492ee85c88@cl-de-2.edgeflux.ru:52006?encryption=none&flow=xtls-rprx-vision&security=tls&sni=cl-de-2.edgeflux.ru&fp=chrome&insecure=1&allowInsecure=1&type=tcp&headerType=none\\\\\\\\#🇩🇪 | 🌐 | Германия
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@87.228.124.212:52006?fp=chrome&encryption=none&type=tcp&headerType=&allowInsecure=1&security=tls&flow=xtls-rprx-vision&insecure=1#🇹🇷 | 🌐 | Турция
-vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇳🇱 | 🌐 | Нидерланды
-vless://09e141a5-1b41-4227-b757-ac34ac0e58b7@109.73.199.48:8454?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=qq&sni=jobinvest.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc#🌍 | 🌐 | Unknown
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@eu.active-engine.ru:52006?type=tcp&headerType=none&security=tls&encryption=none&sni=eu.active-engine.ru&flow=xtls-rprx-vision&insecure=1#🇹🇷 | 🌐 | Турция
-vless://75807638-6f19-0bb8-ae08-38492ee85c88@82.202.197.2:52006?type=tcp&headerType=none&security=tls&encryption=none&flow=xtls-rprx-vision&insecure=1#🇫🇮 | 🌐 | Финляндия
-vless://e8e1dac4-2b8c-494b-b66a-82c8b91e26c1@176.124.211.23:8446?flow=xtls-rprx-vision&fp=qq&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&security=reality&sni=jobinvest.ru&type=tcp#🇩🇪 | 🌐 | Германия
-vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@georg.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#🇳🇱 | 🌐 | Нидерланды
-vless://60ab0d9a-b43a-45dd-a54d-283d05c2d903@176.124.211.23:8454?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=qq&sni=jobinvest.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc#🇩🇪 | 🌐 | Германия
-vless://3dae19c4-f3d1-4dab-9bb2-1d0121813f52@212.233.79.115:52006?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=DaIRouGSxxQDEv9WKRxD79b2Vt0fsw4yQOTeAmXUYCM&sid=08&sni=ads.x5.ru#🇫🇮 | 🌐 | Финляндия
+vless://50b95deb-6394-46c5-b88a-583e5b3ca7ee@fastcon-tgg.harknmav.fun:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ads.x5.ru&fp=chrome&pbk=PGccrEdFmBaB1rQFJqM-a9jJ1pFsxhUP2sD9KTw5Oz4&sid=f69d7af2d5fc5e0c#🌍 RU | 243ms | [WHITE LISTS CIDR]
+vless://75807638-6f19-07d0-ae08-38492ee85c88@188.246.226.14:52006?security=tls&type=tcp&allowInsecure=1&fp=chrome&flow=xtls-rprx-vision&encryption=none&source_name=igareck_vless_reality_rus_mobile&provider_id=igareck_vless_reality_rus_mobile#🌍 RU | 307ms | [WHITE LISTS CIDR]
+vless://75807638-6f19-01f4-ae08-38492ee85c88@cl-de-2.edgeflux.ru:52006?allowInsecure=1&insecure=1&type=tcp&security=tls&sni=cl-de-2.edgeflux.ru&fp=chrome&flow=xtls-rprx-vision#🇩🇪 Germany | 367ms | [WHITE LISTS CIDR]
+vless://8653c309-2e28-4cea-90a7-8c0a705cf4cd@bled-vpn.mooo.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=sub.gertyhru.h-o-s-t.name&fp=chrome&pbk=r0p4mowN4DRuD2hdpwMxUicIf3RmDG2Iu7SJ_S6sHQs&sid=8f2347ebd9&spx=%2FiTlpmfmDyFxrvTW&flow=xtls-rprx-vision#🇫🇮 Finland | 433ms | [BLACKLIST]
+vless://75807638-6f19-07d0-ae08-38492ee85c88@cl-ru-tw.fastaichat.ru:52006?allowInsecure=1&sni=cl-ru-tw.fastaichat.ru&flow=xtls-rprx-vision-udp443&security=tls#🌍 RU | 483ms | [WHITE LISTS CIDR]
+vless://5d269083-9f9b-4c97-9ce9-93dd0c57dbff@176.124.211.23:8446?flow=xtls-rprx-vision&fp=qq&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&security=reality&sni=jobinvest.ru&type=tcp#🇩🇪 Germany | 518ms | [WHITE LISTS CIDR]
+vless://60ab0d9a-b43a-45dd-a54d-283d05c2d903@176.124.211.23:8454?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=qq&sni=jobinvest.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc#🇩🇪 Germany | 534ms | [WHITE LISTS CIDR]
+vless://c4d69096-4026-4da5-9485-20a3da91cb14@176.124.214.235:443?type=grpc&security=reality&fp=chrome&pbk=NhsyjpnYcDfpRfyX2m47AsoHDX_boKi9e1lKOkFNsgE&sid=12a73c72&sni=login.vk.com&mode=gun&serviceName=grpc&authority=#🇺🇸 USA | 634ms | [WHITE LISTS CIDR]
