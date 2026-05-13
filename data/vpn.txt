@@ -3,16 +3,7 @@
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: 🌑 XolirX 🌑 REALITY 🌑 WHITE LISTS 🌑 AUTO CHECK 🌑 ONLY WORKING 🌑
+#announce: ♻ Бесплатно ♻ Обход ограничений ♻ ONLY VLESS ♻
 
 
-vless://75807638-6f19-07d0-ae08-38492ee85c88@178.72.181.52:52006?encryption=none&type=tcp&flow=xtls-rprx-vision&security=tls&sni=cluster-russia-3.firstvideocdn.ru&allowInsecure=0&fp=chrome#🇷🇺 | 🌐 | Россия
-vless://75807638-6f19-07d0-ae08-38492ee85c88@188.246.226.14:52006?security=tls&type=tcp&allowInsecure=1&fp=chrome&flow=xtls-rprx-vision&encryption=none&source_name=igareck_vless_reality_rus_mobile&provider_id=igareck_vless_reality_rus_mobile#🇷🇺 | 🌐 | Россия
-vless://75807638-6f19-01f4-ae08-38492ee85c88@cl-de-2.edgeflux.ru:52006?encryption=none&flow=xtls-rprx-vision&security=tls&sni=cl-de-2.edgeflux.ru&fp=chrome&insecure=1&allowInsecure=1&type=tcp&headerType=none\\\",\\\",#🇩🇪 | 🌐 | Германия
-vless://8653c309-2e28-4cea-90a7-8c0a705cf4cd@bled-vpn.mooo.com:443?type=tcp&headerType=none&security=reality&encryption=none&sni=sub.gertyhru.h-o-s-t.name&fp=chrome&pbk=r0p4mowN4DRuD2hdpwMxUicIf3RmDG2Iu7SJ_S6sHQs&sid=8f2347ebd9&spx=%2FiTlpmfmDyFxrvTW&flow=xtls-rprx-vision#🇫🇮 | 🌐 | Финляндия
-vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇦🇪 | 🌐 | ОАЭ
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@87.228.124.212:52006?allow_insecure=1&allowInsecure=1&flow=xtls-rprx-vision&fp=chrome&insecure=1&security=tls#🇹🇷 | 🌐 | Турция
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@eu.active-engine.ru:52006?type=tcp&headerType=none&security=tls&encryption=none&sni=eu.active-engine.ru&flow=xtls-rprx-vision&insecure=1#🇹🇷 | 🌐 | Турция
-vless://75807638-6f19-07d0-ae08-38492ee85c88@cl-ru-tw.fastaichat.ru:52006?security=tls&type=tcp&allowInsecure=1&sni=cl-ru-tw.fastaichat.ru&fp=chrome&flow=xtls-rprx-vision-udp443&encryption=none#🇷🇺 | 🌐 | Россия
-vless://1200eec7-1d18-49da-accf-8bc14096b5ae@anten.ir:8880?path=%2F&security=none&encryption=none&host=het.sp-fast.site&type=ws#🇬🇧 | 🌐 | Великобритания
-vless://bafacd98-136a-4530-838d-4e5c51838dac@144.126.132.39:8443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&encryption=none&security=tls&sni=juzi8186.qea.ccwu.cc&fp=firefox&insecure=0&allowInsecure=0&ech=encryptedsni.com%2Bhttps%3A%2F%2Fdns.alidns.com%2Fdns-query&type=ws&host=juzi8186.qea.ccwu.cc&path=%2Fzh%2Ftool%2Fjuzibaipiao%3Fed%3D2560#🇺🇸 | 🌐 | США
+vless://e60f8ade-411b-4ceb-b3bd-2439676b4695@91.225.217.27:443?type=tcp&security=reality&fp=chrome&pbk=66I_EZijZ-HoERv8Xzmv5KydHjz4dp81Grb8CJpIy38&sid=cb89&sni=yahoo.com&spx=/#🇷🇸 | 🌐 | Сербия
