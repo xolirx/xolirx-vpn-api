@@ -1,6 +1,6 @@
 #profile-title: XolirX 🌑
 #profile-update-interval: 1
-#subscription-userinfo: upload=0; download=0; total=1192756224000; expire=0
+#subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
 #announce: ⬛ FREE VLESS ⬛ By XolirX ⬛
