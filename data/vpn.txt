@@ -6,14 +6,8 @@
 #announce: ♻ Бесплатно ♻ Обход ограничений ♻ ONLY VLESS ♻
 
 
-vless://ed8ba85c-fa44-4d55-8ab9-229e942db60f@nl.astrocore.cloud:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=nl.astrocore.cloud&fp=chrome&pbk=X2Sb6CKcI_yEV4gu9KUAmL9mcL-xpC1Ngks06NYIaxw&sid=f129f93e&spx=%2F&type=tcp&headerType=none#🇳🇱 | Нидерланды
-vless://75807638-6f19-0bb8-ae08-38492ee85c88@82.202.197.2:52006?type=tcp&headerType=none&security=tls&encryption=none&flow=xtls-rprx-vision&insecure=1#🇫🇮 | Финляндия
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@87.228.124.212:52006?fp=chrome&encryption=none&type=tcp&headerType=&allowInsecure=1&security=tls&flow=xtls-rprx-vision&insecure=1#🇹🇷 | Турция
-vless://87a60a9f-36b4-4253-9bb2-7f16a4c92318@158.160.235.238:52006?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=chrome&sni=eh.vk.com&pbk=DaIRouGSxxQDEv9WKRxD79b2Vt0fsw4yQOTeAmXUYCM&sid=28a059440d3d5ba1#🇫🇮 | Финляндия
-vless://75807638-6f19-0fa0-ae08-38492ee85c88@eu.active-engine.ru:52006?allowInsecure=1&encryption=none&flow=xtls-rprx-vision&security=tls&sni=eu.active-engine.ru&type=tcp#🇹🇷 | Турция
-vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@georg.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#🇳🇱 | Нидерланды
-vless://75807638-6f19-01f4-ae08-38492ee85c88@cl-de-2.edgeflux.ru:52006?security=tls&encryption=none&insecure=1&headerType=&fp=chrome&type=tcp&allowInsecure=1&flow=xtls-rprx-vision#🇩🇪 | Германия
-vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇦🇪 | ОАЭ
-vless://88eaeb77-0710-414e-b521-1a865f5a79a0@ss.1kub1.click:2083?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=id.vk.com#🇫🇮 | Финляндия
-vless://5d269083-9f9b-4c97-9ce9-93dd0c57dbff@176.124.211.23:8446?flow=xtls-rprx-vision&fp=qq&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&security=reality&sni=jobinvest.ru&type=tcp#🇩🇪 | Германия
-vless://db53d16d-825a-4989-a2ba-498b09d87d83@205.172.58.133:2040?flow=xtls-rprx-vision&fp=chrome&headertype=&host=&path=&pbk=Aevt4F-kvxeAC27LfB8r3KhkKAcrl6U2ew23p13kizU&security=reality&sid=&sni=stats.vk-portal.net&type=tcp#🇺🇸 | США
+vless://75807638-6f19-0bb8-ae08-38492ee85c88@82.202.197.2:52006?type=tcp&headerType=none&security=tls&encryption=none&flow=xtls-rprx-vision&insecure=1#🇫🇮 | 🌐 | Финляндия
+vless://75807638-6f19-01f4-ae08-38492ee85c88@cl-de-2.edgeflux.ru:52006?type=tcp&headerType=none&security=tls&encryption=none&sni=cl-de-2.edgeflux.ru&fp=chrome&flow=xtls-rprx-vision&insecure=1#🇩🇪 | 🌐 | Германия
+vless://75807638-6f19-0fa0-ae08-38492ee85c88@87.228.124.212:52006?fp=chrome&encryption=none&type=tcp&headerType=&allowInsecure=1&security=tls&flow=xtls-rprx-vision&insecure=1#🇹🇷 | 🌐 | Турция
+vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇳🇱 | 🌐 | Нидерланды
+vless://88eaeb77-0710-414e-b521-1a865f5a79a0@ss.1kub1.click:2083?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=id.vk.com#🇫🇮 | 🌐 | Финляндия
