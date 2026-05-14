@@ -1,28 +1,8 @@
 #profile-title: XolirX 🌑
 #profile-update-interval: 1
-#subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0
+#subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛
+#announce: ⬛ FAST FOREIGN VLESS ⬛
 
-vless://85b5cb2e-2617-4930-b6a4-4aeaf3b7b9aa@yt-noads.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇫🇲 Обход глушилок #1
-vless://32eda259-9051-4a8b-9c8e-7da1b0a918a9@edgemskt2.appav.online:2083?type=grpc&headerType=none&security=reality&encryption=none&sni=ir.ozone.ru&fp=chrome&pbk=J6NuOlIq3ypdTFc1TMhDDKmF8BWPnNWZq1EkxD7K-lQ&sid=6da16b1335651b38&serviceName=UpdateService#🇫🇲 Обход глушилок #2
-vless://f546691e-c631-45a5-a399-fbf0d1a4fa02@185.120.16.208:8443?encryption=none&flow=xtls-rprx-vision&fp=&pbk=BDyM9fEqTWGuUfygYOQVEomwVdNv2A3cj-M1t00fBHw&security=reality&sid=d1e8a2f6c3b90754&sni=fastcdn.hoyoverse.com&type=tcp#🇫🇲 Обход глушилок #3
-vless://6202b230-417c-4d8e-b624-0f71afa9c75d@104.16.58.115:443?host=sni.latonyamadeline.ndjp.net&security=tls&sni=sni.latonyamadeline.ndjp.net&type=ws#🇫🇲 Обход глушилок #4
-vless://394f6981-a782-4779-9a85-e6cf22935d93@152.233.35.228:8443?encryption=none&security=tls&sni=de1.fromblancwithlove.com&insecure=1&allowInsecure=1&type=tcp&headerType=none#🇫🇲 Обход глушилок #5
-vless://394f6981-a782-4779-9a85-e6cf22935d93@152.233.35.228:8443?headertype=none&security=tls&sni=de1.fromblancwithlove.com&type=tcp#🇫🇲 Обход глушилок #6
-vless://85b5cb2e-2617-4930-b6a4-4aeaf3b7b9aa@de.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇫🇲 Обход глушилок #7
-vless://85b5cb2e-2617-4930-b6a4-4aeaf3b7b9aa@fi-g.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇫🇲 Обход глушилок #8
-vless://85b5cb2e-2617-4930-b6a4-4aeaf3b7b9aa@kz.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=firefox&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇫🇲 Обход глушилок #9
-vless://7bd29cac-f692-48a3-88d1-505f7e55f0d0@georg.sbrf-cdn342.ru:443?flow=xtls-rprx-vision&fp=chrome&headertype=&security=tls&sni=sub.sbrf-cdn342.ru&type=tcp#🇫🇲 Обход глушилок #10
-vless://85b5cb2e-2617-4930-b6a4-4aeaf3b7b9aa@fr-tx.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#🇫🇲 Обход глушилок #11
-vless://ddd7b044-6a87-Fade-8911-e0be8fdbf4a2@212.193.147.245:443?alpn=h2%2Chttp%2F1.1&fp=qq&host=s28233.cdn.ngenix.net&security=tls&sni=s28233.cdn.ngenix.net&type=ws#🇫🇲 Обход глушилок #12
-vless://ec9e7b71-72b6-0021-8549-2efb1b21a502@us.musicperec.ru:443?security=reality&encryption=none&pbk=b4n1pcO8ST3JkGtj8YymXVrW17LEe2EHec5wY7hMMR4&headerType=none&fp=chrome&spx=%2F&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=ads.x5.ru&sid=6e3f0a5b#🇫🇲 Обход глушилок #13
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.238.32:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ads.x5.ru&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&sid=2da46294d6a521B2#🇫🇲 Обход глушилок #14
-vless://85b5cb2e-2617-4930-b6a4-4aeaf3b7b9aa@us-bridge.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=h2%2Chttp%2F1.1&flow=xtls-rprx-vision&insecure=0#🇫🇲 Обход глушилок #15
-vless://ddd7b044-6a87-Fade-8911-e0be8fdbf4a2@s28233.cdn.ngenix.net:443?alpn=h2%2Chttp%2F1.1&fp=qq&host=s28233.cdn.ngenix.net&security=tls&sni=s28233.cdn.ngenix.net&type=ws#🇫🇲 Обход глушилок #16
-vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@31.57.172.63:443?allowInsecure=1&sni=gogo.wknm.qzz.io&type=ws&host=gogo.wknm.qzz.io&path=/fp=chromefp=chrome&security=tls#🇫🇲 Обход глушилок #17
-vless://ddd7b044-6a87-Fade-8911-e0be8fdbf4a2@212.193.147.245:443?fp=qq&security=tls&sni=s28233.cdn.ngenix.net&type=ws#🇫🇲 Обход глушилок #18
-vless://37d3a4c5-974b-4624-9a64-6b47f5af83c1@72.56.127.52:443?type=tcp&security=reality&pbk=kBav5OwqoBdhVdOsAgWBWvA1CN5LNPFMGow9ll06WHU&fp=chrome&sni=yahoo.com&sid=48a3&spx=/#🇫🇲 Обход глушилок #19
-vless://06b65903-406d-4a41-8463-6fd5c0ee7798@219.76.13.183:443?host=sn1.skylee5.cloudns.ch&path=%2Ffp%3Dchromefp%3Dchrome&security=tls&sni=sn1.skylee5.cloudns.ch&type=ws#🇫🇲 Обход глушилок #20
-vless://91a3f712-c4e0-42a0-9475-bdd551a06e73@155.212.238.32:443?flow=xtls-rprx-vision&fp=chrome&pbk=AhQkw1Ydp_ZkXnE7UbIZvwHk9KE_Bf5_TkojYZZUuGs&security=reality&sid=2da46294d6a521B2&sni=ads.x5.ru&type=tcp#🇫🇲 Обход глушилок #21
+vless://6202b230-417c-4d8e-b624-0f71afa9c75d@104.16.58.115:443?host=sni.latonyamadeline.ndjp.net&security=tls&sni=sni.latonyamadeline.ndjp.net&type=ws#🇫🇲 Обход глушилок #1
