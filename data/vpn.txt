@@ -5,13 +5,13 @@
 #profile-web-page-url: https://github.com/xolirx
 #announce: ⬛ FREE VLESS ⬛ By XolirX ⬛
 
-vless://5234854d-106b-41ee-8fc7-4acc6a1158a2@de1.persik.host:443?flow=xtls-rprx-vision&fp=random&headertype=none&pbk=Wussb3Mki1IqtlASsx19TawQ9P2qHZL6M8sVxps6xx4&security=reality&sid=3f6a3ab281699a9d&sni=de1.persik.host&type=tcp#🇩🇪 Обход глушилок #1
-vless://5b2fc182-a497-4fbe-aeb8-1841dae99022@72.56.96.93:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=FSq5DVYJ8UaKArP3FtCmlZKqOQ08dKkqB2fefjRkA0M&sni=eh.vk.com#🇳🇱 Обход глушилок #2
-vless://5b2fc182-a497-4fbe-aeb8-1841dae99022@138.124.65.10:443?type=grpc&security=reality&fp=chrome&pbk=Xqcp6tB5Fo56tQWqdP2JopElgM7I3UMAHVjdL6ryvRQ&sni=ads.x5.ru&mode=gun&serviceName=steram&spx=/#🇱🇹 Обход глушилок #3
-vless://3275a667-4a67-4d43-b0ba-54da2d1145dd@us.gryaz-vpn.com:19131?flow=xtls-rprx-vision-udp443&fp=random&headertype=&pbk=yxRy8t-W5pCOglMeGNTeen8vQPK1SG0sM49vL6GLpjo&security=reality&sid=0a8a84dcb5&sni=cloudflare.com&spx=%2F&type=tcp#🇺🇸 Обход глушилок #4
+vless://5b2fc182-a497-4fbe-aeb8-1841dae99022@72.56.96.93:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=FSq5DVYJ8UaKArP3FtCmlZKqOQ08dKkqB2fefjRkA0M&sni=eh.vk.com#🇳🇱 Обход глушилок #1
+vless://b27ab9aa-a525-4deb-a1fd-6d16c9614612@45.133.251.23:6443?type=xhttp&security=reality&fp=chrome&pbk=m_dqBYbQWfqxsZftTKY_AdVdzmeoOVf3Ytdupe-y9AQ&sid=6ba85179e30d4fc2&sni=yandex.net&mode=auto#🇩🇪 Обход глушилок #2
+vless://b27ab9aa-a525-4deb-a1fd-6d16c9614612@45.133.251.23:8443?flow=xtls-rprx-vision&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&security=reality&sid=6ba85179e30d4fc2&sni=yandex.net&type=tcp#🇩🇪 Обход глушилок #3
+vless://3bd48b98-b398-448a-8a63-5771057e0135@194.135.38.120:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=GsKY4XpP6sr905aHvCrj0JEHhgcAD5aEcmbjyLSNjAU&sid=ca5096&sni=cdp.x5.ru&spx=/#🇳🇱 Обход глушилок #4
 vless://3275a667-4a67-4d43-b0ba-54da2d1145dd@us.gryaz-vpn.com:19131?type=tcp&security=reality&pbk=yxRy8t-W5pCOglMeGNTeen8vQPK1SG0sM49vL6GLpjo&fp=random&sni=cloudflare.com&sid=0a8a84dcb5&spx=%2F&flow=xtls-rprx-vision-udp443#🇺🇸 Обход глушилок #5
-vless://4cb46f0c-4f4e-468d-a834-bc2a4e404835@79.137.198.154:443?fp=chrome&mode=gun&pbk=XrXK3qb2CKCBP80Vkg3WfNBB4gpy4YOADmQ7mhHfDWE&security=reality&sni=ads.x5.ru&type=grpc#🇳🇱 Обход глушилок #6
-vless://5b2fc182-a497-4fbe-aeb8-1841dae99022@45.10.40.173:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=FSq5DVYJ8UaKArP3FtCmlZKqOQ08dKkqB2fefjRkA0M&sni=eh.vk.com#🇰🇿 Обход глушилок #7
-vless://06b65903-406d-4a41-8463-6fd5c0ee7798@219.76.13.183:443?headertype=none&host=sn1.skylee5.cloudns.ch&path=%2Ffp%3Dchrome&security=tls&sni=sn1.skylee5.cloudns.ch&type=ws#🇭🇰 Обход глушилок #8
-vless://26524cce-d514-4014-a426-365fb266a14d@166.88.141.189:443?allowInsecure=0&sni=wybfkrp6.gateway-edge.danfeng.cyou&type=ws&host=wybfkrp6.gateway-edge.danfeng.cyou&path=/danfengfp=firefox&security=tls#🇭🇰 Обход глушилок #9
-vless://917bb394-8d91-4eee-956d-b81aba3aed70@tw5.453521.xyz:8443?flow=xtls-rprx-vision&fp=chrome&headertype=none&host=&mode=gun&path=&pbk=2a0ONLRiBeHJdr9qCruq5tPVf8_3c4fmZsg7YQorFSE&quicsecurity=none&security=reality&servicename=&sid=04d59340&sni=www.python.org&type=tcp#🇹🇼 Обход глушилок #10
+vless://3275a667-4a67-4d43-b0ba-54da2d1145dd@us.gryaz-vpn.com:19131?flow=xtls-rprx-vision-udp443&fp=random&headertype=&pbk=yxRy8t-W5pCOglMeGNTeen8vQPK1SG0sM49vL6GLpjo&security=reality&sid=0a8a84dcb5&sni=cloudflare.com&spx=%2F&type=tcp#🇺🇸 Обход глушилок #6
+vless://4cb46f0c-4f4e-468d-a834-bc2a4e404835@79.137.198.154:443?fp=chrome&mode=gun&pbk=XrXK3qb2CKCBP80Vkg3WfNBB4gpy4YOADmQ7mhHfDWE&security=reality&sni=ads.x5.ru&type=grpc#🇳🇱 Обход глушилок #7
+vless://0e3a9376-1bf0-4b9e-a328-f28083bf6c34@isp.skysafe.online:8443?flow=xtls-rprx-vision&fp=chrome&pbk=KCyXf3QHg-MykdqwoE3vXgwyOpVxMR8v19zN6fAm_Uw&security=reality&sid=acede608e4d338f4&sni=isp.skysafe.online&type=tcp#🇪🇸 Обход глушилок #8
+vless://5b2fc182-a497-4fbe-aeb8-1841dae99022@138.124.65.10:443?type=grpc&security=reality&fp=chrome&pbk=Xqcp6tB5Fo56tQWqdP2JopElgM7I3UMAHVjdL6ryvRQ&sni=ads.x5.ru&mode=gun&serviceName=steram&spx=/#🇱🇹 Обход глушилок #9
+vless://26524cce-d514-4014-a426-365fb266a14d@74.48.201.209:443?sni=wybfkrp6.gateway-edge.danfeng.cyou&type=ws&host=wybfkrp6.gateway-edge.danfeng.cyou&path=/danfeng?ed=2560fp=firefox&security=tls#🇺🇸 Обход глушилок #10
