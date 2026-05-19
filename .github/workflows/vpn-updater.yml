@@ -8,21 +8,19 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Run updater
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: |
-        python3 << 'EOF'
-import requests, base64, re
+      - name: Run updater
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          python3 << 'PYEOF'
+import requests, base64, re, os
 from datetime import datetime
 
 SOURCE_URL = 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt'
 TARGET_REPO = 'xolirx/xolirx-vpn-api'
 TARGET_FILE = 'data/vpn.txt'
 TARGET_BRANCH = 'main'
-import os
 GITHUB_TOKEN = os.environ['GH_TOKEN']
 
 HEADERS = """#profile-title: XolirX 🟢
@@ -80,4 +78,4 @@ if sha:
 
 r = requests.put(api_url, headers=headers, json=data)
 print(f'Updated: {r.status_code}')
-EOF
+PYEOF
