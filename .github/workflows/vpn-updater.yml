@@ -14,9 +14,8 @@ jobs:
     - name: Run updater
       run: |
         python -c "
-import requests, base64
+import requests, base64, re
 from datetime import datetime
-from urllib.parse import quote
 
 SOURCE_URL = 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt'
 TARGET_REPO = 'xolirx/xolirx-vpn-api'
@@ -44,8 +43,11 @@ print(f'Found {len(configs)} configs')
 processed = []
 for i, line in enumerate(configs, 1):
     base = line.split('#')[0]
-    name = quote(f'🇸🇴 Server #{i}', safe='')
-    processed.append(f'{base}#{name}')
+    name = f'Server-{i}'
+    base = re.sub(r'sni=[^&]+', f'sni={name}', base)
+    base = re.sub(r'host=[^&]+', f'host={name}', base)
+    base = re.sub(r'Host=[^&]+', f'Host={name}', base)
+    processed.append(f'{base}#🇸🇴 Server #{i}')
 
 final = HEADERS + '\n' + '\n'.join(processed)
 
