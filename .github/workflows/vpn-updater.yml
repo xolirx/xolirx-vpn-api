@@ -1,0 +1,141 @@
+# .github/workflows/vpn-updater.yml
+name: VPN Configs Updater
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests
+        
+    - name: Run updater
+      env:
+        TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        python -c "
+import requests, base64, subprocess, re
+import concurrent.futures
+from datetime import datetime
+
+GITHUB_TOKEN = '${{ secrets.GH_TOKEN }}'
+SOURCE_URL = 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt'
+TARGET_REPO = 'xolirx/xolirx-vpn-api'
+TARGET_FILE = 'data/vpn.txt'
+TARGET_BRANCH = 'main'
+MAX_WORKERS = 20
+PING_TIMEOUT = 3
+PING_RETRIES = 2
+
+HEADERS = '''#profile-title: XolirX
+#profile-update-interval: 1
+#subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0
+#support-url: https://t.me/xolirx
+#profile-web-page-url: https://github.com/xolirx
+#announce: FREE VLESS By XolirX'''
+
+def fetch_source_configs():
+    print('Downloading...')
+    r = requests.get(SOURCE_URL, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+def extract_host_port(line):
+    try:
+        if '@' not in line:
+            return None
+        host_part = line.split('@')[1].split('?')[0].split('/')[0]
+        return host_part.split(':')[0] if ':' in host_part else host_part
+    except:
+        return None
+
+def is_server_alive(line):
+    host = extract_host_port(line)
+    if not host:
+        return False
+    for _ in range(2):
+        try:
+            result = subprocess.run(['ping', '-c', '1', '-W', '3', host], 
+                                  capture_output=True, text=True, timeout=4)
+            if result.returncode == 0:
+                return True
+        except:
+            continue
+    try:
+        port = '443'
+        if ':' in line.split('@')[1].split('?')[0]:
+            port = line.split('@')[1].split('?')[0].split(':')[1].split('/')[0]
+        result = subprocess.run(['timeout', '3', 'nc', '-z', '-w', '3', host, port],
+                              capture_output=True, timeout=4)
+        return result.returncode == 0
+    except:
+        return False
+
+def process_configs(content):
+    lines = content.split('\n')
+    configs = []
+    for line in lines:
+        s = line.strip()
+        if s and not s.startswith('#') and (s.startswith('vless://') or s.startswith('trojan://')):
+            configs.append(s)
+    
+    print(f'Total configs: {len(configs)}')
+    
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        results = list(executor.map(is_server_alive, configs))
+    
+    alive = []
+    for config, is_alive in zip(configs, results):
+        if is_alive:
+            alive.append(config)
+    
+    print(f'Alive: {len(alive)}')
+    
+    processed = []
+    for i, line in enumerate(alive, 1):
+        base = line.rsplit('#', 1)[0] if '#' in line else line
+        processed.append(f'{base}#Server #{i}')
+    
+    return '\n'.join(processed)
+
+content = fetch_source_configs()
+processed = process_configs(content)
+final = HEADERS + '\n' + processed
+
+headers = {'Authorization': f'token {GITHUB_TOKEN}', 'Accept': 'application/vnd.github.v3+json'}
+api_url = f'https://api.github.com/repos/{TARGET_REPO}/contents/{TARGET_FILE}'
+
+r = requests.get(api_url, headers=headers)
+sha = r.json().get('sha') if r.status_code == 200 else None
+
+if sha:
+    current = base64.b64decode(r.json()['content']).decode()
+    if current == final:
+        print('No changes')
+        exit(0)
+
+encoded = base64.b64encode(final.encode()).decode()
+data = {
+    'message': f'Update - {datetime.now().strftime(\"%Y-%m-%d %H:%M\")}',
+    'content': encoded,
+    'branch': TARGET_BRANCH
+}
+if sha:
+    data['sha'] = sha
+
+r = requests.put(api_url, headers=headers, json=data)
+print(f'Status: {r.status_code}')
+"
