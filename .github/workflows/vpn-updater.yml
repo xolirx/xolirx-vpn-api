@@ -1,4 +1,3 @@
-# .github/workflows/vpn-updater.yml
 name: VPN Configs Updater
 
 on:
@@ -12,8 +11,10 @@ jobs:
     
     steps:
     - name: Run updater
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        python -c "
+        python3 << 'EOF'
 import requests, base64, re
 from datetime import datetime
 
@@ -21,13 +22,15 @@ SOURCE_URL = 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/m
 TARGET_REPO = 'xolirx/xolirx-vpn-api'
 TARGET_FILE = 'data/vpn.txt'
 TARGET_BRANCH = 'main'
+import os
+GITHUB_TOKEN = os.environ['GH_TOKEN']
 
-HEADERS = '''#profile-title: XolirX 🟢
+HEADERS = """#profile-title: XolirX 🟢
 #profile-update-interval: 1
 #subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛'''
+#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛"""
 
 r = requests.get(SOURCE_URL, timeout=30)
 r.raise_for_status()
@@ -52,7 +55,7 @@ for i, line in enumerate(configs, 1):
 final = HEADERS + '\n' + '\n'.join(processed)
 
 headers = {
-    'Authorization': f'token \${{ secrets.GH_TOKEN }}',
+    'Authorization': f'token {GITHUB_TOKEN}',
     'Accept': 'application/vnd.github.v3+json'
 }
 api_url = f'https://api.github.com/repos/{TARGET_REPO}/contents/{TARGET_FILE}'
@@ -68,7 +71,7 @@ if sha:
 
 encoded = base64.b64encode(final.encode()).decode()
 data = {
-    'message': f'Update - {datetime.now().strftime(\"%Y-%m-%d %H:%M\")}',
+    'message': f'Update - {datetime.now().strftime("%Y-%m-%d %H:%M")}',
     'content': encoded,
     'branch': TARGET_BRANCH
 }
@@ -77,6 +80,4 @@ if sha:
 
 r = requests.put(api_url, headers=headers, json=data)
 print(f'Updated: {r.status_code}')
-"
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+EOF
