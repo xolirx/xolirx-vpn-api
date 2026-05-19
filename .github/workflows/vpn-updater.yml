@@ -3,7 +3,7 @@ name: VPN Configs Updater
 
 on:
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -48,7 +48,7 @@ for i, line in enumerate(configs, 1):
 final = HEADERS + '\n' + '\n'.join(processed)
 
 headers = {
-    'Authorization': f'token ${{ secrets.GH_TOKEN }}',
+    'Authorization': f'token \${{ secrets.GH_TOKEN }}',
     'Accept': 'application/vnd.github.v3+json'
 }
 api_url = f'https://api.github.com/repos/{TARGET_REPO}/contents/{TARGET_FILE}'
