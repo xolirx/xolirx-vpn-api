@@ -1,7 +1,7 @@
-#profile-title: XolirX 
+#profile-title: XolirX ♻
 #profile-update-interval: 1
 #subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: FREE VLESS By XolirX
+#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛
 vless://66036ae7-f4b4-4dd9-b72f-88b571c6ba26@kz1-node.vpnspacev.com:443?type=tcp&security=reality&fp=chrome&pbk=zjv3djnsCKDqP7zZFIrJ9ImzgdPE3zFMCYrOvdWqkEE&sid=79&sni=ebay.com#технический перерыв
