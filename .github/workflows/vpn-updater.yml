@@ -16,6 +16,7 @@ jobs:
         python -c "
 import requests, base64
 from datetime import datetime
+from urllib.parse import quote
 
 SOURCE_URL = 'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt'
 TARGET_REPO = 'xolirx/xolirx-vpn-api'
@@ -43,7 +44,8 @@ print(f'Found {len(configs)} configs')
 processed = []
 for i, line in enumerate(configs, 1):
     base = line.split('#')[0]
-    processed.append(f'{base}#Server #{i}')
+    name = quote(f'🇸🇴 Server #{i}', safe='')
+    processed.append(f'{base}#{name}')
 
 final = HEADERS + '\n' + '\n'.join(processed)
 
