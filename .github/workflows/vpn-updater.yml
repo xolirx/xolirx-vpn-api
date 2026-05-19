@@ -13,7 +13,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          python3 << 'PYEOF'
+          python3 -c "
 import requests, base64, re, os
 from datetime import datetime
 
@@ -23,12 +23,7 @@ TARGET_FILE = 'data/vpn.txt'
 TARGET_BRANCH = 'main'
 GITHUB_TOKEN = os.environ['GH_TOKEN']
 
-HEADERS = """#profile-title: XolirX 🟢
-#profile-update-interval: 1
-#subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0
-#support-url: https://t.me/xolirx
-#profile-web-page-url: https://github.com/xolirx
-#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛"""
+HEADERS = '#profile-title: XolirX \U0001f7e2\n#profile-update-interval: 1\n#subscription-userinfo: upload=1192756224000; download=0; total=0; expire=0\n#support-url: https://t.me/xolirx\n#profile-web-page-url: https://github.com/xolirx\n#announce: \u2b1b FREE VLESS \u2b1b By XolirX \u2b1b'
 
 r = requests.get(SOURCE_URL, timeout=30)
 r.raise_for_status()
@@ -48,7 +43,7 @@ for i, line in enumerate(configs, 1):
     base = re.sub(r'sni=[^&]+', f'sni={name}', base)
     base = re.sub(r'host=[^&]+', f'host={name}', base)
     base = re.sub(r'Host=[^&]+', f'Host={name}', base)
-    processed.append(f'{base}#🇸🇴 Server #{i}')
+    processed.append(f'{base}#\U0001f1f8\U0001f1f4 Server #{i}')
 
 final = HEADERS + '\n' + '\n'.join(processed)
 
@@ -69,7 +64,7 @@ if sha:
 
 encoded = base64.b64encode(final.encode()).decode()
 data = {
-    'message': f'Update - {datetime.now().strftime("%Y-%m-%d %H:%M")}',
+    'message': f'Update - {datetime.now().strftime(\"%Y-%m-%d %H:%M\")}',
     'content': encoded,
     'branch': TARGET_BRANCH
 }
@@ -78,4 +73,4 @@ if sha:
 
 r = requests.put(api_url, headers=headers, json=data)
 print(f'Updated: {r.status_code}')
-PYEOF
+"
