@@ -7,5 +7,3 @@
 
 vless://30f5b380-5b9e-4d42-a50c-508a2a8cb2f6@144.31.12.194:443?type=tcp&headerType=none&security=reality&encryption=none&sni=n11.com&fp=chrome&pbk=O60JwuL4PInkkwUGmKuzNdc0VjpJU8BCaWuWM3QeDGg&sid=5d28ea4c&flow=xtls-rprx-vision#🇸🇴 Обход #1
 vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@tr1.datatowers.net:64534?type=tcp&headerType=none&security=none&encryption=none&fp=qq#🇸🇴 Обход #2
-vless://985ed6c3-2424-4aa7-8f23-5c4c0de59c85@norwaymigration.life:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=mlhqF_hda8iqA6ABaVbmCNehnrwpPWDo3Cdp94APDgc&sid=f1a3d4b6de93aa3a&sni=norwaymigration.life#🇸🇴 Обход #3
-vless://c65aa5b2-7e97-4220-8ee2-a5dafdc3c53c@150.241.102.21:80?security=reality&encryption=none&pbk=4iWZChsH0rnqtn89xiB1evDLkFjmgh-3WYjx8cknZC0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=www.microsoft.com&sid=a8b9c0d1e2f34567#🇸🇴 Обход #4
