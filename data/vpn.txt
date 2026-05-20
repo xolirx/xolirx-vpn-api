@@ -5,5 +5,15 @@
 #profile-web-page-url: https://github.com/xolirx
 #announce: ⬛ FREE VLESS ⬛ By XolirX ⬛
 
-vless://30f5b380-5b9e-4d42-a50c-508a2a8cb2f6@144.31.12.194:443?type=tcp&headerType=none&security=reality&encryption=none&sni=n11.com&fp=chrome&pbk=O60JwuL4PInkkwUGmKuzNdc0VjpJU8BCaWuWM3QeDGg&sid=5d28ea4c&flow=xtls-rprx-vision#🇸🇴 Обход #1
-vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@tr1.datatowers.net:64534?type=tcp&headerType=none&security=none&encryption=none&fp=qq#🇸🇴 Обход #2
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv186.towersflowerss.com:64534?type=ws&headerType=none&security=none&encryption=none&fp=randomized&path=%2F#⚡ 450ms #1
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv186.towersflowerss.com:64534?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&encryption=none&path=/&security=none&type=ws#⚡ 494ms #2
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv186.towersflowerss.com:64534?type=ws&path=%2F&sni=srv186.towersflowerss.com&fp=randomized#⚡ 497ms #3
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@tr1.datatowers.net:64534?type=tcp&headerType=none&security=none&encryption=none&fp=qq#⚡ 683ms #4
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv191.towersflowerss.com:65000?type=ws&headerType=none&security=none&encryption=none&fp=randomized&path=%2F#⚡ 791ms #5
+vless://cbc27e56-38a1-4b0d-bce3-f9e7dcb807a4@84.201.152.247:443?flow=xtls-rprx-vision&encryption=none&type=tcp&security=reality&fp=firefox&sni=lk.x5.ru&pbk=gs8bT5NMOtrvvHxmCi_siXbVY6WhQcBV4tEgFk4ohgA&sid=46ceaa0ac75f90dc#⚡ 939ms #6
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv179.towersflowerss.com:443?path=%2F&security=&encryption=none&fp=randomized&type=ws#⚡ 983ms #7
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv179.towersflowerss.com:443?type=ws&path=%2F&sni=srv179.towersflowerss.com&fp=randomized#⚡ 1059ms #8
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv169.towersflowerss.com:443?type=ws&headerType=none&security=none&encryption=none&fp=randomized&path=%2F#⚡ 1060ms #9
+vless://c65aa5b2-7e97-4220-8ee2-a5dafdc3c53c@150.241.102.21:80?security=reality&encryption=none&pbk=4iWZChsH0rnqtn89xiB1evDLkFjmgh-3WYjx8cknZC0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=www.microsoft.com&sid=a8b9c0d1e2f34567#⚡ 1113ms #10
+vless://b43a13be-150c-4a6a-8501-b71c1b6476fb@srv191.towersflowerss.com:65000?type=ws&path=%2F&sni=srv191.towersflowerss.com&fp=randomized#⚡ 1161ms #11
+vless://0c9c3d36-c93c-4d1b-bdff-8038c3ed78a2@fl-7-direct.djarbnet.ru:443?path=%2Fgetupdates&security=tls&encryption=none&host=fl-7-direct.djarbnet.ru&type=ws&sni=fl-7-direct.djarbnet.ru#⚡ 1373ms #12
