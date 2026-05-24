@@ -1,9 +1,9 @@
-#profile-title: XolirX 💠
+#profile-title: XolirX 🔳
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: ⬛ FREE VLESS ⬛ By XolirX ⬛ @xolirx - tg ⬛
+#announce: ⚪ FREE VLESS ⚪ By XolirX ⚪ @xolirx - tg ⚪
 
 vless://c85dd31c-3fe1-4f48-aa17-98ac9942a26c@79.174.90.199:5443?type=tcp&headerType=none&security=reality&encryption=none&sni=max.ru&fp=chrome&pbk=LGcG8Sqv5vPDypbaEgHV0ZGqQOBkgDepPWXyDohbVXQ&flow=xtls-rprx-vision#🇸🇴 Обход глушилок #76
 vless://35fd6e20-d441-4403-bf75-3182f43a4489@111.88.98.73:443?flow=xtls-rprx-vision&fp=chrome&pbk=IBvNLerjNLpF4OpUX-wGJp8YDZrnKoh-gEItUDNT_Bg&security=reality&sni=cdn.trahodrom.fun&type=tcp#🇸🇴 Обход глушилок #40
