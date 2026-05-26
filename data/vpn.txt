@@ -3,7 +3,7 @@
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: 🌍 VPN Configs with Real Country Flags | Updated: 26.05.2026 13:54:27 | Total: 9
+#announce: 🌍 VPN Configs with Real Country Flags | Updated: 26.05.2026 13:58:41 | Total: 9
 
 vmess://eyJ2IjoiMiIsInBzIjoi8J+HuvCfh7ggVW5pdGVkIFN0YXRlcywgU2FudGEgQ2xhcmEgfCBbQkxdIiwiYWRkIjoiMTA0LjIzMy4yMTQuMTc2IiwicG9ydCI6IjEzNTgxIiwiaWQiOiJkNGQ3MTVhNi0wYTJlLTQzMDQtZGYyZi1kNWVmZDg1YTVhNWQiLCJhaWQiOiIwIiwic2N5IjoiYXV0byIsIm5ldCI6InRjcCIsInR5cGUiOiJub25lIiwiaG9zdCI6IiIsInBhdGgiOiIvIiwidGxzIjoiIiwic25pIjoiIiwiYWxwbiI6IiIsImZwIjoiIiwiaW5zZWN1cmUiOiIwIn0=#🇺🇸 США #1
 vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=nonetype=tcpsecurity=none#🇷🇺 Россия #2
