@@ -1,14 +1,22 @@
-#profile-title: XolirX 🔳
+#profile-title: ✨ XolirX VPN ✨
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: ⚪ FREE VLESS ⚪ By XolirX ⚪ @xolirx - tg ⚪
+#announce: 🌍 VPN Configs with Real Country Flags | Updated: 26.05.2026 15:30:45 |
 
-vless://7402e534-54dc-34cc-ac5b-c85ac6e236fd@s881.ccgfw.top:443?encryption=none&type=tcp&headerType=&fp=&host=s881.ccgfw.top&path=&flow=xtls-rprx-vision&security=tls&sni=s881.ccgfw.top&serviceName=&mode=&alpn=#🏳️ Обход #1
-vless://5b38fd24-4d47-4ee2-a077-7d125e723230@se.white-aist.com:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=aCRQJz6gbsiHFjfxqyaqnYIlfwBFYDfMGJdUvmYqgC8&sni=yahoo.com#🇸🇪 Обход #2
-vless://06b65903-406d-4a41-8463-6fd5c0ee7798@219.76.13.183:443?host=sn1.skylee5.cloudns.ch&path=%2Ffp&security=tls&sni=sn1.skylee5.cloudns.ch&type=ws#🏳️ Обход #3
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=none&type=tcp&security=none#🏳️ Обход #4
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=none&type=tcp&security=none#🏳️ Обход #5
-vless://6784aee2-0dfe-474f-8446-480259ff9918@yt5.safepass.click:443?type=xhttp&security=reality&fp=chrome&pbk=ELp9PUvVnkoFJYiscWrbnPXRnsYdELSCbIz9wNmMRRw&sid=965af8960474c29c&sni=stats.vk-portal.net&mode=auto&extra=%7B#🏳️ Обход #6
-vless://4e783039-6260-4107-9a11-2ab7dc18ded8@185.242.19.250:80?encryption=none&type=ws&security=none&path=%2Fstatic&host=top3491497032.mwscdn.ru#🏳️ Обход #7
+trojan://gcuCpQfaiVeDBdWG@211.76.176.99:19128?security=tls&sni=yazhou10.dynu.net&type=tcp&headerType=none#🇹🇼 Тайвань #1
+trojan://gcuCpQfaiVeDBdWG@211.76.176.98:19128?security=tls&sni=yazhou10.dynu.net&type=tcp&headerType=none#🇹🇼 Тайвань #2
+vless://01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f@uae.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&fp=random&alpn=http%2F1.1&flow=xtls-rprx-vision&insecure=0#🇳🇱 Нидерланды #3
+vless://6d49fae1-374d-313e-b360-1227b0ea8dea@s662.ccgfw.top:443?encryption=none&type=tcp&headerType=&fp=&host=s662.ccgfw.top&path=&flow=xtls-rprx-vision&security=tls&sni=s662.ccgfw.top&serviceName=&mode=&alpn=#🇩🇪 Германия #4
+vless://7402e534-54dc-34cc-ac5b-c85ac6e236fd@s881.ccgfw.top:443?encryption=none&type=tcp&headerType=&fp=&host=s881.ccgfw.top&path=&flow=xtls-rprx-vision&security=tls&sni=s881.ccgfw.top&serviceName=&mode=&alpn=#🇺🇸 США #5
+vless://6d49fae1-374d-313e-b360-1227b0ea8dea@s356.ccgfw.online:443?encryption=none&type=tcp&headerType=none&fp=random&host=s356.ccgfw.online&path=&flow=xtls-rprx-vision&security=tls&sni=09d7s356.ccgfw.online&serviceName=&mode=&alpn=#🇺🇸 США #6
+vless://6d49fae1-374d-313e-b360-1227b0ea8dea@s359.ccgfw.online:443?encryption=none&type=tcp&headerType=none&fp=random&host=s359.ccgfw.online&path=&flow=xtls-rprx-vision&security=tls&sni=4da2s359.ccgfw.online&serviceName=&mode=&alpn=#🇺🇸 США #7
+vless://91e120bc-159a-4390-b4e1-197b19602ea0@est-def.sbrf-cdn342.ru:443?type=tcp&headerType=none&security=tls&encryption=none&sni=sub.sbrf-cdn342.ru&flow=xtls-rprx-vision&insecure=0#🇪🇪 Эстония #8
+vless://06b65903-406d-4a41-8463-6fd5c0ee7798@219.76.13.183:443?host=sn1.skylee5.cloudns.ch&path=%2Ffp&security=tls&sni=sn1.skylee5.cloudns.ch&type=ws#🇭🇰 Гонконг #9
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=none&type=tcp&security=none#🇷🇺 Россия #10
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?&security=false&fp=chrome&type=tcp&headerType=none&host=ru3.alexanderoff.ru&path=%2F#🇷🇺 Россия #11
+vless://cfb70000-ed61-4a7e-89a3-2b9c2caa6001@185.242.19.250:443?encryption=none&type=xhttp&security=tls&host=top3739667002.mwscdn.ru&path=%2Flivestreamcontent%2F&mode=packet-up&extra=%7B%22host%22%3A%22%22%2C%22path%22%3A%22%22%2C%22mode%22%3A%22%22%2C%22headers%22%3Anull%2C%22xPaddingBytes%22%3A%22100-1000%22%2C%22xPaddingObfsMode%22%3Afalse%2C%22xPaddingKey%22%3A%22%22%2C%22xPaddingHeader%22%3A%22%22%2C%22xPaddingPlacement%22%3A%22%22%2C%22xPaddingMethod%22%3A%22%22%2C%22uplinkHTTPMethod%22%3A%22PUT%22%2C%22sessionPlacement%22%3A%22%22%2C%22sessionKey%22%3A%22%22%2C%22seqPlacement%22%3A%22%22%2C%22seqKey%22%3A%22%22%2C%22uplinkDataPlacement%22%3A%22%22%2C%22uplinkDataKey%22%3A%22%22%2C%22uplinkChunkSize%22%3A0%2C%22noGRPCHeader%22%3Afalse%2C%22noSSEHeader%22%3Afalse%2C%22scMaxEachPostBytes%22%3A%221000000%22%2C%22scMinPostsIntervalMs%22%3A%2230%22%2C%22scMaxBufferedPosts%22%3A0%2C%22scStreamUpServerSecs%22%3A%220%22%2C%22xmux%22%3A%7B%22maxConcurrency%22%3A%220%22%2C%22maxConnections%22%3A%220%22%2C%22cMaxReuseTimes%22%3A%220%22%2C%22hMaxRequestTimes%22%3A%220%22%2C%22hMaxReusableSecs%22%3A%220%22%2C%22hKeepAlivePeriod%22%3A0%7D%2C%22downloadSettings%22%3Anull%2C%22extra%22%3Anull%7D&sni=top3739667002.mwscdn.ru#🇷🇺 Россия #12
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?security=none&type=tcp#🇷🇺 Россия #13
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=none&type=tcp&security=none#🇷🇺 Россия #14
+vless://77defd0f-bcb2-46b1-ab8d-b5e4e4adea18@130.49.189.40:8443?encryption=none&type=grpc&mode=gun&security=reality&sni=ads.x5.ru&fp=chrome&pbk=wSQIBnAc0cYO9JitaNcgZ2LwkTix0_dXVpDjnZxDrCE#🇷🇺 Россия #15
