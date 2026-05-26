@@ -1,16 +1,11 @@
-#profile-title: ✨ XolirX VPN ✨
+#profile-title: XolirX 🔳
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: 🌍 VPN Configs with Real Country Flags | Updated: 26.05.2026 13:58:41 | Total: 9
+#announce: ⚪ FREE VLESS ⚪ By XolirX ⚪ @xolirx - tg ⚪
 
-vmess://eyJ2IjoiMiIsInBzIjoi8J+HuvCfh7ggVW5pdGVkIFN0YXRlcywgU2FudGEgQ2xhcmEgfCBbQkxdIiwiYWRkIjoiMTA0LjIzMy4yMTQuMTc2IiwicG9ydCI6IjEzNTgxIiwiaWQiOiJkNGQ3MTVhNi0wYTJlLTQzMDQtZGYyZi1kNWVmZDg1YTVhNWQiLCJhaWQiOiIwIiwic2N5IjoiYXV0byIsIm5ldCI6InRjcCIsInR5cGUiOiJub25lIiwiaG9zdCI6IiIsInBhdGgiOiIvIiwidGxzIjoiIiwic25pIjoiIiwiYWxwbiI6IiIsImZwIjoiIiwiaW5zZWN1cmUiOiIwIn0=#🇺🇸 США #1
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=nonetype=tcpsecurity=none#🇷🇺 Россия #2
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=nonetype=tcpsecurity=none#🇷🇺 Россия #3
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?security=falsefp=chrometype=tcpheaderType=nonehost=ru3.alexanderoff.rupath=%2F#🇷🇺 Россия #4
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?security=nonetype=tcp#🇷🇺 Россия #5
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=nonetype=tcpsecurity=none#🇷🇺 Россия #6
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=nonetype=tcpsecurity=none#🇷🇺 Россия #7
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru3.alexanderoff.ru:4443?security=falsefp=chrometype=tcpheaderType=nonehost=ru3.alexanderoff.rupath=%2F#🇷🇺 Россия #8
-vless://de87620b-6bff-4077-99cc-ce65e06b64ed@ru7.alexanderoff.ru:4443?security=nonetype=tcp#🇷🇺 Россия #9
+vless://06b65903-406d-4a41-8463-6fd5c0ee7798@163.5.58.140:443?allow_insecure=0&host=sni.skylee4.cloudns.ch&path=%2Fproxyip%3DProxyIP.CMLiussss.net&security=tls&sni=sni.skylee4.cloudns.ch&type=ws#🇫🇲 Обход глушилок #1
+vless://06b65903-406d-4a41-8463-6fd5c0ee7798@219.76.13.183:443?host=sn1.skylee5.cloudns.ch&path=%2Ffp&security=tls&sni=sn1.skylee5.cloudns.ch&type=ws#🇫🇲 Обход глушилок #2
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@5.188.156.138:4443?encryption=none&type=tcp&security=none#🇫🇲 Обход глушилок #3
+vless://de87620b-6bff-4077-99cc-ce65e06b64ed@87.228.124.196:4443?encryption=none&type=tcp&security=none#🇫🇲 Обход глушилок #4
