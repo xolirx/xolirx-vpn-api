@@ -25,7 +25,7 @@
       {
         "domain_suffix": [
           ".ru",
-          ".\u0440\u0444"
+          ".рф"
         ],
         "server": "yandex"
       },
@@ -45,7 +45,7 @@
   "outbounds": [
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #1",
+      "tag": "🇦🇱 XolirX #1",
       "server": "130.49.219.126",
       "server_port": 8443,
       "uuid": "2ee2b77f-e4cd-4e5d-af22-f9d919eeadd5",
@@ -58,7 +58,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #2",
+      "tag": "🇦🇱 XolirX #2",
       "server": "45.39.241.51",
       "server_port": 23837,
       "uuid": "d262c258-e73a-47d2-944d-55cfc4bc8fd0",
@@ -76,7 +76,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #3",
+      "tag": "🇦🇱 XolirX #3",
       "server": "de.alorvpn.fun",
       "server_port": 443,
       "uuid": "0c57b186-b8c7-4948-8d82-7548ad1af428",
@@ -94,7 +94,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #4",
+      "tag": "🇦🇱 XolirX #4",
       "server": "138.124.244.248",
       "server_port": 443,
       "uuid": "476caa1d-7c04-48ab-8de5-2c1af0d13a66",
@@ -112,7 +112,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #5",
+      "tag": "🇦🇱 XolirX #5",
       "server": "fi2.clgate.network",
       "server_port": 443,
       "uuid": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
@@ -137,7 +137,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #6",
+      "tag": "🇦🇱 XolirX #6",
       "server": "151.101.118.95",
       "server_port": 443,
       "uuid": "7572659e-7322-4b33-9f17-bfa7a9d984bc",
@@ -157,7 +157,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #7",
+      "tag": "🇦🇱 XolirX #7",
       "server": "151.101.118.95",
       "server_port": 443,
       "uuid": "8a83c3cb-a861-4e9f-a559-0f012a234dae",
@@ -177,7 +177,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #8",
+      "tag": "🇦🇱 XolirX #8",
       "server": "151.101.1.57",
       "server_port": 80,
       "uuid": "InternetAzadRobot",
@@ -195,7 +195,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #9",
+      "tag": "🇦🇱 XolirX #9",
       "server": "151.101.1.57",
       "server_port": 80,
       "uuid": "TIGNAL",
@@ -213,7 +213,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #10",
+      "tag": "🇦🇱 XolirX #10",
       "server": "213.108.2.130",
       "server_port": 443,
       "uuid": "5e8ee155-0962-4307-98f2-b65f6bbbd5bb",
@@ -231,7 +231,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #11",
+      "tag": "🇦🇱 XolirX #11",
       "server": "fr-tx.sbrf-cdn342.ru",
       "server_port": 443,
       "uuid": "01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f",
@@ -244,7 +244,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #12",
+      "tag": "🇦🇱 XolirX #12",
       "server": "151.101.1.57",
       "server_port": 80,
       "uuid": "AliTignal500GB",
@@ -262,7 +262,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #13",
+      "tag": "🇦🇱 XolirX #13",
       "server": "151.101.128.223",
       "server_port": 80,
       "uuid": "InternetAzadRobot",
@@ -280,7 +280,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #14",
+      "tag": "🇦🇱 XolirX #14",
       "server": "199.232.57.91",
       "server_port": 80,
       "uuid": "InternetAzadRobot",
@@ -298,7 +298,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #15",
+      "tag": "🇦🇱 XolirX #15",
       "server": "down.spectrumproxy.shop",
       "server_port": 443,
       "uuid": "76713d07-5a6b-49c2-abd8-bc450a2fa7fc",
@@ -320,7 +320,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #16",
+      "tag": "🇦🇱 XolirX #16",
       "server": "s662.ccgfw.top",
       "server_port": 443,
       "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
@@ -333,7 +333,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #17",
+      "tag": "🇦🇱 XolirX #17",
       "server": "nlb2.mangshe.xyz",
       "server_port": 2056,
       "uuid": "07e326bb-801c-49fc-9005-d2a3e9673e89",
@@ -344,7 +344,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #18",
+      "tag": "🇦🇱 XolirX #18",
       "server": "speedtest.net",
       "server_port": 80,
       "uuid": "384e0806-fcee-4f92-b671-bfc6a4794148",
@@ -362,7 +362,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #19",
+      "tag": "🇦🇱 XolirX #19",
       "server": "speedtest.net",
       "server_port": 80,
       "uuid": "7903e1c8-13c7-4091-9a17-253bddad208e",
@@ -380,7 +380,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #20",
+      "tag": "🇦🇱 XolirX #20",
       "server": "2.27.29.81",
       "server_port": 443,
       "uuid": "3a8ba696-431f-41be-b66d-20680bd680c6",
@@ -398,7 +398,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #21",
+      "tag": "🇦🇱 XolirX #21",
       "server": "de.clgate.network",
       "server_port": 443,
       "uuid": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
@@ -423,7 +423,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #22",
+      "tag": "🇦🇱 XolirX #22",
       "server": "152.53.224.29",
       "server_port": 7443,
       "uuid": "4350fd8e-9f5d-47e7-a5f6-6161e0f7db9b",
@@ -441,7 +441,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #23",
+      "tag": "🇦🇱 XolirX #23",
       "server": "s356.ccgfw.online",
       "server_port": 443,
       "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
@@ -454,7 +454,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #24",
+      "tag": "🇦🇱 XolirX #24",
       "server": "s359.ccgfw.online",
       "server_port": 443,
       "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
@@ -467,7 +467,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #25",
+      "tag": "🇦🇱 XolirX #25",
       "server": "84.32.51.137",
       "server_port": 443,
       "uuid": "b5a850cc-c323-4db9-8a2a-46f250591c7c",
@@ -485,7 +485,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #26",
+      "tag": "🇦🇱 XolirX #26",
       "server": "sw.209qu4892fh8934.live",
       "server_port": 443,
       "uuid": "bbbdf76b-c952-43bf-aa76-a6dcd10f4ab9",
@@ -503,7 +503,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #27",
+      "tag": "🇦🇱 XolirX #27",
       "server": "202.133.89.63",
       "server_port": 80,
       "uuid": "54a1eb5b-def1-45cf-b61c-9b8df05592d6",
@@ -521,7 +521,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #28",
+      "tag": "🇦🇱 XolirX #28",
       "server": "uae.sbrf-cdn342.ru",
       "server_port": 443,
       "uuid": "01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f",
@@ -534,7 +534,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #29",
+      "tag": "🇦🇱 XolirX #29",
       "server": "nl-2.omuvpn.tech",
       "server_port": 18443,
       "uuid": "6db7ea14-ed33-4591-a9b1-f1e91b1c0ff5",
@@ -552,7 +552,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #30",
+      "tag": "🇦🇱 XolirX #30",
       "server": "3xui-vpn.duckdns.org",
       "server_port": 11811,
       "uuid": "c7af21c7-7b58-4714-b0f7-011a4646d68a",
@@ -570,7 +570,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #31",
+      "tag": "🇦🇱 XolirX #31",
       "server": "nl-tx.sbrf-cdn342.ru",
       "server_port": 443,
       "uuid": "01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f",
@@ -583,7 +583,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #32",
+      "tag": "🇦🇱 XolirX #32",
       "server": "nl2.clgate.network",
       "server_port": 443,
       "uuid": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
@@ -608,7 +608,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #33",
+      "tag": "🇦🇱 XolirX #33",
       "server": "nl-u16.vpn-port.com",
       "server_port": 443,
       "uuid": "48264301-dce4-4c4a-a91a-f5d8276ff362",
@@ -630,7 +630,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #34",
+      "tag": "🇦🇱 XolirX #34",
       "server": "ger.vpnsmart.xyz",
       "server_port": 8080,
       "uuid": "d7ec6862-e78c-4613-b97f-1ed983a3e163",
@@ -648,7 +648,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #35",
+      "tag": "🇦🇱 XolirX #35",
       "server": "gb.nodes.rocketnetwork.ru",
       "server_port": 443,
       "uuid": "bdd008a1-7acb-4847-91b8-a6fc23bc5d4c",
@@ -666,7 +666,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #36",
+      "tag": "🇦🇱 XolirX #36",
       "server": "s642.ccgfw.top",
       "server_port": 443,
       "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
@@ -679,7 +679,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #37",
+      "tag": "🇦🇱 XolirX #37",
       "server": "s643.ccgfw.top",
       "server_port": 443,
       "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
@@ -692,7 +692,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #38",
+      "tag": "🇦🇱 XolirX #38",
       "server": "nl.alorvpn.fun",
       "server_port": 443,
       "uuid": "0c57b186-b8c7-4948-8d82-7548ad1af428",
@@ -710,7 +710,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #39",
+      "tag": "🇦🇱 XolirX #39",
       "server": "31.76.93.39",
       "server_port": 8070,
       "uuid": "43e02f55-266c-4e87-84b0-f50c9fa66aea",
@@ -728,7 +728,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #40",
+      "tag": "🇦🇱 XolirX #40",
       "server": "170.205.37.59",
       "server_port": 443,
       "uuid": "d98e6ac5-e873-402a-bcce-78e2887c936b",
@@ -746,7 +746,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #41",
+      "tag": "🇦🇱 XolirX #41",
       "server": "uss.mynethub99.top",
       "server_port": 80,
       "uuid": "e3c68e9e-5bf3-4e4b-abac-806053baa43a",
@@ -757,7 +757,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #42",
+      "tag": "🇦🇱 XolirX #42",
       "server": "s869.okgfwbackxyz.xyz",
       "server_port": 443,
       "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
@@ -770,7 +770,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #43",
+      "tag": "🇦🇱 XolirX #43",
       "server": "l6.l-itx.info",
       "server_port": 2053,
       "uuid": "5da05cf7-9913-45a9-a7c6-71a41b1cd713",
@@ -790,7 +790,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #44",
+      "tag": "🇦🇱 XolirX #44",
       "server": "l6.l-itx.info",
       "server_port": 7443,
       "uuid": "5da05cf7-9913-45a9-a7c6-71a41b1cd713",
@@ -812,7 +812,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #45",
+      "tag": "🇦🇱 XolirX #45",
       "server": "89.117.94.111",
       "server_port": 54495,
       "uuid": "2042c7c4-f0c8-48ec-926b-65112b064e2c",
@@ -830,7 +830,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #46",
+      "tag": "🇦🇱 XolirX #46",
       "server": "134.33.73.249",
       "server_port": 54254,
       "uuid": "acba684c-4098-4eca-f519-828b09f96464",
@@ -848,7 +848,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #47",
+      "tag": "🇦🇱 XolirX #47",
       "server": "45.207.201.218",
       "server_port": 443,
       "uuid": "8cc59443-9131-41ef-92dc-80c739febd68",
@@ -866,7 +866,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #48",
+      "tag": "🇦🇱 XolirX #48",
       "server": "s881.ccgfw.top",
       "server_port": 443,
       "uuid": "7402e534-54dc-34cc-ac5b-c85ac6e236fd",
@@ -879,7 +879,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #49",
+      "tag": "🇦🇱 XolirX #49",
       "server": "161.104.107.88",
       "server_port": 443,
       "uuid": "bbf07169-8c80-485b-83d5-93b87a882219",
@@ -897,7 +897,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #50",
+      "tag": "🇦🇱 XolirX #50",
       "server": "89.110.94.179",
       "server_port": 443,
       "uuid": "ec802839-1704-4861-a97f-df8f5eabf50e",
@@ -922,7 +922,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #51",
+      "tag": "🇦🇱 XolirX #51",
       "server": "85.193.91.14",
       "server_port": 443,
       "uuid": "3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5",
@@ -940,7 +940,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #52",
+      "tag": "🇦🇱 XolirX #52",
       "server": "69.84.182.49",
       "server_port": 2096,
       "uuid": "e258977b-e413-4718-a3af-02d75492c349",
@@ -960,7 +960,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #53",
+      "tag": "🇦🇱 XolirX #53",
       "server": "208.103.161.4",
       "server_port": 443,
       "uuid": "ae0dd58e-e222-40bf-84ae-365a97532737",
@@ -980,7 +980,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #54",
+      "tag": "🇦🇱 XolirX #54",
       "server": "81.255.155.10",
       "server_port": 443,
       "uuid": "e258977b-e413-4718-a3af-02d75492c349",
@@ -1000,7 +1000,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #56",
+      "tag": "🇦🇱 XolirX #56",
       "server": "64.186.225.13",
       "server_port": 8443,
       "uuid": "06b65903-406d-4a41-8463-6fd5c0ee7798",
@@ -1020,7 +1020,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #57",
+      "tag": "🇦🇱 XolirX #57",
       "server": "165.215.250.14",
       "server_port": 2087,
       "uuid": "InternetAzadRobot",
@@ -1040,7 +1040,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #59",
+      "tag": "🇦🇱 XolirX #59",
       "server": "208.103.161.32",
       "server_port": 443,
       "uuid": "e234245f-b66e-4eef-b8cb-6298500221ba",
@@ -1048,7 +1048,7 @@
       "tls": {
         "enabled": true,
         "server_name": "panel-free.emergency-service.org",
-        "insecure": false
+        "insecure": true
       },
       "transport": {
         "type": "http",
@@ -1060,7 +1060,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #61",
+      "tag": "🇦🇱 XolirX #61",
       "server": "t1.hhaakk9922.com",
       "server_port": 46783,
       "uuid": "eb3fa357-cea8-321e-bbd5-850e2d874025",
@@ -1077,7 +1077,7 @@
     },
     {
       "type": "vless",
-      "tag": "\ud83c\udde6\ud83c\uddf1 XolirX #62",
+      "tag": "🇦🇱 XolirX #62",
       "server": "t1.hhaakk9922.com",
       "server_port": 46784,
       "uuid": "eb3fa357-cea8-321e-bbd5-850e2d874025",
@@ -1101,6 +1101,71 @@
       "tag": "BLOCK"
     },
     {
+      "type": "selector",
+      "tag": "PROXY",
+      "outbounds": [
+        "🇦🇱 XolirX #1",
+        "🇦🇱 XolirX #2",
+        "🇦🇱 XolirX #3",
+        "🇦🇱 XolirX #4",
+        "🇦🇱 XolirX #5",
+        "🇦🇱 XolirX #6",
+        "🇦🇱 XolirX #7",
+        "🇦🇱 XolirX #8",
+        "🇦🇱 XolirX #9",
+        "🇦🇱 XolirX #10",
+        "🇦🇱 XolirX #11",
+        "🇦🇱 XolirX #12",
+        "🇦🇱 XolirX #13",
+        "🇦🇱 XolirX #14",
+        "🇦🇱 XolirX #15",
+        "🇦🇱 XolirX #16",
+        "🇦🇱 XolirX #17",
+        "🇦🇱 XolirX #18",
+        "🇦🇱 XolirX #19",
+        "🇦🇱 XolirX #20",
+        "🇦🇱 XolirX #21",
+        "🇦🇱 XolirX #22",
+        "🇦🇱 XolirX #23",
+        "🇦🇱 XolirX #24",
+        "🇦🇱 XolirX #25",
+        "🇦🇱 XolirX #26",
+        "🇦🇱 XolirX #27",
+        "🇦🇱 XolirX #28",
+        "🇦🇱 XolirX #29",
+        "🇦🇱 XolirX #30",
+        "🇦🇱 XolirX #31",
+        "🇦🇱 XolirX #32",
+        "🇦🇱 XolirX #33",
+        "🇦🇱 XolirX #34",
+        "🇦🇱 XolirX #35",
+        "🇦🇱 XolirX #36",
+        "🇦🇱 XolirX #37",
+        "🇦🇱 XolirX #38",
+        "🇦🇱 XolirX #39",
+        "🇦🇱 XolirX #40",
+        "🇦🇱 XolirX #41",
+        "🇦🇱 XolirX #42",
+        "🇦🇱 XolirX #43",
+        "🇦🇱 XolirX #44",
+        "🇦🇱 XolirX #45",
+        "🇦🇱 XolirX #46",
+        "🇦🇱 XolirX #47",
+        "🇦🇱 XolirX #48",
+        "🇦🇱 XolirX #49",
+        "🇦🇱 XolirX #50",
+        "🇦🇱 XolirX #51",
+        "🇦🇱 XolirX #52",
+        "🇦🇱 XolirX #53",
+        "🇦🇱 XolirX #54",
+        "🇦🇱 XolirX #56",
+        "🇦🇱 XolirX #57",
+        "🇦🇱 XolirX #59",
+        "🇦🇱 XolirX #61",
+        "🇦🇱 XolirX #62"
+      ]
+    },
+    {
       "type": "dns",
       "tag": "DNS"
     }
@@ -1112,18 +1177,8 @@
         "outbound": "DNS"
       },
       {
-        "domain_suffix": [
-          "ip.sb",
-          "ipv6.ip.sb"
-        ],
-        "outbound": "DIRECT"
-      },
-      {
         "rule_set": "roscomvpn",
         "outbound": "PROXY"
-      },
-      {
-        "outbound": "DIRECT"
       }
     ],
     "rule_set": [
@@ -1131,7 +1186,7 @@
         "tag": "roscomvpn",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/MIHOMO/default.yaml"
+        "url": "https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/MIHOMO/default.srs"
       }
     ],
     "final": "PROXY"
