@@ -1,1158 +1,863 @@
-# XolirX VPN Clash Config
-
-{
-  "port": 7890,
-  "socks-port": 7891,
-  "allow-lan": true,
-  "mode": "rule",
-  "log-level": "info",
-  "external-controller": "127.0.0.1:9090",
-  "proxies": [
-    {
-      "name": "%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "130.49.219.126",
-      "port": 8443,
-      "uuid": "2ee2b77f-e4cd-4e5d-af22-f9d919eeadd5",
-      "flow": "",
-      "tls": true,
-      "servername": "at16.fastlanehosting.ru",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%A7%F0%9F%87%AC%20Bulgaria%2C%20Sofia%20%28Old%20City%20Center%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "45.39.241.51",
-      "port": 23837,
-      "uuid": "d262c258-e73a-47d2-944d-55cfc4bc8fd0",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "/ws",
-        "headers": {
-          "Host": "45.39.241.51"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "de.alorvpn.fun",
-      "port": 443,
-      "uuid": "0c57b186-b8c7-4948-8d82-7548ad1af428",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "www.twitch.tv",
-      "reality-opts": {
-        "public-key": "pjpXTyqfWOb3HylPzbFIEUdGoJA4R2I9fCtvc36sAyE",
-        "short-id": "a4faf295a3284012"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "138.124.244.248",
-      "port": 443,
-      "uuid": "476caa1d-7c04-48ab-8de5-2c1af0d13a66",
-      "flow": "",
-      "tls": true,
-      "servername": "yahoo.com",
-      "reality-opts": {
-        "public-key": "PYX0lu3m0L_h28eW4186s63gRFHXoTc3K9wKeFewDUQ",
-        "short-id": "e9a8"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "fi2.clgate.network",
-      "port": 443,
-      "uuid": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
-      "flow": "",
-      "tls": true,
-      "servername": "m.twitch.tv",
-      "reality-opts": {
-        "public-key": "r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "m.twitch.tv"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "151.101.118.95",
-      "port": 443,
-      "uuid": "7572659e-7322-4b33-9f17-bfa7a9d984bc",
-      "flow": "",
-      "tls": true,
-      "servername": "127.0.0.1",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "ov10.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "151.101.118.95",
-      "port": 443,
-      "uuid": "8a83c3cb-a861-4e9f-a559-0f012a234dae",
-      "flow": "",
-      "tls": true,
-      "servername": "127.0.0.1",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "ovh12.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Gravelines%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "151.101.1.57",
-      "port": 80,
-      "uuid": "InternetAzadRobot",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2Flogin"
-        ],
-        "headers": {
-          "Host": [
-            "shangulin.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Gravelines%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "151.101.1.57",
-      "port": 80,
-      "uuid": "TIGNAL",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2Flogin"
-        ],
-        "headers": {
-          "Host": [
-            "shangulin.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "213.108.2.130",
-      "port": 443,
-      "uuid": "5e8ee155-0962-4307-98f2-b65f6bbbd5bb",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "cloudflare.com",
-      "reality-opts": {
-        "public-key": "c9eCHF41FReFLIdarpg8M5edw4_E133EJBzrvYS02Ck",
-        "short-id": "cd9a5f0edff48da4"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "fr-tx.sbrf-cdn342.ru",
-      "port": 443,
-      "uuid": "01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f",
-      "flow": "xtls-rprx-vision-udp443",
-      "tls": true,
-      "servername": "sub.sbrf-cdn342.ru",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%287th%20Arrondissement%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "151.101.1.57",
-      "port": 80,
-      "uuid": "AliTignal500GB",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2FTignaliSWithYou"
-        ],
-        "headers": {
-          "Host": [
-            "tignaltofan.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%287th%20Arrondissement%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "151.101.128.223",
-      "port": 80,
-      "uuid": "InternetAzadRobot",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2FTignaliSWithYou"
-        ],
-        "headers": {
-          "Host": [
-            "tignaltofan.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%287th%20Arrondissement%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "199.232.57.91",
-      "port": 80,
-      "uuid": "InternetAzadRobot",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2FTignaliSWithYou"
-        ],
-        "headers": {
-          "Host": [
-            "tignaltofan.global.ssl.fastly.net"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Strasbourg%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "down.spectrumproxy.shop",
-      "port": 443,
-      "uuid": "76713d07-5a6b-49c2-abd8-bc450a2fa7fc",
-      "flow": "",
-      "tls": true,
-      "servername": "down.spectrumproxy.shop",
-      "reality-opts": {
-        "public-key": "ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA",
-        "short-id": "a1c1d7e2f9b3"
-      },
-      "udp": true,
-      "network": "grpc",
-      "grpc-opts": {
-        "grpc-service-name": "vless"
-      }
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s662.ccgfw.top",
-      "port": 443,
-      "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "u712032us662.ccgfw.top",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "nlb2.mangshe.xyz",
-      "port": 2056,
-      "uuid": "07e326bb-801c-49fc-9005-d2a3e9673e89",
-      "flow": "",
-      "tls": false,
-      "servername": "nlb2.mangshe.xyz",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "speedtest.net",
-      "port": 80,
-      "uuid": "384e0806-fcee-4f92-b671-bfc6a4794148",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "%2F",
-        "headers": {
-          "Host": "oijji.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "speedtest.net",
-      "port": 80,
-      "uuid": "7903e1c8-13c7-4091-9a17-253bddad208e",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "/",
-        "headers": {
-          "Host": "Asaaabi.global.ssl.fastly.net"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "2.27.29.81",
-      "port": 443,
-      "uuid": "3a8ba696-431f-41be-b66d-20680bd680c6",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "developer.mozilla.org",
-      "reality-opts": {
-        "public-key": "vCmEFMhXtECxxnRz6SsFHRWx5JJ6AMJdoKtC1HCATkA",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "de.clgate.network",
-      "port": 443,
-      "uuid": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
-      "flow": "",
-      "tls": true,
-      "servername": "m.twitch.tv",
-      "reality-opts": {
-        "public-key": "r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "m.twitch.tv"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Karlsruhe%20%28Nordweststadt%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "152.53.224.29",
-      "port": 7443,
-      "uuid": "4350fd8e-9f5d-47e7-a5f6-6161e0f7db9b",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "stackoverflow.com",
-      "reality-opts": {
-        "public-key": "5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI",
-        "short-id": "be0ce047"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AD%F0%9F%87%B0%20Hong%20Kong%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s356.ccgfw.online",
-      "port": 443,
-      "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "09d7s356.ccgfw.online",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AD%F0%9F%87%B0%20Hong%20Kong%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s359.ccgfw.online",
-      "port": 443,
-      "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "4da2s359.ccgfw.online",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B1%F0%9F%87%B9%20Lithuania%2C%20%C5%A0iauliai%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "84.32.51.137",
-      "port": 443,
-      "uuid": "b5a850cc-c323-4db9-8a2a-46f250591c7c",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "",
-      "reality-opts": {
-        "public-key": "Abv_GBHT7hWs6pm7h9DC83-TvYXCa7gryqC296DRM1c",
-        "short-id": "3480570f03d0a601"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%A8%F0%9F%87%AD%20Switzerland%2C%20Zurich%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "sw.209qu4892fh8934.live",
-      "port": 443,
-      "uuid": "bbbdf76b-c952-43bf-aa76-a6dcd10f4ab9",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "godsjgoijoigofsiuh.com",
-      "reality-opts": {
-        "public-key": "PVlnR_I9tZ8hKhOHW6ySpSofhsaShcBQ_JV2-0TePVA",
-        "short-id": "d23e8ff546850d04"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "202.133.89.63",
-      "port": 80,
-      "uuid": "54a1eb5b-def1-45cf-b61c-9b8df05592d6",
-      "flow": "",
-      "tls": true,
-      "servername": "www.google.com",
-      "reality-opts": {
-        "public-key": "wSotkhL1gTJ717T1DOEUmeO0-cn0l9FlG5E3wjotZUI",
-        "short-id": "8b"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "uae.sbrf-cdn342.ru",
-      "port": 443,
-      "uuid": "01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "sub.sbrf-cdn342.ru",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "nl-2.omuvpn.tech",
-      "port": 18443,
-      "uuid": "6db7ea14-ed33-4591-a9b1-f1e91b1c0ff5",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "www.miro.com",
-      "reality-opts": {
-        "public-key": "YoVxvwAP6l4vRG9HZmePBcHxy9oaRyWKmp1fIXVzPAY",
-        "short-id": "0021f47d"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "3xui-vpn.duckdns.org",
-      "port": 11811,
-      "uuid": "c7af21c7-7b58-4714-b0f7-011a4646d68a",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "cdn.dom.gosuslugi.ru",
-      "reality-opts": {
-        "public-key": "TVV9_L_MeAKx1bbbO-1YSdsdUOYkjgqJTGaR9SdTRSE",
-        "short-id": "1e0c9f"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "nl-tx.sbrf-cdn342.ru",
-      "port": 443,
-      "uuid": "01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f",
-      "flow": "xtls-rprx-vision-udp443",
-      "tls": true,
-      "servername": "sub.sbrf-cdn342.ru",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "nl2.clgate.network",
-      "port": 443,
-      "uuid": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
-      "flow": "",
-      "tls": true,
-      "servername": "m.twitch.tv",
-      "reality-opts": {
-        "public-key": "r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "m.twitch.tv"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Eygelshoven%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "nl-u16.vpn-port.com",
-      "port": 443,
-      "uuid": "48264301-dce4-4c4a-a91a-f5d8276ff362",
-      "flow": "",
-      "tls": true,
-      "servername": "www.yimg.com",
-      "reality-opts": {
-        "public-key": "ixTpiJJA-oOL0jUjjc9N_feC-WX_1tsgqfyZmzYNcTI",
-        "short-id": "c804d085f2d1"
-      },
-      "udp": true,
-      "network": "grpc",
-      "grpc-opts": {
-        "grpc-service-name": ""
-      }
-    },
-    {
-      "name": "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Oude%20Meer%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "ger.vpnsmart.xyz",
-      "port": 8080,
-      "uuid": "d7ec6862-e78c-4613-b97f-1ed983a3e163",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "%2F",
-        "headers": {
-          "Host": "ger.vpnsmart.xyz"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20Fareham%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "gb.nodes.rocketnetwork.ru",
-      "port": 443,
-      "uuid": "bdd008a1-7acb-4847-91b8-a6fc23bc5d4c",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "gb.nodes.rocketnetwork.ru",
-      "reality-opts": {
-        "public-key": "Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs",
-        "short-id": "428ef87fd47a3a32"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20London%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s642.ccgfw.top",
-      "port": 443,
-      "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "4c78s642.ccgfw.top",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20London%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s643.ccgfw.top",
-      "port": 443,
-      "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "7190s643.ccgfw.top",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20Martlesham%20%28Martlesham%20Heath%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "nl.alorvpn.fun",
-      "port": 443,
-      "uuid": "0c57b186-b8c7-4948-8d82-7548ad1af428",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "www.twitch.tv",
-      "reality-opts": {
-        "public-key": "pX7I5VoRCR2tNKWz-c9pScz5q37XCXkX_1JTwBrXeHQ",
-        "short-id": "be981a043b486cd5"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20Martlesham%20%28Martlesham%20Heath%29%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "31.76.93.39",
-      "port": 8070,
-      "uuid": "43e02f55-266c-4e87-84b0-f50c9fa66aea",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            ""
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "170.205.37.59",
-      "port": 443,
-      "uuid": "d98e6ac5-e873-402a-bcce-78e2887c936b",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "www.yahoo.com",
-      "reality-opts": {
-        "public-key": "zvRguC1cm7gKkQpNarOCaAUAvcSXUWH10-pUEfneYSI",
-        "short-id": "014c3d76dee82247"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "uss.mynethub99.top",
-      "port": 80,
-      "uuid": "e3c68e9e-5bf3-4e4b-abac-806053baa43a",
-      "flow": "",
-      "tls": false,
-      "servername": "",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Arlington%20Heights%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s869.okgfwbackxyz.xyz",
-      "port": 443,
-      "uuid": "6d49fae1-374d-313e-b360-1227b0ea8dea",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "u712032us869.okgfwbackxyz.xyz",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Atlanta%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "l6.l-itx.info",
-      "port": 2053,
-      "uuid": "5da05cf7-9913-45a9-a7c6-71a41b1cd713",
-      "flow": "",
-      "tls": true,
-      "servername": "9275c19dd85e935c.itx-server.digital",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "%2Fws",
-        "headers": {
-          "Host": "itx-server.digital"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Atlanta%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "l6.l-itx.info",
-      "port": 7443,
-      "uuid": "5da05cf7-9913-45a9-a7c6-71a41b1cd713",
-      "flow": "",
-      "tls": true,
-      "servername": "colorlib.com",
-      "reality-opts": {
-        "public-key": "F2MKDw5CCtP1oXIej2EgNxB01k3eyNu7tKCFfucgnRA",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "grpc",
-      "grpc-opts": {
-        "grpc-service-name": "xyz"
-      }
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20North%20Bergen%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "89.117.94.111",
-      "port": 54495,
-      "uuid": "2042c7c4-f0c8-48ec-926b-65112b064e2c",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "yahoo.com",
-      "reality-opts": {
-        "public-key": "50IjQtR9zJG_3pXrbQDalYy_D4c7C_A8EEwVx0EfOjM",
-        "short-id": "5e8c37215982"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Phoenix%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "134.33.73.249",
-      "port": 54254,
-      "uuid": "acba684c-4098-4eca-f519-828b09f96464",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "apple.com",
-      "reality-opts": {
-        "public-key": "HFEz9fAOugljXea_ZVOUHMju08su8h0P9RANNcHP2y4",
-        "short-id": "db35ffdc"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Richmond%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "45.207.201.218",
-      "port": 443,
-      "uuid": "8cc59443-9131-41ef-92dc-80c739febd68",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "www.apple.com",
-      "reality-opts": {
-        "public-key": "Q_69xJG-1OPZFDrNLUHpnCgVFkho6WKP3M-tsS0RlVU",
-        "short-id": "9cbbbcd2"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Salt%20Lake%20City%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "s881.ccgfw.top",
-      "port": 443,
-      "uuid": "7402e534-54dc-34cc-ac5b-c85ac6e236fd",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "s881.ccgfw.top",
-      "reality-opts": {},
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "161.104.107.88",
-      "port": 443,
-      "uuid": "bbf07169-8c80-485b-83d5-93b87a882219",
-      "flow": "xtls-rprx-vision",
-      "tls": true,
-      "servername": "sellflow.org",
-      "reality-opts": {
-        "public-key": "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "89.110.94.179",
-      "port": 443,
-      "uuid": "ec802839-1704-4861-a97f-df8f5eabf50e",
-      "flow": "",
-      "tls": true,
-      "servername": "absolute-disaster.org",
-      "reality-opts": {
-        "public-key": "aGWwI3avxg9_hfT4-f57lPHpvyMZt-YayEUK-IZ0FDI",
-        "short-id": ""
-      },
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "absolute-disaster.org"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "85.193.91.14",
-      "port": 443,
-      "uuid": "3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5",
-      "flow": "",
-      "tls": true,
-      "servername": "yahoo.com",
-      "reality-opts": {
-        "public-key": "cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc",
-        "short-id": "af0e"
-      },
-      "udp": true,
-      "network": "tcp"
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%AC%F0%9F%87%A7%20%F0%9F%87%AF%F0%9F%87%B5%20%F0%9F%87%B7%F0%9F%87%BA%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "69.84.182.49",
-      "port": 2096,
-      "uuid": "e258977b-e413-4718-a3af-02d75492c349",
-      "flow": "",
-      "tls": true,
-      "servername": "jp.aniua.qzz.io",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "%2F",
-        "headers": {
-          "Host": "jp.aniua.qzz.io"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%AC%F0%9F%87%A7%20%F0%9F%87%B7%F0%9F%87%BA%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "208.103.161.4",
-      "port": 443,
-      "uuid": "ae0dd58e-e222-40bf-84ae-365a97532737",
-      "flow": "",
-      "tls": true,
-      "servername": "pagescm.freen32.cc.cd",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "/play/settings",
-        "headers": {
-          "Host": "pagescm.freen32.cc.cd"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%AC%F0%9F%87%A7%20%F0%9F%87%B7%F0%9F%87%BA%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "81.255.155.10",
-      "port": 443,
-      "uuid": "e258977b-e413-4718-a3af-02d75492c349",
-      "flow": "",
-      "tls": true,
-      "servername": "jp.aniua.qzz.io",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "%2F",
-        "headers": {
-          "Host": "jp.aniua.qzz.io"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%BA%F0%9F%87%B8%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "64.186.225.13",
-      "port": 8443,
-      "uuid": "06b65903-406d-4a41-8463-6fd5c0ee7798",
-      "flow": "",
-      "tls": true,
-      "servername": "sni.skylee4.cloudns.ch",
-      "reality-opts": {},
-      "udp": true,
-      "network": "ws",
-      "ws-opts": {
-        "path": "%2Fproxyip%3DProxyIP.CMLiussss.net",
-        "headers": {
-          "Host": "sni.skylee4.cloudns.ch"
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "165.215.250.14",
-      "port": 2087,
-      "uuid": "InternetAzadRobot",
-      "flow": "",
-      "tls": true,
-      "servername": "ws.kheybar.store",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2Flogin"
-        ],
-        "headers": {
-          "Host": [
-            "ws.kheybar.store"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%AC%F0%9F%87%A7%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "208.103.161.32",
-      "port": 443,
-      "uuid": "e234245f-b66e-4eef-b8cb-6298500221ba",
-      "flow": "",
-      "tls": true,
-      "servername": "panel-free.emergency-service.org",
-      "reality-opts": {},
-      "udp": true,
-      "network": "http",
-      "http-opts": {
-        "method": "GET",
-        "path": [
-          "%2F"
-        ],
-        "headers": {
-          "Host": [
-            "panel-free.emergency-service.org"
-          ]
-        }
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%AF%F0%9F%87%B5%20%F0%9F%87%B8%F0%9F%87%AC%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "t1.hhaakk9922.com",
-      "port": 46783,
-      "uuid": "eb3fa357-cea8-321e-bbd5-850e2d874025",
-      "flow": "",
-      "tls": true,
-      "servername": "t1.hhaakk9922.com",
-      "reality-opts": {},
-      "udp": true,
-      "network": "grpc",
-      "grpc-opts": {
-        "grpc-service-name": "ljfxz"
-      }
-    },
-    {
-      "name": "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%AF%F0%9F%87%B5%20%F0%9F%87%B8%F0%9F%87%AC%20%7C%20%5BBL%5D",
-      "type": "vless",
-      "server": "t1.hhaakk9922.com",
-      "port": 46784,
-      "uuid": "eb3fa357-cea8-321e-bbd5-850e2d874025",
-      "flow": "",
-      "tls": true,
-      "servername": "t1.hhaakk9922.com",
-      "reality-opts": {},
-      "udp": true,
-      "network": "grpc",
-      "grpc-opts": {
-        "grpc-service-name": "ljfxz"
-      }
-    }
-  ],
-  "proxy-groups": [
-    {
-      "name": "\ud83d\ude80 XolirX",
-      "type": "url-test",
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": 300,
-      "proxies": [
-        "%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A7%F0%9F%87%AC%20Bulgaria%2C%20Sofia%20%28Old%20City%20Center%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%AE%20Finland%2C%20Helsinki%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Gravelines%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Gravelines%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%287th%20Arrondissement%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%287th%20Arrondissement%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Paris%20%287th%20Arrondissement%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AB%F0%9F%87%B7%20France%2C%20Strasbourg%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Frankfurt%20am%20Main%20%28Innenstadt%20I%29%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A9%F0%9F%87%AA%20Germany%2C%20Karlsruhe%20%28Nordweststadt%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AD%F0%9F%87%B0%20Hong%20Kong%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AD%F0%9F%87%B0%20Hong%20Kong%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B1%F0%9F%87%B9%20Lithuania%2C%20%C5%A0iauliai%20%7C%20%5BBL%5D",
-        "%F0%9F%87%A8%F0%9F%87%AD%20Switzerland%2C%20Zurich%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Amsterdam%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Eygelshoven%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%2C%20Oude%20Meer%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20Fareham%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20London%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20London%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20Martlesham%20%28Martlesham%20Heath%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%2C%20Martlesham%20%28Martlesham%20Heath%29%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Arlington%20Heights%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Atlanta%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Atlanta%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20North%20Bergen%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Phoenix%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Richmond%20%7C%20%5BBL%5D",
-        "%F0%9F%87%BA%F0%9F%87%B8%20United%20States%2C%20Salt%20Lake%20City%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20Moscow%20%7C%20%5BBL%5D",
-        "%F0%9F%87%B7%F0%9F%87%BA%20Russia%2C%20St%20Petersburg%20%7C%20%F0%9F%8C%90%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%AC%F0%9F%87%A7%20%F0%9F%87%AF%F0%9F%87%B5%20%F0%9F%87%B7%F0%9F%87%BA%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%AC%F0%9F%87%A7%20%F0%9F%87%B7%F0%9F%87%BA%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%AC%F0%9F%87%A7%20%F0%9F%87%B7%F0%9F%87%BA%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A8%F0%9F%87%A6%20%F0%9F%87%BA%F0%9F%87%B8%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%AC%F0%9F%87%A7%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%AF%F0%9F%87%B5%20%F0%9F%87%B8%F0%9F%87%AC%20%7C%20%5BBL%5D",
-        "%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%AF%F0%9F%87%B5%20%F0%9F%87%B8%F0%9F%87%AC%20%7C%20%5BBL%5D"
-      ]
-    },
-    {
-      "name": "PROXY",
-      "type": "select",
-      "proxies": [
-        "\ud83d\ude80 XolirX",
-        "DIRECT"
-      ]
-    }
-  ],
-  "rules": [
-    "RULE-SET,https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/MIHOMO/default.yaml,PROXY",
-    "MATCH,PROXY"
-  ]
-}
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+proxies:
+- name: '🇦🇱 XolirX #1'
+  type: vless
+  server: 130.49.219.126
+  port: 8443
+  uuid: 2ee2b77f-e4cd-4e5d-af22-f9d919eeadd5
+  flow: ''
+  udp: true
+  tls: true
+  servername: at16.fastlanehosting.ru
+  network: tcp
+- name: '🇦🇱 XolirX #2'
+  type: vless
+  server: 45.39.241.51
+  port: 23837
+  uuid: d262c258-e73a-47d2-944d-55cfc4bc8fd0
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: /ws
+    headers:
+      Host: 45.39.241.51
+- name: '🇦🇱 XolirX #3'
+  type: vless
+  server: de.alorvpn.fun
+  port: 443
+  uuid: 0c57b186-b8c7-4948-8d82-7548ad1af428
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.twitch.tv
+  reality-opts:
+    public-key: pjpXTyqfWOb3HylPzbFIEUdGoJA4R2I9fCtvc36sAyE
+    short-id: a4faf295a3284012
+  network: tcp
+- name: '🇦🇱 XolirX #4'
+  type: vless
+  server: 138.124.244.248
+  port: 443
+  uuid: 476caa1d-7c04-48ab-8de5-2c1af0d13a66
+  flow: ''
+  udp: true
+  tls: true
+  servername: yahoo.com
+  reality-opts:
+    public-key: PYX0lu3m0L_h28eW4186s63gRFHXoTc3K9wKeFewDUQ
+    short-id: e9a8
+  network: tcp
+- name: '🇦🇱 XolirX #5'
+  type: vless
+  server: fi2.clgate.network
+  port: 443
+  uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
+  flow: ''
+  udp: true
+  tls: true
+  servername: m.twitch.tv
+  reality-opts:
+    public-key: r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM
+    short-id: ''
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - m.twitch.tv
+- name: '🇦🇱 XolirX #6'
+  type: vless
+  server: 151.101.118.95
+  port: 443
+  uuid: 7572659e-7322-4b33-9f17-bfa7a9d984bc
+  flow: ''
+  udp: true
+  tls: true
+  servername: 127.0.0.1
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - ov10.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #7'
+  type: vless
+  server: 151.101.118.95
+  port: 443
+  uuid: 8a83c3cb-a861-4e9f-a559-0f012a234dae
+  flow: ''
+  udp: true
+  tls: true
+  servername: 127.0.0.1
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - ovh12.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #8'
+  type: vless
+  server: 151.101.1.57
+  port: 80
+  uuid: InternetAzadRobot
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Flogin'
+    headers:
+      Host:
+      - shangulin.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #9'
+  type: vless
+  server: 151.101.1.57
+  port: 80
+  uuid: TIGNAL
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Flogin'
+    headers:
+      Host:
+      - shangulin.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #10'
+  type: vless
+  server: 213.108.2.130
+  port: 443
+  uuid: 5e8ee155-0962-4307-98f2-b65f6bbbd5bb
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: cloudflare.com
+  reality-opts:
+    public-key: c9eCHF41FReFLIdarpg8M5edw4_E133EJBzrvYS02Ck
+    short-id: cd9a5f0edff48da4
+  network: tcp
+- name: '🇦🇱 XolirX #11'
+  type: vless
+  server: fr-tx.sbrf-cdn342.ru
+  port: 443
+  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
+  flow: xtls-rprx-vision-udp443
+  udp: true
+  tls: true
+  servername: sub.sbrf-cdn342.ru
+  network: tcp
+- name: '🇦🇱 XolirX #12'
+  type: vless
+  server: 151.101.1.57
+  port: 80
+  uuid: AliTignal500GB
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2FTignaliSWithYou'
+    headers:
+      Host:
+      - tignaltofan.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #13'
+  type: vless
+  server: 151.101.128.223
+  port: 80
+  uuid: InternetAzadRobot
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2FTignaliSWithYou'
+    headers:
+      Host:
+      - tignaltofan.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #14'
+  type: vless
+  server: 199.232.57.91
+  port: 80
+  uuid: InternetAzadRobot
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2FTignaliSWithYou'
+    headers:
+      Host:
+      - tignaltofan.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #15'
+  type: vless
+  server: down.spectrumproxy.shop
+  port: 443
+  uuid: 76713d07-5a6b-49c2-abd8-bc450a2fa7fc
+  flow: ''
+  udp: true
+  tls: true
+  servername: down.spectrumproxy.shop
+  reality-opts:
+    public-key: ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA
+    short-id: a1c1d7e2f9b3
+  network: grpc
+  grpc-opts:
+    grpc-service-name: vless
+- name: '🇦🇱 XolirX #16'
+  type: vless
+  server: s662.ccgfw.top
+  port: 443
+  uuid: 6d49fae1-374d-313e-b360-1227b0ea8dea
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: u712032us662.ccgfw.top
+  network: tcp
+- name: '🇦🇱 XolirX #17'
+  type: vless
+  server: nlb2.mangshe.xyz
+  port: 2056
+  uuid: 07e326bb-801c-49fc-9005-d2a3e9673e89
+  flow: ''
+  udp: true
+  network: tcp
+- name: '🇦🇱 XolirX #18'
+  type: vless
+  server: speedtest.net
+  port: 80
+  uuid: 384e0806-fcee-4f92-b671-bfc6a4794148
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: oijji.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #19'
+  type: vless
+  server: speedtest.net
+  port: 80
+  uuid: 7903e1c8-13c7-4091-9a17-253bddad208e
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: Asaaabi.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #20'
+  type: vless
+  server: 2.27.29.81
+  port: 443
+  uuid: 3a8ba696-431f-41be-b66d-20680bd680c6
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: developer.mozilla.org
+  reality-opts:
+    public-key: vCmEFMhXtECxxnRz6SsFHRWx5JJ6AMJdoKtC1HCATkA
+    short-id: ''
+  network: tcp
+- name: '🇦🇱 XolirX #21'
+  type: vless
+  server: de.clgate.network
+  port: 443
+  uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
+  flow: ''
+  udp: true
+  tls: true
+  servername: m.twitch.tv
+  reality-opts:
+    public-key: r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM
+    short-id: ''
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - m.twitch.tv
+- name: '🇦🇱 XolirX #22'
+  type: vless
+  server: 152.53.224.29
+  port: 7443
+  uuid: 4350fd8e-9f5d-47e7-a5f6-6161e0f7db9b
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: stackoverflow.com
+  reality-opts:
+    public-key: 5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI
+    short-id: be0ce047
+  network: tcp
+- name: '🇦🇱 XolirX #23'
+  type: vless
+  server: s356.ccgfw.online
+  port: 443
+  uuid: 6d49fae1-374d-313e-b360-1227b0ea8dea
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: 09d7s356.ccgfw.online
+  network: tcp
+- name: '🇦🇱 XolirX #24'
+  type: vless
+  server: s359.ccgfw.online
+  port: 443
+  uuid: 6d49fae1-374d-313e-b360-1227b0ea8dea
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: 4da2s359.ccgfw.online
+  network: tcp
+- name: '🇦🇱 XolirX #25'
+  type: vless
+  server: 84.32.51.137
+  port: 443
+  uuid: b5a850cc-c323-4db9-8a2a-46f250591c7c
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: Abv_GBHT7hWs6pm7h9DC83-TvYXCa7gryqC296DRM1c
+    short-id: 3480570f03d0a601
+  network: tcp
+- name: '🇦🇱 XolirX #26'
+  type: vless
+  server: sw.209qu4892fh8934.live
+  port: 443
+  uuid: bbbdf76b-c952-43bf-aa76-a6dcd10f4ab9
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: godsjgoijoigofsiuh.com
+  reality-opts:
+    public-key: PVlnR_I9tZ8hKhOHW6ySpSofhsaShcBQ_JV2-0TePVA
+    short-id: d23e8ff546850d04
+  network: tcp
+- name: '🇦🇱 XolirX #27'
+  type: vless
+  server: 202.133.89.63
+  port: 80
+  uuid: 54a1eb5b-def1-45cf-b61c-9b8df05592d6
+  flow: ''
+  udp: true
+  tls: true
+  servername: www.google.com
+  reality-opts:
+    public-key: wSotkhL1gTJ717T1DOEUmeO0-cn0l9FlG5E3wjotZUI
+    short-id: 8b
+  network: tcp
+- name: '🇦🇱 XolirX #28'
+  type: vless
+  server: uae.sbrf-cdn342.ru
+  port: 443
+  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: sub.sbrf-cdn342.ru
+  network: tcp
+- name: '🇦🇱 XolirX #29'
+  type: vless
+  server: nl-2.omuvpn.tech
+  port: 18443
+  uuid: 6db7ea14-ed33-4591-a9b1-f1e91b1c0ff5
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.miro.com
+  reality-opts:
+    public-key: YoVxvwAP6l4vRG9HZmePBcHxy9oaRyWKmp1fIXVzPAY
+    short-id: 0021f47d
+  network: tcp
+- name: '🇦🇱 XolirX #30'
+  type: vless
+  server: 3xui-vpn.duckdns.org
+  port: 11811
+  uuid: c7af21c7-7b58-4714-b0f7-011a4646d68a
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: cdn.dom.gosuslugi.ru
+  reality-opts:
+    public-key: TVV9_L_MeAKx1bbbO-1YSdsdUOYkjgqJTGaR9SdTRSE
+    short-id: 1e0c9f
+  network: tcp
+- name: '🇦🇱 XolirX #31'
+  type: vless
+  server: nl-tx.sbrf-cdn342.ru
+  port: 443
+  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
+  flow: xtls-rprx-vision-udp443
+  udp: true
+  tls: true
+  servername: sub.sbrf-cdn342.ru
+  network: tcp
+- name: '🇦🇱 XolirX #32'
+  type: vless
+  server: nl2.clgate.network
+  port: 443
+  uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
+  flow: ''
+  udp: true
+  tls: true
+  servername: m.twitch.tv
+  reality-opts:
+    public-key: r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM
+    short-id: ''
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - m.twitch.tv
+- name: '🇦🇱 XolirX #33'
+  type: vless
+  server: nl-u16.vpn-port.com
+  port: 443
+  uuid: 48264301-dce4-4c4a-a91a-f5d8276ff362
+  flow: ''
+  udp: true
+  tls: true
+  servername: www.yimg.com
+  reality-opts:
+    public-key: ixTpiJJA-oOL0jUjjc9N_feC-WX_1tsgqfyZmzYNcTI
+    short-id: c804d085f2d1
+  network: grpc
+  grpc-opts:
+    grpc-service-name: ''
+- name: '🇦🇱 XolirX #34'
+  type: vless
+  server: ger.vpnsmart.xyz
+  port: 8080
+  uuid: d7ec6862-e78c-4613-b97f-1ed983a3e163
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: ger.vpnsmart.xyz
+- name: '🇦🇱 XolirX #35'
+  type: vless
+  server: gb.nodes.rocketnetwork.ru
+  port: 443
+  uuid: bdd008a1-7acb-4847-91b8-a6fc23bc5d4c
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: gb.nodes.rocketnetwork.ru
+  reality-opts:
+    public-key: Mn0DIMKW6zu0_D3E1qKO7xMlIVZvB-rqO_-f7Le2vAs
+    short-id: 428ef87fd47a3a32
+  network: tcp
+- name: '🇦🇱 XolirX #36'
+  type: vless
+  server: s642.ccgfw.top
+  port: 443
+  uuid: 6d49fae1-374d-313e-b360-1227b0ea8dea
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: 4c78s642.ccgfw.top
+  network: tcp
+- name: '🇦🇱 XolirX #37'
+  type: vless
+  server: s643.ccgfw.top
+  port: 443
+  uuid: 6d49fae1-374d-313e-b360-1227b0ea8dea
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: 7190s643.ccgfw.top
+  network: tcp
+- name: '🇦🇱 XolirX #38'
+  type: vless
+  server: nl.alorvpn.fun
+  port: 443
+  uuid: 0c57b186-b8c7-4948-8d82-7548ad1af428
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.twitch.tv
+  reality-opts:
+    public-key: pX7I5VoRCR2tNKWz-c9pScz5q37XCXkX_1JTwBrXeHQ
+    short-id: be981a043b486cd5
+  network: tcp
+- name: '🇦🇱 XolirX #39'
+  type: vless
+  server: 31.76.93.39
+  port: 8070
+  uuid: 43e02f55-266c-4e87-84b0-f50c9fa66aea
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - ''
+- name: '🇦🇱 XolirX #40'
+  type: vless
+  server: 170.205.37.59
+  port: 443
+  uuid: d98e6ac5-e873-402a-bcce-78e2887c936b
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.yahoo.com
+  reality-opts:
+    public-key: zvRguC1cm7gKkQpNarOCaAUAvcSXUWH10-pUEfneYSI
+    short-id: 014c3d76dee82247
+  network: tcp
+- name: '🇦🇱 XolirX #41'
+  type: vless
+  server: uss.mynethub99.top
+  port: 80
+  uuid: e3c68e9e-5bf3-4e4b-abac-806053baa43a
+  flow: ''
+  udp: true
+  network: tcp
+- name: '🇦🇱 XolirX #42'
+  type: vless
+  server: s869.okgfwbackxyz.xyz
+  port: 443
+  uuid: 6d49fae1-374d-313e-b360-1227b0ea8dea
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: u712032us869.okgfwbackxyz.xyz
+  network: tcp
+- name: '🇦🇱 XolirX #43'
+  type: vless
+  server: l6.l-itx.info
+  port: 2053
+  uuid: 5da05cf7-9913-45a9-a7c6-71a41b1cd713
+  flow: ''
+  udp: true
+  tls: true
+  servername: 9275c19dd85e935c.itx-server.digital
+  network: ws
+  ws-opts:
+    path: '%2Fws'
+    headers:
+      Host: itx-server.digital
+- name: '🇦🇱 XolirX #44'
+  type: vless
+  server: l6.l-itx.info
+  port: 7443
+  uuid: 5da05cf7-9913-45a9-a7c6-71a41b1cd713
+  flow: ''
+  udp: true
+  tls: true
+  servername: colorlib.com
+  reality-opts:
+    public-key: F2MKDw5CCtP1oXIej2EgNxB01k3eyNu7tKCFfucgnRA
+    short-id: ''
+  network: grpc
+  grpc-opts:
+    grpc-service-name: xyz
+- name: '🇦🇱 XolirX #45'
+  type: vless
+  server: 89.117.94.111
+  port: 54495
+  uuid: 2042c7c4-f0c8-48ec-926b-65112b064e2c
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: yahoo.com
+  reality-opts:
+    public-key: 50IjQtR9zJG_3pXrbQDalYy_D4c7C_A8EEwVx0EfOjM
+    short-id: 5e8c37215982
+  network: tcp
+- name: '🇦🇱 XolirX #46'
+  type: vless
+  server: 134.33.73.249
+  port: 54254
+  uuid: acba684c-4098-4eca-f519-828b09f96464
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: apple.com
+  reality-opts:
+    public-key: HFEz9fAOugljXea_ZVOUHMju08su8h0P9RANNcHP2y4
+    short-id: db35ffdc
+  network: tcp
+- name: '🇦🇱 XolirX #47'
+  type: vless
+  server: 45.207.201.218
+  port: 443
+  uuid: 8cc59443-9131-41ef-92dc-80c739febd68
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.apple.com
+  reality-opts:
+    public-key: Q_69xJG-1OPZFDrNLUHpnCgVFkho6WKP3M-tsS0RlVU
+    short-id: 9cbbbcd2
+  network: tcp
+- name: '🇦🇱 XolirX #48'
+  type: vless
+  server: s881.ccgfw.top
+  port: 443
+  uuid: 7402e534-54dc-34cc-ac5b-c85ac6e236fd
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: s881.ccgfw.top
+  network: tcp
+- name: '🇦🇱 XolirX #49'
+  type: vless
+  server: 161.104.107.88
+  port: 443
+  uuid: bbf07169-8c80-485b-83d5-93b87a882219
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: sellflow.org
+  reality-opts:
+    public-key: SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc
+    short-id: ''
+  network: tcp
+- name: '🇦🇱 XolirX #50'
+  type: vless
+  server: 89.110.94.179
+  port: 443
+  uuid: ec802839-1704-4861-a97f-df8f5eabf50e
+  flow: ''
+  udp: true
+  tls: true
+  servername: absolute-disaster.org
+  reality-opts:
+    public-key: aGWwI3avxg9_hfT4-f57lPHpvyMZt-YayEUK-IZ0FDI
+    short-id: ''
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - absolute-disaster.org
+- name: '🇦🇱 XolirX #51'
+  type: vless
+  server: 85.193.91.14
+  port: 443
+  uuid: 3c40e1d2-80d1-4fe2-82e6-064e38bdf7e5
+  flow: ''
+  udp: true
+  tls: true
+  servername: yahoo.com
+  reality-opts:
+    public-key: cVCzyZ7hxqDXuv6uf4VDOmI2IOUdVVjoLGiclNiwuRc
+    short-id: af0e
+  network: tcp
+- name: '🇦🇱 XolirX #52'
+  type: vless
+  server: 69.84.182.49
+  port: 2096
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  flow: ''
+  udp: true
+  tls: true
+  servername: jp.aniua.qzz.io
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: jp.aniua.qzz.io
+- name: '🇦🇱 XolirX #53'
+  type: vless
+  server: 208.103.161.4
+  port: 443
+  uuid: ae0dd58e-e222-40bf-84ae-365a97532737
+  flow: ''
+  udp: true
+  tls: true
+  servername: pagescm.freen32.cc.cd
+  network: ws
+  ws-opts:
+    path: /play/settings
+    headers:
+      Host: pagescm.freen32.cc.cd
+- name: '🇦🇱 XolirX #54'
+  type: vless
+  server: 81.255.155.10
+  port: 443
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  flow: ''
+  udp: true
+  tls: true
+  servername: jp.aniua.qzz.io
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: jp.aniua.qzz.io
+- name: '🇦🇱 XolirX #56'
+  type: vless
+  server: 64.186.225.13
+  port: 8443
+  uuid: 06b65903-406d-4a41-8463-6fd5c0ee7798
+  flow: ''
+  udp: true
+  tls: true
+  servername: sni.skylee4.cloudns.ch
+  network: ws
+  ws-opts:
+    path: '%2Fproxyip%3DProxyIP.CMLiussss.net'
+    headers:
+      Host: sni.skylee4.cloudns.ch
+- name: '🇦🇱 XolirX #57'
+  type: vless
+  server: 165.215.250.14
+  port: 2087
+  uuid: InternetAzadRobot
+  flow: ''
+  udp: true
+  tls: true
+  servername: ws.kheybar.store
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Flogin'
+    headers:
+      Host:
+      - ws.kheybar.store
+- name: '🇦🇱 XolirX #59'
+  type: vless
+  server: 208.103.161.32
+  port: 443
+  uuid: e234245f-b66e-4eef-b8cb-6298500221ba
+  flow: ''
+  udp: true
+  tls: true
+  servername: panel-free.emergency-service.org
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - panel-free.emergency-service.org
+- name: '🇦🇱 XolirX #61'
+  type: vless
+  server: t1.hhaakk9922.com
+  port: 46783
+  uuid: eb3fa357-cea8-321e-bbd5-850e2d874025
+  flow: ''
+  udp: true
+  tls: true
+  servername: t1.hhaakk9922.com
+  network: grpc
+  grpc-opts:
+    grpc-service-name: ljfxz
+- name: '🇦🇱 XolirX #62'
+  type: vless
+  server: t1.hhaakk9922.com
+  port: 46784
+  uuid: eb3fa357-cea8-321e-bbd5-850e2d874025
+  flow: ''
+  udp: true
+  tls: true
+  servername: t1.hhaakk9922.com
+  network: grpc
+  grpc-opts:
+    grpc-service-name: ljfxz
+proxy-groups:
+- name: PROXY
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  proxies:
+  - '🇦🇱 XolirX #1'
+  - '🇦🇱 XolirX #2'
+  - '🇦🇱 XolirX #3'
+  - '🇦🇱 XolirX #4'
+  - '🇦🇱 XolirX #5'
+  - '🇦🇱 XolirX #6'
+  - '🇦🇱 XolirX #7'
+  - '🇦🇱 XolirX #8'
+  - '🇦🇱 XolirX #9'
+  - '🇦🇱 XolirX #10'
+  - '🇦🇱 XolirX #11'
+  - '🇦🇱 XolirX #12'
+  - '🇦🇱 XolirX #13'
+  - '🇦🇱 XolirX #14'
+  - '🇦🇱 XolirX #15'
+  - '🇦🇱 XolirX #16'
+  - '🇦🇱 XolirX #17'
+  - '🇦🇱 XolirX #18'
+  - '🇦🇱 XolirX #19'
+  - '🇦🇱 XolirX #20'
+  - '🇦🇱 XolirX #21'
+  - '🇦🇱 XolirX #22'
+  - '🇦🇱 XolirX #23'
+  - '🇦🇱 XolirX #24'
+  - '🇦🇱 XolirX #25'
+  - '🇦🇱 XolirX #26'
+  - '🇦🇱 XolirX #27'
+  - '🇦🇱 XolirX #28'
+  - '🇦🇱 XolirX #29'
+  - '🇦🇱 XolirX #30'
+  - '🇦🇱 XolirX #31'
+  - '🇦🇱 XolirX #32'
+  - '🇦🇱 XolirX #33'
+  - '🇦🇱 XolirX #34'
+  - '🇦🇱 XolirX #35'
+  - '🇦🇱 XolirX #36'
+  - '🇦🇱 XolirX #37'
+  - '🇦🇱 XolirX #38'
+  - '🇦🇱 XolirX #39'
+  - '🇦🇱 XolirX #40'
+  - '🇦🇱 XolirX #41'
+  - '🇦🇱 XolirX #42'
+  - '🇦🇱 XolirX #43'
+  - '🇦🇱 XolirX #44'
+  - '🇦🇱 XolirX #45'
+  - '🇦🇱 XolirX #46'
+  - '🇦🇱 XolirX #47'
+  - '🇦🇱 XolirX #48'
+  - '🇦🇱 XolirX #49'
+  - '🇦🇱 XolirX #50'
+  - '🇦🇱 XolirX #51'
+  - '🇦🇱 XolirX #52'
+  - '🇦🇱 XolirX #53'
+  - '🇦🇱 XolirX #54'
+  - '🇦🇱 XolirX #56'
+  - '🇦🇱 XolirX #57'
+  - '🇦🇱 XolirX #59'
+  - '🇦🇱 XolirX #61'
+  - '🇦🇱 XolirX #62'
+- name: DIRECT
+  type: select
+  proxies:
+  - DIRECT
+rules:
+- RULE-SET,https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/MIHOMO/default.yaml,PROXY
+- MATCH,PROXY
