@@ -7,31 +7,61 @@ external-controller: 127.0.0.1:9090
 proxies:
 - name: '🇦🇱 XolirX #1'
   type: vless
-  server: 109.69.218.212
+  server: at.ws.dznn.net
   port: 443
-  uuid: 48d7e2e5-6ddc-434f-a5e5-c53b9e2f6301
-  flow: xtls-rprx-vision
+  uuid: a6d02a68-6498-c350-b1e6-f909f6db451f
+  flow: ''
   udp: true
   tls: true
-  servername: ns.passwd.space
-  reality-opts:
-    public-key: KfKYcURcfQ207VZCXG4g2cxltWvG2Zk7j3WCjvpa8Sg
-    short-id: ''
-  network: tcp
+  servername: at.ws.dznn.net
+  network: ws
+  ws-opts:
+    path: '%2Fupload%2Fsession'
+    headers:
+      Host: at.ws.dznn.net
 - name: '🇦🇱 XolirX #2'
   type: vless
-  server: den.n1etwork.prostosetup.org
+  server: 45.39.241.51
+  port: 23837
+  uuid: d262c258-e73a-47d2-944d-55cfc4bc8fd0
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: /ws
+    headers:
+      Host: ''
+- name: '🇦🇱 XolirX #3'
+  type: vless
+  server: 2.27.13.15
   port: 443
-  uuid: 1b43419a-b711-40d4-a0ee-eb5c73e60c92
+  uuid: f00984ef-f57e-41db-9182-b25f7bc3a1e2
   flow: xtls-rprx-vision
   udp: true
   tls: true
-  servername: github.com
+  servername: newfn.stardevs.top
   reality-opts:
-    public-key: K1pl5IAOi7N5MUQIvv-35fQcpxgz9uLW5Dv45a2tmRc
-    short-id: '50'
+    public-key: dZr14WsJ6yNqfoalMrTWBsOU74mckVoQO84Ty68TtW4
+    short-id: b03a4d1767157467
   network: tcp
-- name: '🇦🇱 XolirX #3'
+- name: '🇦🇱 XolirX #4'
+  type: vless
+  server: 151.101.118.95
+  port: 443
+  uuid: eae7e64e-0dfe-4694-8a1d-f8f656f3e2f1
+  flow: ''
+  udp: true
+  tls: true
+  servername: 127.0.0.1
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - ovh13.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #5'
   type: vless
   server: 146.75.117.91
   port: 80
@@ -46,7 +76,22 @@ proxies:
     headers:
       Host:
       - tignaltofansv4.global.ssl.fastly.net
-- name: '🇦🇱 XolirX #4'
+- name: '🇦🇱 XolirX #6'
+  type: vless
+  server: fastly.com
+  port: 80
+  uuid: InternetAzadRobot
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - /login
+    headers:
+      Host:
+      - shangulin.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #7'
   type: vless
   server: fr.clgate.network
   port: 443
@@ -66,57 +111,49 @@ proxies:
     headers:
       Host:
       - m.twitch.tv
-- name: '🇦🇱 XolirX #5'
-  type: vless
-  server: 212.22.94.213
-  port: 443
-  uuid: 76713d07-5a6b-49c2-abd8-bc450a2fa7fc
-  flow: ''
-  udp: true
-  tls: true
-  servername: down.spectrumproxy.shop
-  reality-opts:
-    public-key: ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA
-    short-id: a1c1d7e2f9b3
-  network: grpc
-  grpc-opts:
-    grpc-service-name: vless
-- name: '🇦🇱 XolirX #6'
-  type: vless
-  server: down.spectrumproxy.shop
-  port: 443
-  uuid: 76713d07-5a6b-49c2-abd8-bc450a2fa7fc
-  flow: ''
-  udp: true
-  tls: true
-  servername: down.spectrumproxy.shop
-  reality-opts:
-    public-key: ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA
-    short-id: a1c1d7e2f9b3
-  network: grpc
-  grpc-opts:
-    grpc-service-name: vless
-- name: '🇦🇱 XolirX #7'
-  type: vless
-  server: bero-2.bexum.fun
-  port: 9443
-  uuid: e7902151-e2e1-4d29-a84b-86f0d5d91b65
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: bero-2.bexum.fun
-  network: tcp
 - name: '🇦🇱 XolirX #8'
   type: vless
-  server: bero-3.bexum.fun
-  port: 9443
-  uuid: e7902151-e2e1-4d29-a84b-86f0d5d91b65
-  flow: xtls-rprx-vision
+  server: 205.237.104.27
+  port: 8443
+  uuid: 26dc9926-efd0-47c3-bd6c-44f9eec194b8
+  flow: ''
   udp: true
   tls: true
-  servername: bero-3.bexum.fun
-  network: tcp
+  servername: www.tradingview.com
+  reality-opts:
+    public-key: uYlJKmVHsSuCk-T9Y4CpqyR2LIP9etRZkRmDEt8-fUs
+    short-id: 6586ca7468d16620
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Fapi%2Fv2%2Fsync'
+    headers:
+      Host:
+      - ''
 - name: '🇦🇱 XolirX #9'
+  type: vless
+  server: 95.182.97.249
+  port: 443
+  uuid: a2b81a67-3cd2-42c7-a3f9-fd47ac27d4a1
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: ''
+- name: '🇦🇱 XolirX #10'
+  type: vless
+  server: 72.56.59.177
+  port: 22231
+  uuid: afcac633-0e1a-46c3-bef2-cc01cc0097c8
+  flow: xtls-rprx-vision-udp443
+  udp: true
+  tls: true
+  servername: r1.mizulina.top
+  network: tcp
+- name: '🇦🇱 XolirX #11'
   type: vless
   server: berocd.herumhas.shop
   port: 9443
@@ -126,22 +163,7 @@ proxies:
   tls: true
   servername: berocd.herumhas.shop
   network: tcp
-- name: '🇦🇱 XolirX #10'
-  type: vless
-  server: fastly.com
-  port: 80
-  uuid: InternetAzadRobot
-  flow: ''
-  udp: true
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2Flogin'
-    headers:
-      Host:
-      - tignalz.global.ssl.fastly.net
-- name: '🇦🇱 XolirX #11'
+- name: '🇦🇱 XolirX #12'
   type: vless
   server: 165.215.250.12
   port: 443
@@ -158,26 +180,9 @@ proxies:
     headers:
       Host:
       - p4r34m.hendevaneh.sbs
-- name: '🇦🇱 XolirX #12'
-  type: vless
-  server: 208.103.161.101
-  port: 443
-  uuid: Telegram-Parsashonam-2
-  flow: ''
-  udp: true
-  tls: true
-  servername: p4r34m.hendevaneh.sbs
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2Fp4r34m'
-    headers:
-      Host:
-      - p4r34m.hendevaneh.sbs
 - name: '🇦🇱 XolirX #13'
   type: vless
-  server: 27.50.48.49
+  server: 208.103.161.101
   port: 443
   uuid: Telegram-Parsashonam-2
   flow: ''
@@ -194,6 +199,23 @@ proxies:
       - p4r34m.hendevaneh.sbs
 - name: '🇦🇱 XolirX #14'
   type: vless
+  server: 27.50.48.49
+  port: 443
+  uuid: Telegram-Parsashonam-2
+  flow: ''
+  udp: true
+  tls: true
+  servername: p4r34m.hendevaneh.sbs
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Fp4r34m'
+    headers:
+      Host:
+      - p4r34m.hendevaneh.sbs
+- name: '🇦🇱 XolirX #15'
+  type: vless
   server: 208.103.161.101
   port: 443
   uuid: b5bd7d6d-5ab9-4965-bccc-32acdbc4f714
@@ -206,7 +228,27 @@ proxies:
     path: '%2F'
     headers:
       Host: konkoriazmono.konkuriran.sbs
-- name: '🇦🇱 XolirX #15'
+- name: '🇦🇱 XolirX #16'
+  type: vless
+  server: 185.143.234.234
+  port: 8080
+  uuid: f426b9bd-6c80-4db3-b082-b7a71b92de67
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: cloud.tokyoservice.ir
+- name: '🇦🇱 XolirX #17'
+  type: vless
+  server: de-on-demand.not-a-projects.xyz
+  port: 47518
+  uuid: 25263c14-6cb5-499b-b462-dd498deecfe7
+  flow: ''
+  udp: true
+  network: tcp
+- name: '🇦🇱 XolirX #18'
   type: vless
   server: de1.mehab.me
   port: 443
@@ -215,61 +257,18 @@ proxies:
   udp: true
   tls: true
   network: tcp
-- name: '🇦🇱 XolirX #16'
-  type: vless
-  server: n2.dragonvpn.online
-  port: 443
-  uuid: 61419a93-e318-4f37-938b-e1e178c5b806
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: n2.dragonvpn.online
-  reality-opts:
-    public-key: wbcamjVEXYODW3IIc3a75i0ovD3WLEjvns1GcvEXzB8
-    short-id: bb366914789b9bf5
-  network: tcp
-- name: '🇦🇱 XolirX #17'
-  type: vless
-  server: top3943405450.mwscdn.ru
-  port: 443
-  uuid: 61419a93-e318-4f37-938b-e1e178c5b806
-  flow: ''
-  udp: true
-  tls: true
-  servername: top3943405450.mwscdn.ru
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2Fxhttppath'
-    headers:
-      Host:
-      - ''
-- name: '🇦🇱 XolirX #18'
-  type: vless
-  server: ger-nnn.prostosetup.org
-  port: 443
-  uuid: 1b43419a-b711-40d4-a0ee-eb5c73e60c92
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: github.com
-  reality-opts:
-    public-key: y3ZMu-ium5mBqE_h3xJ66vT0Z6HCIlTDti9emCQjDjw
-    short-id: bcb6b0217a1206b3
-  network: tcp
 - name: '🇦🇱 XolirX #19'
   type: vless
-  server: 199.232.57.91
-  port: 80
-  uuid: 69ac30ba-c264-4350-87fe-62e132032e16
+  server: 78.17.100.107.blanesik.space
+  port: 443
+  uuid: ee0dceba-05e2-4212-a794-fc955f3a3027
   flow: ''
   udp: true
-  network: ws
-  ws-opts:
-    path: '%2F'
-    headers:
-      Host: nleiyajji.global.ssl.fastly.net
+  tls: true
+  servername: 78.17.100.107.blanesik.space
+  network: grpc
+  grpc-opts:
+    grpc-service-name: '%2Fsequre%2Fgrpc'
 - name: '🇦🇱 XolirX #20'
   type: vless
   server: 87.120.93.243
@@ -305,32 +304,6 @@ proxies:
     grpc-service-name: gprc
 - name: '🇦🇱 XolirX #23'
   type: vless
-  server: 64.188.124.119
-  port: 8443
-  uuid: 96fec558-76d9-40f5-8589-fe01afb6eaf6
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: ru.pinterest.com
-  reality-opts:
-    public-key: rOUP7Zp95gDUa3jN1_Yx2aYovSLF5GiJiKfzwHK-jyE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #24'
-  type: vless
-  server: probabblynot.fazelextremeisreal.com
-  port: 29870
-  uuid: a3eb4c35-c1df-4448-968c-f6229cba9de0
-  flow: ''
-  udp: true
-  tls: true
-  servername: www.refersion.com
-  reality-opts:
-    public-key: cWrLzTqWRYMQq8vsgN7rHtUxrDdqxDLNEWAuo_eXlRU
-    short-id: 821863f0
-  network: tcp
-- name: '🇦🇱 XolirX #25'
-  type: vless
   server: 194.58.41.65
   port: 443
   uuid: afc941a0-b6b4-42d1-b284-d59a42f083fd
@@ -344,300 +317,9 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: GrpcFuckRKN
-- name: '🇦🇱 XolirX #26'
+- name: '🇦🇱 XolirX #24'
   type: vless
-  server: 159.195.65.131
-  port: 8443
-  uuid: 9ee79303-e095-40f5-8fb8-363d87e90465
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fastsync.xyz
-  reality-opts:
-    public-key: FQ-t1B16UdR6QYZyfYRf9PrD5JoEeCrkgRfM-doG4zY
-    short-id: 1bc9bcde4b1ef645
-  network: tcp
-- name: '🇦🇱 XolirX #27'
-  type: vless
-  server: 47.82.87.196
-  port: 50724
-  uuid: 47030ea3-4e8c-4dd6-b440-418a7a54c1a0
-  flow: ''
-  udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #28'
-  type: vless
-  server: zzhk4.ainivp.com
-  port: 13413
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #29'
-  type: vless
-  server: zzhk5.ainivp.com
-  port: 13413
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #30'
-  type: vless
-  server: zzhk6.ainivp.com
-  port: 13413
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #31'
-  type: vless
-  server: zzjp1.ainivp.com
-  port: 13413
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #32'
-  type: vless
-  server: 89.127.218.251
-  port: 443
-  uuid: 4f4f9461-5cfa-4746-9f62-2f08dfd05636
-  flow: ''
-  udp: true
-  tls: true
-  servername: pornhub.com
-  reality-opts:
-    public-key: YJ9I6GzZ_xT_Rk8We8iR1CwEMbzF4I30i_EH2VOVY0Y
-    short-id: abab34c40ed6c10a
-  network: tcp
-- name: '🇦🇱 XolirX #33'
-  type: vless
-  server: 89.127.221.224
-  port: 443
-  uuid: 4f4f9461-5cfa-4746-9f62-2f08dfd05636
-  flow: ''
-  udp: true
-  tls: true
-  servername: pornhub.com
-  reality-opts:
-    public-key: YJ9I6GzZ_xT_Rk8We8iR1CwEMbzF4I30i_EH2VOVY0Y
-    short-id: abab34c40ed6c10a
-  network: tcp
-- name: '🇦🇱 XolirX #34'
-  type: vless
-  server: zzjp1.ainivp.com
-  port: 13102
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #35'
-  type: vless
-  server: zzjp2.ainivp.com
-  port: 13102
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #36'
-  type: vless
-  server: zzjp2.ainivp.com
-  port: 13103
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #37'
-  type: vless
-  server: wolf.ilovezhenjiu.top
-  port: 443
-  uuid: 053909d6-5091-4a1b-95e3-a726c5e49e37
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: wolf.ilovezhenjiu.top
-  network: tcp
-- name: '🇦🇱 XolirX #38'
-  type: vless
-  server: 185.141.219.110
-  port: 28507
-  uuid: 4b9939e9-9d48-4fa5-8d43-c671e5efa664
-  flow: ''
-  udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #39'
-  type: vless
-  server: pro.online.prostosetup.org
-  port: 443
-  uuid: 1b43419a-b711-40d4-a0ee-eb5c73e60c92
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: pro.online.prostosetup.org
-  reality-opts:
-    public-key: qBTTzM-_JJ5NDPfJc8_4StCYqeK4DpiZWEjxCf3KYXA
-    short-id: a96e9c98e60fd8d5
-  network: tcp
-- name: '🇦🇱 XolirX #40'
-  type: vless
-  server: 193.23.218.192
-  port: 2053
-  uuid: 26524cce-d514-4014-a426-365fb266a14d
-  flow: ''
-  udp: true
-  tls: true
-  servername: i8dxb.media-cdn-us.chinav.indevs.in
-  network: ws
-  ws-opts:
-    path: /danfeng-lo9ew8-vfksib-hwrl-84fg5mvl
-    headers:
-      Host: i8dxb.media-cdn-us.chinav.indevs.in
-- name: '🇦🇱 XolirX #41'
-  type: vless
-  server: zzjp1.ainivp.com
-  port: 13402
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #42'
-  type: vless
-  server: 162.248.162.249
-  port: 443
-  uuid: 4f4f9461-5cfa-4746-9f62-2f08dfd05636
-  flow: ''
-  udp: true
-  tls: true
-  servername: pornhub.com
-  reality-opts:
-    public-key: YJ9I6GzZ_xT_Rk8We8iR1CwEMbzF4I30i_EH2VOVY0Y
-    short-id: abab34c40ed6c10a
-  network: tcp
-- name: '🇦🇱 XolirX #43'
-  type: vless
-  server: 77.110.121.202
-  port: 23164
-  uuid: e42eb55f-289f-419f-86c7-b47e49d10c98
-  flow: ''
-  udp: true
-  tls: true
-  servername: teamdocs.su
-  reality-opts:
-    public-key: XoIxfrtYaItQL-X_zvZqTcCHBF3_LhIiptW9ph3Rgjs
-    short-id: '62'
-  network: tcp
-- name: '🇦🇱 XolirX #44'
-  type: vless
-  server: 5.253.31.13
-  port: 443
-  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #45'
-  type: vless
-  server: uae.sbrf-cdn342.ru
-  port: 443
-  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #46'
-  type: vless
-  server: nld.pink-service.ru
-  port: 443
-  uuid: f998c699-43b5-4af2-921e-03b879eb7912
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.google.com
-  reality-opts:
-    public-key: 2fgsbEAn-ALVpjnE4ZTPrzaZY70vVplYwldCnslInE0
-    short-id: 86b80f1e713a33ad
-  network: tcp
-- name: '🇦🇱 XolirX #47'
-  type: vless
-  server: nl-tx.sbrf-cdn342.ru
-  port: 443
-  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #48'
-  type: vless
-  server: 95.140.158.82
-  port: 443
-  uuid: ea484535-0170-4ec8-bb3c-a9dbaa7412d7
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: cdp.x5.ru
-  reality-opts:
-    public-key: GsKY4XpP6sr905aHvCrj0JEHhgcAD5aEcmbjyLSNjAU
-    short-id: 72e15d2b99
-  network: tcp
-- name: '🇦🇱 XolirX #49'
-  type: vless
-  server: g1.steptofreedom.one
-  port: 443
-  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: g1.steptofreedom.one
-  reality-opts:
-    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
-    short-id: 6d6f13013d3e1d0c
-  network: tcp
-- name: '🇦🇱 XolirX #50'
-  type: vless
-  server: nl-cl.alexanderoff.ru
+  server: de.clgate.network
   port: 443
   uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
   flow: ''
@@ -654,21 +336,228 @@ proxies:
     - '%2F'
     headers:
       Host:
-      - m.twitch.tv
-- name: '🇦🇱 XolirX #51'
+      - ''
+- name: '🇦🇱 XolirX #25'
   type: vless
-  server: noble-nest.scan-cdn.com
-  port: 8443
-  uuid: bdddc783-a4f3-47f7-8850-21416d0a31f1
+  server: gerr1.greewebservices.ir
+  port: 1101
+  uuid: ea270277-c86e-4b79-b5ab-a998c7008031
+  flow: ''
+  udp: true
+  tls: true
+  servername: yahoo.com
+  reality-opts:
+    public-key: xQnXh5EfPDhcEBB7rRiLca33GYrMEeUa35domLL_yA8
+    short-id: e3085d4fc679ba12
+  network: tcp
+- name: '🇦🇱 XolirX #26'
+  type: vless
+  server: zzhk5.ainivp.com
+  port: 13413
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
   flow: xtls-rprx-vision
   udp: true
   tls: true
-  servername: tradingview.com
+  servername: www.microsoft.com
   reality-opts:
-    public-key: OTovueIB0arbpOZ02tZLnh0DdIhRzO-AZB5Vf3rXlV4
-    short-id: fba0460a7767cfff
+    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
+    short-id: a1b2c3d4
   network: tcp
-- name: '🇦🇱 XolirX #52'
+- name: '🇦🇱 XolirX #27'
+  type: vless
+  server: zzhk6.ainivp.com
+  port: 13413
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.microsoft.com
+  reality-opts:
+    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
+    short-id: a1b2c3d4
+  network: tcp
+- name: '🇦🇱 XolirX #28'
+  type: vless
+  server: zzjp2.ainivp.com
+  port: 13102
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.microsoft.com
+  reality-opts:
+    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
+    short-id: a1b2c3d4
+  network: tcp
+- name: '🇦🇱 XolirX #29'
+  type: vless
+  server: zzjp2.ainivp.com
+  port: 13103
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.microsoft.com
+  reality-opts:
+    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
+    short-id: a1b2c3d4
+  network: tcp
+- name: '🇦🇱 XolirX #30'
+  type: vless
+  server: 185.141.219.110
+  port: 28507
+  uuid: 4b9939e9-9d48-4fa5-8d43-c671e5efa664
+  flow: ''
+  udp: true
+  network: tcp
+- name: '🇦🇱 XolirX #31'
+  type: vless
+  server: nebulvpn.bot.nu
+  port: 8443
+  uuid: 81bc17b1-f73d-419c-a50b-9e2a4d255dfb
+  flow: ''
+  udp: true
+  tls: true
+  servername: 5post-gate.x5.ru
+  reality-opts:
+    public-key: tOx0DL4k7rSBFEWKBek_kKmy-0qBI1SMw_NvG3wLhR0
+    short-id: eb
+  network: grpc
+  grpc-opts:
+    grpc-service-name: ''
+- name: '🇦🇱 XolirX #32'
+  type: vless
+  server: 91.186.216.62
+  port: 443
+  uuid: eae7e64e-0dfe-4694-8a1d-f8f656f3e2f1
+  flow: ''
+  udp: true
+  tls: true
+  servername: polsha.ajajajajqj2qedvekq.online
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: polsha.ajajajajqj2qedvekq.online
+- name: '🇦🇱 XolirX #33'
+  type: vless
+  server: 88.216.214.144
+  port: 8443
+  uuid: 26dc9926-efd0-47c3-bd6c-44f9eec194b8
+  flow: ''
+  udp: true
+  tls: true
+  servername: www.tradingview.com
+  reality-opts:
+    public-key: EGxJpl6UtxBovvg0-E9utvD3VvEIVYwBtRN8yy8enUs
+    short-id: 8d53bf1a42e096c7
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Fapi%2Fv2%2Fsync'
+    headers:
+      Host:
+      - ''
+- name: '🇦🇱 XolirX #34'
+  type: vless
+  server: 77.110.121.202
+  port: 23164
+  uuid: 340e4d5f-a117-427c-8373-eb89439d32b5
+  flow: ''
+  udp: true
+  tls: true
+  servername: teamdocs.su
+  reality-opts:
+    public-key: XoIxfrtYaItQL-X_zvZqTcCHBF3_LhIiptW9ph3Rgjs
+    short-id: '62'
+  network: tcp
+- name: '🇦🇱 XolirX #35'
+  type: vless
+  server: 77.110.121.202
+  port: 23164
+  uuid: e42eb55f-289f-419f-86c7-b47e49d10c98
+  flow: ''
+  udp: true
+  tls: true
+  servername: teamdocs.su
+  reality-opts:
+    public-key: XoIxfrtYaItQL-X_zvZqTcCHBF3_LhIiptW9ph3Rgjs
+    short-id: '62'
+  network: tcp
+- name: '🇦🇱 XolirX #36'
+  type: vless
+  server: 45.85.93.51
+  port: 443
+  uuid: 301d514e-4aa0-47b0-ba44-a0cb891cd52f
+  flow: ''
+  udp: true
+  tls: true
+  servername: www.samsung.com
+  reality-opts:
+    public-key: OZVjfQBboTDTBw0baMFqzVPsVUI4FNQmspTEb0b0zW4
+    short-id: a1b2c3d4
+  network: tcp
+- name: '🇦🇱 XolirX #37'
+  type: vless
+  server: nl-3.bexum.fun
+  port: 443
+  uuid: e7902151-e2e1-4d29-a84b-86f0d5d91b65
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: nl-3.bexum.fun
+  network: tcp
+- name: '🇦🇱 XolirX #38'
+  type: vless
+  server: 37.49.229.87
+  port: 443
+  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: sub.sbrf-cdn342.ru
+  network: tcp
+- name: '🇦🇱 XolirX #39'
+  type: vless
+  server: 95.140.158.82
+  port: 443
+  uuid: ea484535-0170-4ec8-bb3c-a9dbaa7412d7
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: cdp.x5.ru
+  reality-opts:
+    public-key: GsKY4XpP6sr905aHvCrj0JEHhgcAD5aEcmbjyLSNjAU
+    short-id: 72e15d2b99
+  network: tcp
+- name: '🇦🇱 XolirX #40'
+  type: vless
+  server: g2.steptofreedom.one
+  port: 443
+  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: g2.steptofreedom.one
+  reality-opts:
+    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
+    short-id: 6d6f13013d3e1d0c
+  network: tcp
+- name: '🇦🇱 XolirX #41'
+  type: vless
+  server: g3.steptofreedom.one
+  port: 443
+  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: g3.steptofreedom.one
+  reality-opts:
+    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
+    short-id: 6d6f13013d3e1d0c
+  network: tcp
+- name: '🇦🇱 XolirX #42'
   type: vless
   server: ned.ggisopi.su
   port: 443
@@ -681,7 +570,33 @@ proxies:
     public-key: HYKy4FK5lRc1Lv1lbJSew6xmpbg-Hp9IREnObxTf6kU
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #53'
+- name: '🇦🇱 XolirX #43'
+  type: vless
+  server: 80.89.237.87
+  port: 443
+  uuid: Fluffy_VPN-uQuRPvrt
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: very-mega-best.top
+  reality-opts:
+    public-key: yYOCEJEfnwByiWiiSNeCMhRqmViAhavOp8QaGWHx6VI
+    short-id: ''
+  network: tcp
+- name: '🇦🇱 XolirX #44'
+  type: vless
+  server: 185.181.208.164
+  port: 443
+  uuid: 9bc46020-c550-439a-86c5-38f64abc1ffd
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: tr-in.api.dznn.net
+  reality-opts:
+    public-key: 9F7JxyyP-TNLt0dY2xOB0_34I8W0xXIpFY7rZ7-L0Gg
+    short-id: 19aa22f681923dc8
+  network: tcp
+- name: '🇦🇱 XolirX #45'
   type: vless
   server: tr-in.api.dznn.net
   port: 443
@@ -694,7 +609,7 @@ proxies:
     public-key: 9F7JxyyP-TNLt0dY2xOB0_34I8W0xXIpFY7rZ7-L0Gg
     short-id: 19aa22f681923dc8
   network: tcp
-- name: '🇦🇱 XolirX #54'
+- name: '🇦🇱 XolirX #46'
   type: vless
   server: 185.255.95.247
   port: 27265
@@ -703,73 +618,25 @@ proxies:
   udp: true
   network: ws
   ws-opts:
-    path: '%2Fws'
+    path: /ws
     headers:
       Host: 185.255.95.247
-- name: '🇦🇱 XolirX #55'
+- name: '🇦🇱 XolirX #47'
   type: vless
-  server: free01.tunnely.ru
-  port: 8080
-  uuid: b5a40d5b-7b4e-41d6-8d6c-cbc724798707
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2Fws%2F'
-    headers:
-      Host: ''
-- name: '🇦🇱 XolirX #56'
-  type: vless
-  server: 208.103.161.32
-  port: 443
-  uuid: e234245f-b66e-4eef-b8cb-6298500221ba
+  server: l6.l-itx.info
+  port: 7443
+  uuid: 5da05cf7-9913-45a9-a7c6-71a41b1cd713
   flow: ''
   udp: true
   tls: true
-  servername: panel-free.emergency-service.org
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
-    headers:
-      Host:
-      - panel-free.emergency-service.org
-- name: '🇦🇱 XolirX #57'
-  type: vless
-  server: uss.mynethub99.top
-  port: 80
-  uuid: e3c68e9e-5bf3-4e4b-abac-806053baa43a
-  flow: ''
-  udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #58'
-  type: vless
-  server: 217.60.249.216
-  port: 8443
-  uuid: ea484535-0170-4ec8-bb3c-a9dbaa7412d7
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
+  servername: colorlib.com
   reality-opts:
-    public-key: UOzh0Xk1QfoDIoChc4Qb-im2DF5uBA3BQjvHi_JY2zY
-    short-id: ca4a1317e03791b3
-  network: tcp
-- name: '🇦🇱 XolirX #59'
-  type: vless
-  server: urban-union.scan-cdn.com
-  port: 9443
-  uuid: bdddc783-a4f3-47f7-8850-21416d0a31f1
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: tradingview.com
-  reality-opts:
-    public-key: Mjvrfyqmdca5P4C1g-onuIzctu3duPXj10QvuCwYW3Y
-    short-id: 8dfa2a72581edaad
-  network: tcp
-- name: '🇦🇱 XolirX #60'
+    public-key: F2MKDw5CCtP1oXIej2EgNxB01k3eyNu7tKCFfucgnRA
+    short-id: ''
+  network: grpc
+  grpc-opts:
+    grpc-service-name: xyz
+- name: '🇦🇱 XolirX #48'
   type: vless
   server: zzhk5.ainivp.com
   port: 13414
@@ -782,72 +649,7 @@ proxies:
     public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
     short-id: a1b2c3d4
   network: tcp
-- name: '🇦🇱 XolirX #61'
-  type: vless
-  server: 216.167.8.6
-  port: 29114
-  uuid: 036f593f-98ea-4534-96b6-9e810982b9d2
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: dash.cloudflare.com
-  reality-opts:
-    public-key: wKYUtGeArhmBjEXGzTZKW3UxHMgJ2ETml0qIxv_ZERo
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #62'
-  type: vless
-  server: 216.167.8.253
-  port: 64394
-  uuid: 2ca2f309-1ba9-4d23-a1d4-9645dfc4a882
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: dash.cloudflare.com
-  reality-opts:
-    public-key: PmgSuKvpxj7MsWPHoXxqNQuw5hiNZqciuzjebWIHRjY
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #63'
-  type: vless
-  server: mg1.ainivp.com
-  port: 443
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #64'
-  type: vless
-  server: zzjp1.ainivp.com
-  port: 13403
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #65'
-  type: vless
-  server: zzus5.ainivp.com
-  port: 13405
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #66'
+- name: '🇦🇱 XolirX #49'
   type: vless
   server: 89.110.94.179
   port: 443
@@ -867,7 +669,7 @@ proxies:
     headers:
       Host:
       - absolute-disaster.org
-- name: '🇦🇱 XolirX #67'
+- name: '🇦🇱 XolirX #50'
   type: vless
   server: rutelega.yaponchik.online
   port: 443
@@ -880,46 +682,7 @@ proxies:
     public-key: w05NKnvfi1jL8kYUI7MLv02Y9LQL1S-nSGa8PH1kK0o
     short-id: 69a07f89
   network: tcp
-- name: '🇦🇱 XolirX #69'
-  type: vless
-  server: 104.194.135.136
-  port: 59347
-  uuid: 3b029bdf-4feb-466d-964d-ab3ea895e186
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: ''
-- name: '🇦🇱 XolirX #70'
-  type: vless
-  server: 104.194.135.136
-  port: 43807
-  uuid: 4d2e7124-8704-4b13-b49c-defec419bb4b
-  flow: ''
-  udp: true
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - /
-    headers:
-      Host:
-      - ''
-- name: '🇦🇱 XolirX #71'
-  type: vless
-  server: 78.17.100.107.blanesik.space
-  port: 443
-  uuid: ee0dceba-05e2-4212-a794-fc955f3a3027
-  flow: ''
-  udp: true
-  tls: true
-  servername: 78.17.100.107.blanesik.space
-  network: grpc
-  grpc-opts:
-    grpc-service-name: '%2Fsequre%2Fgrpc'
-- name: '🇦🇱 XolirX #72'
+- name: '🇦🇱 XolirX #51'
   type: vless
   server: 50.62.198.124
   port: 443
@@ -933,7 +696,35 @@ proxies:
     path: /
     headers:
       Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #73'
+- name: '🇦🇱 XolirX #52'
+  type: vless
+  server: 81.255.154.10
+  port: 443
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  flow: ''
+  udp: true
+  tls: true
+  servername: jp.aniua.qzz.io
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: jp.aniua.qzz.io
+- name: '🇦🇱 XolirX #53'
+  type: vless
+  server: 154.92.9.156
+  port: 443
+  uuid: d342d11e-d424-4583-b36e-524ab1f0afa4
+  flow: ''
+  udp: true
+  tls: true
+  servername: Worker-Dry-Heart-073a.Eqoniqaq.Workers.Dev
+  network: ws
+  ws-opts:
+    path: /?ed%3D2048
+    headers:
+      Host: workEr-dRy-heaRt-073A.eqoniqAq.workeRs.dEv
+- name: '🇦🇱 XolirX #54'
   type: vless
   server: 81.255.155.10
   port: 443
@@ -947,7 +738,21 @@ proxies:
     path: /
     headers:
       Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #74'
+- name: '🇦🇱 XolirX #55'
+  type: vless
+  server: 43.247.135.211
+  port: 8443
+  uuid: 26524cce-d514-4014-a426-365fb266a14d
+  flow: ''
+  udp: true
+  tls: true
+  servername: i8dxb.media-cdn-us.chinav.indevs.in
+  network: ws
+  ws-opts:
+    path: '%2Fdanfeng-lo9ew8-vfksib-hwrl-84fg5mvlfp%3Dfirefox'
+    headers:
+      Host: i8dxb.media-cdn-us.chinav.indevs.in
+- name: '🇦🇱 XolirX #56'
   type: vless
   server: 14.102.228.76
   port: 2096
@@ -961,7 +766,37 @@ proxies:
     path: '%2F'
     headers:
       Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #77'
+- name: '🇦🇱 XolirX #57'
+  type: vless
+  server: mx0wbu.sgvless.yydzx.xyz
+  port: 443
+  uuid: 2219a1b1-9290-4ac5-94fd-6cfc1fb25280
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: deb.debian.org
+  reality-opts:
+    public-key: 8mv22T5d1KHXlT1EQiQMcgbOZpwkospsUb8WLkuDsAA
+    short-id: 7994d24409820c44
+  network: tcp
+- name: '🇦🇱 XolirX #58'
+  type: vless
+  server: 208.103.161.32
+  port: 443
+  uuid: e234245f-b66e-4eef-b8cb-6298500221ba
+  flow: ''
+  udp: true
+  tls: true
+  servername: panel-free.emergency-service.org
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2F'
+    headers:
+      Host:
+      - panel-free.emergency-service.org
+- name: '🇦🇱 XolirX #59'
   type: vless
   server: filmnet.ir.worldwebhunter.com
   port: 2053
@@ -981,6 +816,32 @@ proxies:
     headers:
       Host:
       - ''
+- name: '🇦🇱 XolirX #60'
+  type: vless
+  server: g1.steptofreedom.one
+  port: 443
+  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: g1.steptofreedom.one
+  reality-opts:
+    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
+    short-id: 6d6f13013d3e1d0c
+  network: tcp
+- name: '🇦🇱 XolirX #61'
+  type: vless
+  server: msk.steptofreedom.one
+  port: 443
+  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: msk.steptofreedom.one
+  reality-opts:
+    public-key: QHkXBS2ENHV0khgY9VBYi8_9bpfqnUYDcfQN4cW5Qg0
+    short-id: '4326'
+  network: tcp
 proxy-groups:
 - name: PROXY
   type: url-test
@@ -1048,19 +909,6 @@ proxy-groups:
   - '🇦🇱 XolirX #59'
   - '🇦🇱 XolirX #60'
   - '🇦🇱 XolirX #61'
-  - '🇦🇱 XolirX #62'
-  - '🇦🇱 XolirX #63'
-  - '🇦🇱 XolirX #64'
-  - '🇦🇱 XolirX #65'
-  - '🇦🇱 XolirX #66'
-  - '🇦🇱 XolirX #67'
-  - '🇦🇱 XolirX #69'
-  - '🇦🇱 XolirX #70'
-  - '🇦🇱 XolirX #71'
-  - '🇦🇱 XolirX #72'
-  - '🇦🇱 XolirX #73'
-  - '🇦🇱 XolirX #74'
-  - '🇦🇱 XolirX #77'
 - name: DIRECT
   type: select
   proxies:
