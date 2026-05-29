@@ -7,6 +7,18 @@ external-controller: 127.0.0.1:9090
 proxies:
 - name: '🇦🇱 XolirX #1'
   type: vless
+  server: 45.152.202.52
+  port: 64534
+  uuid: 58f2d0b3-71c1-4b25-a723-155ec1e13725
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: ''
+- name: '🇦🇱 XolirX #2'
+  type: vless
   server: srv154.towersflowerss.com
   port: 64534
   uuid: 58f2d0b3-71c1-4b25-a723-155ec1e13725
@@ -16,64 +28,8 @@ proxies:
   ws-opts:
     path: '%2F'
     headers:
-      Host: ''
-- name: '🇦🇱 XolirX #2'
-  type: vless
-  server: au1.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
+      Host: srv154.towersflowerss.com
 - name: '🇦🇱 XolirX #3'
-  type: vless
-  server: 109.69.218.212
-  port: 443
-  uuid: 48d7e2e5-6ddc-434f-a5e5-c53b9e2f6301
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: ns.passwd.space
-  reality-opts:
-    public-key: KfKYcURcfQ207VZCXG4g2cxltWvG2Zk7j3WCjvpa8Sg
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #4'
-  type: vless
-  server: sk.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #5'
-  type: vless
-  server: ftatx5g6dt.cdn.twcstorage.ru
-  port: 443
-  uuid: 56470441-5d85-4266-89f3-c2b5b000c522
-  flow: ''
-  udp: true
-  tls: true
-  servername: ftatx5g6dt.cdn.twcstorage.ru
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
-    headers:
-      Host:
-      - ftatx5g6dt.cdn.twcstorage.ru
-- name: '🇦🇱 XolirX #6'
   type: vless
   server: den.n1etwork.prostosetup.org
   port: 443
@@ -86,47 +42,7 @@ proxies:
     public-key: K1pl5IAOi7N5MUQIvv-35fQcpxgz9uLW5Dv45a2tmRc
     short-id: '50'
   network: tcp
-- name: '🇦🇱 XolirX #7'
-  type: vless
-  server: dk1.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #8'
-  type: vless
-  server: est-def.sbrf-cdn342.ru-j48kv6u3.nike77prime.ru
-  port: 443
-  uuid: 91e120bc-159a-4390-b4e1-197b19602ea0
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #9'
-  type: vless
-  server: 45.131.6.203
-  port: 2083
-  uuid: 091fd4c7-4fec-49b2-a4e9-0000ca857dc3
-  flow: ''
-  udp: true
-  tls: true
-  servername: fr.xuiprospeed.ir
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
-    headers:
-      Host:
-      - fr.xuiprospeed.ir
-- name: '🇦🇱 XolirX #10'
+- name: '🇦🇱 XolirX #4'
   type: vless
   server: 185.207.198.170
   port: 2053
@@ -143,7 +59,7 @@ proxies:
     headers:
       Host:
       - cdn.dns.xn--q9jyb4c
-- name: '🇦🇱 XolirX #11'
+- name: '🇦🇱 XolirX #5'
   type: vless
   server: 193.22.229.35
   port: 2053
@@ -160,7 +76,7 @@ proxies:
     headers:
       Host:
       - cdn.dns.xn--q9jyb4c
-- name: '🇦🇱 XolirX #12'
+- name: '🇦🇱 XolirX #6'
   type: vless
   server: 91.209.253.225
   port: 2053
@@ -177,27 +93,7 @@ proxies:
     headers:
       Host:
       - cdn.dns.xn--q9jyb4c
-- name: '🇦🇱 XolirX #13'
-  type: vless
-  server: fi2.clgate.network
-  port: 443
-  uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
-  flow: ''
-  udp: true
-  tls: true
-  servername: m.twitch.tv
-  reality-opts:
-    public-key: r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM
-    short-id: ''
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
-    headers:
-      Host:
-      - m.twitch.tv
-- name: '🇦🇱 XolirX #14'
+- name: '🇦🇱 XolirX #7'
   type: vless
   server: 151.101.118.95
   port: 443
@@ -214,22 +110,7 @@ proxies:
     headers:
       Host:
       - ovh13.global.ssl.fastly.net
-- name: '🇦🇱 XolirX #15'
-  type: vless
-  server: 146.75.117.91
-  port: 80
-  uuid: InternetAzadRobot
-  flow: ''
-  udp: true
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2FTignal'
-    headers:
-      Host:
-      - tignaltofansv4.global.ssl.fastly.net
-- name: '🇦🇱 XolirX #16'
+- name: '🇦🇱 XolirX #8'
   type: vless
   server: 151.101.128.223
   port: 80
@@ -244,22 +125,7 @@ proxies:
     headers:
       Host:
       - shangulin.global.ssl.fastly.net
-- name: '🇦🇱 XolirX #17'
-  type: vless
-  server: fastly.com
-  port: 80
-  uuid: InternetAzadRobot
-  flow: ''
-  udp: true
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - /login
-    headers:
-      Host:
-      - shangulin.global.ssl.fastly.net
-- name: '🇦🇱 XolirX #18'
+- name: '🇦🇱 XolirX #9'
   type: vless
   server: fr.clgate.network
   port: 443
@@ -275,63 +141,11 @@ proxies:
   http-opts:
     method: GET
     path:
-    - '%2F'
+    - /
     headers:
       Host:
       - m.twitch.tv
-- name: '🇦🇱 XolirX #19'
-  type: vless
-  server: fr2.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #20'
-  type: vless
-  server: fr3.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #21'
-  type: vless
-  server: fr4.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #22'
-  type: vless
-  server: fr5.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #23'
+- name: '🇦🇱 XolirX #10'
   type: vless
   server: 95.182.97.249
   port: 443
@@ -343,35 +157,7 @@ proxies:
     path: '%2F'
     headers:
       Host: ''
-- name: '🇦🇱 XolirX #24'
-  type: vless
-  server: 170.114.46.28
-  port: 443
-  uuid: c8e2ba30-a6de-4660-8c62-5bf5cc9318f3
-  flow: ''
-  udp: true
-  tls: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: enquiries-commands-div-medal.trycloudflare.com
-- name: '🇦🇱 XolirX #25'
-  type: vless
-  server: down.spectrumproxy.shop
-  port: 443
-  uuid: 76713d07-5a6b-49c2-abd8-bc450a2fa7fc
-  flow: ''
-  udp: true
-  tls: true
-  servername: down.spectrumproxy.shop
-  reality-opts:
-    public-key: ckd_LwbbFo8BYf9vT84B20P6EL1n6vl2yMxoXc6X4SA
-    short-id: a1c1d7e2f9b3
-  network: grpc
-  grpc-opts:
-    grpc-service-name: vless
-- name: '🇦🇱 XolirX #26'
+- name: '🇦🇱 XolirX #11'
   type: vless
   server: 72.56.59.177
   port: 22231
@@ -381,7 +167,7 @@ proxies:
   tls: true
   servername: r1.mizulina.top
   network: tcp
-- name: '🇦🇱 XolirX #27'
+- name: '🇦🇱 XolirX #12'
   type: vless
   server: 72.56.59.223
   port: 22231
@@ -391,30 +177,17 @@ proxies:
   tls: true
   servername: r1.mizulina.top
   network: tcp
-- name: '🇦🇱 XolirX #28'
+- name: '🇦🇱 XolirX #13'
   type: vless
   server: 72.56.59.254
   port: 22231
   uuid: afcac633-0e1a-46c3-bef2-cc01cc0097c8
-  flow: xtls-rprx-vision-udp443
+  flow: xtls-rprx-vision
   udp: true
   tls: true
   servername: r1.mizulina.top
   network: tcp
-- name: '🇦🇱 XolirX #29'
-  type: vless
-  server: de10.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #30'
+- name: '🇦🇱 XolirX #14'
   type: vless
   server: bero-2.bexum.fun
   port: 9443
@@ -424,7 +197,7 @@ proxies:
   tls: true
   servername: bero-2.bexum.fun
   network: tcp
-- name: '🇦🇱 XolirX #31'
+- name: '🇦🇱 XolirX #15'
   type: vless
   server: bero-3.bexum.fun
   port: 9443
@@ -434,7 +207,22 @@ proxies:
   tls: true
   servername: bero-3.bexum.fun
   network: tcp
-- name: '🇦🇱 XolirX #32'
+- name: '🇦🇱 XolirX #16'
+  type: vless
+  server: fastly.com
+  port: 80
+  uuid: InternetAzadRobot
+  flow: ''
+  udp: true
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - '%2Flogin'
+    headers:
+      Host:
+      - tignalz.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #17'
   type: vless
   server: 5.231.202.95
   port: 443
@@ -447,7 +235,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #33'
+- name: '🇦🇱 XolirX #18'
   type: vless
   server: 5.230.219.87
   port: 443
@@ -460,7 +248,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #34'
+- name: '🇦🇱 XolirX #19'
   type: vless
   server: 208.103.161.101
   port: 443
@@ -474,7 +262,7 @@ proxies:
     path: '%2F'
     headers:
       Host: konkoriazmono.konkuriran.sbs
-- name: '🇦🇱 XolirX #35'
+- name: '🇦🇱 XolirX #20'
   type: vless
   server: de-on-demand.not-a-projects.xyz
   port: 47518
@@ -482,7 +270,7 @@ proxies:
   flow: ''
   udp: true
   network: tcp
-- name: '🇦🇱 XolirX #36'
+- name: '🇦🇱 XolirX #21'
   type: vless
   server: 37.46.18.128
   port: 443
@@ -495,32 +283,7 @@ proxies:
     public-key: rKwAJxz4TAUYnvaGiTCsS1DrtYg-WhPreh-GvtDXwmw
     short-id: 8feda7fefa82
   network: tcp
-- name: '🇦🇱 XolirX #37'
-  type: vless
-  server: 78.17.85.226
-  port: 443
-  uuid: 579d8b84-5016-4ae8-bb84-f99bd9a6de99
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.googletagmanager.com
-  reality-opts:
-    public-key: MylliFqQZZ0ShMq1NfcfJYKhuvWtKA744y0hXPs-A0k
-    short-id: 3e79cd3484f19033
-  network: tcp
-- name: '🇦🇱 XolirX #38'
-  type: vless
-  server: 78.17.100.107.blanesik.space
-  port: 443
-  uuid: ee0dceba-05e2-4212-a794-fc955f3a3027
-  flow: ''
-  udp: true
-  tls: true
-  servername: 78.17.100.107.blanesik.space
-  network: grpc
-  grpc-opts:
-    grpc-service-name: '%2Fsequre%2Fgrpc'
-- name: '🇦🇱 XolirX #39'
+- name: '🇦🇱 XolirX #22'
   type: vless
   server: ger-nnn.prostosetup.org
   port: 443
@@ -533,20 +296,7 @@ proxies:
     public-key: y3ZMu-ium5mBqE_h3xJ66vT0Z6HCIlTDti9emCQjDjw
     short-id: bcb6b0217a1206b3
   network: tcp
-- name: '🇦🇱 XolirX #40'
-  type: vless
-  server: de8.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #41'
+- name: '🇦🇱 XolirX #23'
   type: vless
   server: 198.105.115.100
   port: 81
@@ -556,7 +306,7 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: gprc
-- name: '🇦🇱 XolirX #42'
+- name: '🇦🇱 XolirX #24'
   type: vless
   server: probabblynot.fazelextremeisreal.com
   port: 29870
@@ -569,7 +319,7 @@ proxies:
     public-key: cWrLzTqWRYMQq8vsgN7rHtUxrDdqxDLNEWAuo_eXlRU
     short-id: 821863f0
   network: tcp
-- name: '🇦🇱 XolirX #43'
+- name: '🇦🇱 XolirX #25'
   type: vless
   server: 194.58.41.65-uhe66vr6.nike77prime.ru
   port: 443
@@ -584,7 +334,7 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: GrpcFuckRKN
-- name: '🇦🇱 XolirX #44'
+- name: '🇦🇱 XolirX #26'
   type: vless
   server: 194.58.41.65
   port: 443
@@ -599,60 +349,58 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: GrpcFuckRKN
-- name: '🇦🇱 XolirX #45'
+- name: '🇦🇱 XolirX #27'
   type: vless
-  server: 64.188.69.120
+  server: 165.215.250.12
   port: 443
-  uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
+  uuid: Telegram-Parsashonam-2
   flow: ''
   udp: true
   tls: true
-  servername: m.twitch.tv
-  reality-opts:
-    public-key: r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM
-    short-id: ''
+  servername: p4r34m.hendevaneh.sbs
   network: http
   http-opts:
     method: GET
     path:
-    - '%2F'
+    - /p4r34m
     headers:
       Host:
-      - m.twitch.tv
-- name: '🇦🇱 XolirX #46'
+      - p4r34m.hendevaneh.sbs
+- name: '🇦🇱 XolirX #28'
   type: vless
-  server: de.clgate.network
+  server: 208.103.161.101
   port: 443
-  uuid: f4bad870-4b45-4a46-bec6-d05fa31df1cb
+  uuid: Telegram-Parsashonam-2
   flow: ''
   udp: true
   tls: true
-  servername: m.twitch.tv
-  reality-opts:
-    public-key: r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM
-    short-id: ''
+  servername: p4r34m.hendevaneh.sbs
   network: http
   http-opts:
     method: GET
     path:
-    - '%2F'
+    - /p4r34m
     headers:
       Host:
-      - m.twitch.tv
-- name: '🇦🇱 XolirX #47'
+      - p4r34m.hendevaneh.sbs
+- name: '🇦🇱 XolirX #29'
   type: vless
-  server: 159.195.65.131
-  port: 8443
-  uuid: 9ee79303-e095-40f5-8fb8-363d87e90465
-  flow: xtls-rprx-vision
+  server: 27.50.48.49
+  port: 443
+  uuid: Telegram-Parsashonam-2
+  flow: ''
   udp: true
   tls: true
-  servername: fastsync.xyz
-  reality-opts:
-    public-key: FQ-t1B16UdR6QYZyfYRf9PrD5JoEeCrkgRfM-doG4zY
-    short-id: 1bc9bcde4b1ef645
-  network: tcp
-- name: '🇦🇱 XolirX #48'
+  servername: p4r34m.hendevaneh.sbs
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - /p4r34m
+    headers:
+      Host:
+      - p4r34m.hendevaneh.sbs
+- name: '🇦🇱 XolirX #30'
   type: vless
   server: 2.27.59.11
   port: 444
@@ -671,58 +419,7 @@ proxies:
     headers:
       Host:
       - ''
-- name: '🇦🇱 XolirX #49'
-  type: vless
-  server: 165.215.250.12
-  port: 443
-  uuid: Telegram-Parsashonam-2
-  flow: ''
-  udp: true
-  tls: true
-  servername: p4r34m.hendevaneh.sbs
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - /p4r34m
-    headers:
-      Host:
-      - p4r34m.hendevaneh.sbs
-- name: '🇦🇱 XolirX #50'
-  type: vless
-  server: 208.103.161.101
-  port: 443
-  uuid: Telegram-Parsashonam-2
-  flow: ''
-  udp: true
-  tls: true
-  servername: p4r34m.hendevaneh.sbs
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - /p4r34m
-    headers:
-      Host:
-      - p4r34m.hendevaneh.sbs
-- name: '🇦🇱 XolirX #51'
-  type: vless
-  server: 27.50.48.49
-  port: 443
-  uuid: Telegram-Parsashonam-2
-  flow: ''
-  udp: true
-  tls: true
-  servername: p4r34m.hendevaneh.sbs
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - /p4r34m
-    headers:
-      Host:
-      - p4r34m.hendevaneh.sbs
-- name: '🇦🇱 XolirX #52'
+- name: '🇦🇱 XolirX #31'
   type: vless
   server: 47.82.87.196
   port: 50724
@@ -730,77 +427,47 @@ proxies:
   flow: ''
   udp: true
   network: tcp
-- name: '🇦🇱 XolirX #53'
+- name: '🇦🇱 XolirX #32'
   type: vless
-  server: 8.217.34.150
-  port: 56592
-  uuid: 6b39c5a5-9272-41f4-87a9-0776c453380c
+  server: s5.db-link.in
+  port: 17820
+  uuid: 75d4d24d-ba8d-3676-a5c6-edd6ea6dbfb6
   flow: ''
   udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #54'
+  tls: true
+  servername: 48afa0c5c9.shopify.com
+  network: ws
+  ws-opts:
+    path: '%2Fdb102448afa0c5c9fp%3Dchrome'
+    headers:
+      Host: 48afa0c5c9.shopify.com
+- name: '🇦🇱 XolirX #33'
   type: vless
-  server: 151.242.180.16
-  port: 1388
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
+  server: zzjp2.ainivp.com
+  port: 13102
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
   flow: xtls-rprx-vision
   udp: true
   tls: true
   servername: www.microsoft.com
   reality-opts:
-    public-key: GFdGI4Tz71M0pRB5HHxXqlVJkl0MXVVWlwSPZjWPCQc
-    short-id: 57ec6c40c3485e7d
+    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
+    short-id: a1b2c3d4
   network: tcp
-- name: '🇦🇱 XolirX #55'
+- name: '🇦🇱 XolirX #34'
   type: vless
-  server: 151.242.180.17
-  port: 1012
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
+  server: zzjp2.ainivp.com
+  port: 13103
+  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
   flow: xtls-rprx-vision
   udp: true
   tls: true
-  servername: www.swift.org
+  servername: www.microsoft.com
   reality-opts:
-    public-key: 5EHz0oHFFDetx4BLL9Hfof7ndpDd1tOyvdEJqtdjAjE
-    short-id: d2da5f785cb2e320
+    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
+    short-id: a1b2c3d4
   network: tcp
-- name: '🇦🇱 XolirX #56'
-  type: vless
-  server: 8.218.24.35
-  port: 443
-  uuid: rootface
-  flow: ''
-  udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #57'
-  type: vless
-  server: 45.88.183.64
-  port: 8443
-  uuid: b6ce8a51-19b9-4979-91ba-b4298c26d5fc
-  flow: ''
-  udp: true
-  tls: true
-  servername: cdn.kwork.com
-  reality-opts:
-    public-key: J07yFEBPsic7-hLTS2KSxVqI7v4gpfkG6_a2cGKNVFk
-    short-id: 10f786a2491b2cd5
-  network: grpc
-  grpc-opts:
-    grpc-service-name: buysec.ru
-- name: '🇦🇱 XolirX #58'
-  type: vless
-  server: it2.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #59'
+- name: '🇦🇱 XolirX #35'
   type: vless
   server: 142.91.109.84
   port: 443
@@ -813,7 +480,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #60'
+- name: '🇦🇱 XolirX #36'
   type: vless
   server: 185.141.219.110
   port: 28507
@@ -821,7 +488,20 @@ proxies:
   flow: ''
   udp: true
   network: tcp
-- name: '🇦🇱 XolirX #61'
+- name: '🇦🇱 XolirX #37'
+  type: vless
+  server: awsjkjp1.fatdns.net
+  port: 443
+  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
+  flow: xtls-rprx-vision
+  udp: true
+  tls: true
+  servername: www.microsoft.com
+  reality-opts:
+    public-key: DMI4HDEDUuIXEFgl1CP9-ixFUV4pAHyZ2Eb1fxISHiE
+    short-id: b770caca095918e8
+  network: tcp
+- name: '🇦🇱 XolirX #38'
   type: vless
   server: 38.107.234.187
   port: 443
@@ -834,7 +514,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #62'
+- name: '🇦🇱 XolirX #39'
   type: vless
   server: srv143.towersflowerss.com
   port: 443
@@ -843,10 +523,10 @@ proxies:
   udp: true
   network: ws
   ws-opts:
-    path: /
+    path: '%2F'
     headers:
       Host: ''
-- name: '🇦🇱 XolirX #63'
+- name: '🇦🇱 XolirX #40'
   type: vless
   server: 185.81.128.148
   port: 443
@@ -859,7 +539,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #64'
+- name: '🇦🇱 XolirX #41'
   type: vless
   server: 185.81.128.86
   port: 443
@@ -872,7 +552,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #65'
+- name: '🇦🇱 XolirX #42'
   type: vless
   server: 185.81.128.98
   port: 443
@@ -885,20 +565,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #66'
-  type: vless
-  server: lt1.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #67'
+- name: '🇦🇱 XolirX #43'
   type: vless
   server: 91.224.75.185
   port: 443
@@ -911,111 +578,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #68'
-  type: vless
-  server: 151.242.191.161
-  port: 443
-  uuid: 301d514e-4aa0-47b0-ba44-a0cb891cd52f
-  flow: ''
-  udp: true
-  tls: true
-  servername: www.samsung.com
-  reality-opts:
-    public-key: OZVjfQBboTDTBw0baMFqzVPsVUI4FNQmspTEb0b0zW4
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #69'
-  type: vless
-  server: 54.169.41.167
-  port: 2053
-  uuid: 2769bf4b-a544-48e1-aa54-79009b7d7c84
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: GpHzN1TJ6CAvtCHSTNUOhjXyJPn8kFTNd_n7Swu3_wA
-    short-id: 81f8fc3f
-  network: tcp
-- name: '🇦🇱 XolirX #70'
-  type: vless
-  server: kraws.xiaobaivpn.icu
-  port: 28004
-  uuid: 2769bf4b-a544-48e1-aa54-79009b7d7c84
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.apple.com
-  reality-opts:
-    public-key: PRZbJ2SfQSaWIvIOZPDTvs6Y9Sd9ZKmwyn0_u4REalg
-    short-id: 1edec095
-  network: tcp
-- name: '🇦🇱 XolirX #71'
-  type: vless
-  server: awsjkkr1.fatdns.net
-  port: 443
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: S3jj9llw2o4WOZfcA7k-yJKZ6Rk2-3kMaq94lHI-QlU
-    short-id: 18f7deb962678613
-  network: tcp
-- name: '🇦🇱 XolirX #72'
-  type: vless
-  server: sw2.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #73'
-  type: vless
-  server: sw3.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #74'
-  type: vless
-  server: sw4.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #75'
-  type: vless
-  server: 45.85.93.51
-  port: 443
-  uuid: 301d514e-4aa0-47b0-ba44-a0cb891cd52f
-  flow: ''
-  udp: true
-  tls: true
-  servername: www.samsung.com
-  reality-opts:
-    public-key: OZVjfQBboTDTBw0baMFqzVPsVUI4FNQmspTEb0b0zW4
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #76'
+- name: '🇦🇱 XolirX #44'
   type: vless
   server: gtrhlntyi0p5.hosted-in.iranray.online
   port: 2052
@@ -1030,7 +593,7 @@ proxies:
     headers:
       Host:
       - 54jIATfdWFqPmXO93BXl5x.ch4.node.tnw.of.to
-- name: '🇦🇱 XolirX #77'
+- name: '🇦🇱 XolirX #45'
   type: vless
   server: sffrddo5rybf.hosted-in.iranray.online
   port: 2052
@@ -1045,7 +608,7 @@ proxies:
     headers:
       Host:
       - 6lSgiOjDyzd2Rxz15FFDMW.ch3.node.tnw.of.to
-- name: '🇦🇱 XolirX #78'
+- name: '🇦🇱 XolirX #46'
   type: vless
   server: wvjtyz99v0zo.hosted-in.iranray.online
   port: 2052
@@ -1060,30 +623,7 @@ proxies:
     headers:
       Host:
       - Ak2JwMMmByEmcnYFEiu7Hs.ch3.node.tnw.of.to
-- name: '🇦🇱 XolirX #79'
-  type: vless
-  server: ch1.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #80'
-  type: vless
-  server: 5.253.31.13
-  port: 443
-  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #81'
+- name: '🇦🇱 XolirX #47'
   type: vless
   server: 199.232.57.91
   port: 80
@@ -1095,19 +635,22 @@ proxies:
     path: /
     headers:
       Host: FIjjI.gloBal.sSl.faStly.NeT.
-- name: '🇦🇱 XolirX #82'
+- name: '🇦🇱 XolirX #48'
   type: vless
-  server: 199.232.57.91
+  server: 151.101.9.194
   port: 80
-  uuid: 942469ee-7f8e-443d-bfd2-4f8b1faa5970
+  uuid: df7da790-6a11-4ee3-b92b-27411f53d66f
   flow: ''
   udp: true
-  network: ws
-  ws-opts:
-    path: '%2F'
+  network: http
+  http-opts:
+    method: GET
+    path:
+    - /@v2raydia--@v2raydia--@v2raydia--@v2raydia--@v2raydia--@v2raydia--@v2raydia--@v2raydia--@v2raydia--@v2raydia
     headers:
-      Host: Api.nHl14.iR.
-- name: '🇦🇱 XolirX #83'
+      Host:
+      - v2raydia.global.ssl.fastly.net
+- name: '🇦🇱 XolirX #49'
   type: vless
   server: nl-3.bexum.fun
   port: 443
@@ -1117,164 +660,21 @@ proxies:
   tls: true
   servername: nl-3.bexum.fun
   network: tcp
-- name: '🇦🇱 XolirX #84'
+- name: '🇦🇱 XolirX #50'
   type: vless
-  server: 37.49.229.87
+  server: 198.62.62.229
   port: 443
-  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #85'
-  type: vless
-  server: nl-tx.sbrf-cdn342.ru
-  port: 443
-  uuid: 01ea3b87-b7b1-4aef-b24a-9c43fbd3b26f
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: sub.sbrf-cdn342.ru
-  network: tcp
-- name: '🇦🇱 XolirX #86'
-  type: vless
-  server: nl3.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #87'
-  type: vless
-  server: nl4.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #88'
-  type: vless
-  server: nl5.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #89'
-  type: vless
-  server: nl6.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #90'
-  type: vless
-  server: 95.140.158.82
-  port: 443
-  uuid: ea484535-0170-4ec8-bb3c-a9dbaa7412d7
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: cdp.x5.ru
-  reality-opts:
-    public-key: GsKY4XpP6sr905aHvCrj0JEHhgcAD5aEcmbjyLSNjAU
-    short-id: 8ae24275272f
-  network: tcp
-- name: '🇦🇱 XolirX #91'
-  type: vless
-  server: g2.steptofreedom.one
-  port: 443
-  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: g2.steptofreedom.one
-  reality-opts:
-    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
-    short-id: 6d6f13013d3e1d0c
-  network: tcp
-- name: '🇦🇱 XolirX #92'
-  type: vless
-  server: g3.steptofreedom.one
-  port: 443
-  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: g3.steptofreedom.one
-  reality-opts:
-    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
-    short-id: 6d6f13013d3e1d0c
-  network: tcp
-- name: '🇦🇱 XolirX #93'
-  type: vless
-  server: msk.steptofreedom.one
-  port: 443
-  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: msk.steptofreedom.one
-  reality-opts:
-    public-key: QHkXBS2ENHV0khgY9VBYi8_9bpfqnUYDcfQN4cW5Qg0
-    short-id: '4326'
-  network: tcp
-- name: '🇦🇱 XolirX #94'
-  type: vless
-  server: nider01.lumixvpn.org
-  port: 443
-  uuid: 107d9e9e-5634-44ef-a90b-c5118832fae6
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: nider01.lumixvpn.org
-  reality-opts:
-    public-key: IQ3026lP53IQEqYiIqQXhyImHFt9VbPRDGOcFDTVmD4
-    short-id: ac956cdfcdbc35af
-  network: tcp
-- name: '🇦🇱 XolirX #95'
-  type: vless
-  server: 31.59.39.210
-  port: 444
-  uuid: 2f26f4ba-cf36-4720-b8ff-2e4038c2c8f9
+  uuid: v2raydia
   flow: ''
   udp: true
   tls: true
-  servername: dc1.not-a-projects.xyz
-  reality-opts:
-    public-key: ETus3kZBv7feaOnuNWL_iUh4wTEes4vRYmB8DWO5FBs
-    short-id: ''
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
+  servername: wIn.CcNnx.IR
+  network: ws
+  ws-opts:
+    path: /@v2raydia
     headers:
-      Host:
-      - ''
-- name: '🇦🇱 XolirX #96'
+      Host: wIn.CcNnx.IR
+- name: '🇦🇱 XolirX #51'
   type: vless
   server: nl-u16.vpn-port.com
   port: 443
@@ -1289,20 +689,44 @@ proxies:
   network: grpc
   grpc-opts:
     grpc-service-name: ''
-- name: '🇦🇱 XolirX #97'
+- name: '🇦🇱 XolirX #52'
   type: vless
-  server: 80.89.237.87
+  server: 185.209.30.49
   port: 443
-  uuid: Fluffy_VPN-uQuRPvrt
+  uuid: 4e10bc3d-49d8-41c6-8fcc-e0c7a0ff1fc8
   flow: xtls-rprx-vision
   udp: true
   tls: true
-  servername: very-mega-best.top
+  servername: ancient-dream.falling-buterfly.ru
   reality-opts:
-    public-key: yYOCEJEfnwByiWiiSNeCMhRqmViAhavOp8QaGWHx6VI
-    short-id: ''
+    public-key: itFJL5oJVNl9sYCfhF0wuHpTjMgmF56-aOS_Zl2uBzQ
+    short-id: a86f17145680b26a
   network: tcp
-- name: '🇦🇱 XolirX #98'
+- name: '🇦🇱 XolirX #53'
+  type: vless
+  server: pipi.runawaygablo.site
+  port: 46104
+  uuid: '%40Vaslbashi'
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: ''
+- name: '🇦🇱 XolirX #54'
+  type: vless
+  server: 12.manfoortt.site
+  port: 8880
+  uuid: c282d8e5-61b4-4fd2-a3ef-6e9ea26b1a29
+  flow: ''
+  udp: true
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: 12.manfoortt.site
+- name: '🇦🇱 XolirX #55'
   type: vless
   server: 185.255.95.247
   port: 27265
@@ -1314,7 +738,7 @@ proxies:
     path: '%2Fws'
     headers:
       Host: 185.255.95.247
-- name: '🇦🇱 XolirX #99'
+- name: '🇦🇱 XolirX #56'
   type: vless
   server: uae.sbrf-cdn342.ru
   port: 443
@@ -1324,49 +748,22 @@ proxies:
   tls: true
   servername: sub.sbrf-cdn342.ru
   network: tcp
-- name: '🇦🇱 XolirX #100'
+- name: '🇦🇱 XolirX #57'
   type: vless
-  server: gb1.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
+  server: l7.l-itx.info
+  port: 7443
+  uuid: 5da05cf7-9913-45a9-a7c6-71a41b1cd713
+  flow: ''
   udp: true
   tls: true
-  servername: fi1-cosmostechnology.ru
+  servername: colorlib.com
   reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #101'
-  type: vless
-  server: 194.53.53.174
-  port: 443
-  uuid: c168fde7-9306-4c71-b1c7-a31b255df61e
-  flow: ''
-  udp: true
-  tls: true
-  network: ws
-  ws-opts:
-    path: /bslife
-    headers:
-      Host: employer-procurement-professional-tips.trycloudflare.com
-- name: '🇦🇱 XolirX #102'
-  type: vless
-  server: 77.110.124.100
-  port: 80
-  uuid: e3c68e9e-5bf3-4e4b-abac-806053baa43a
-  flow: ''
-  udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #103'
-  type: vless
-  server: uss.mynethub99.top
-  port: 80
-  uuid: e3c68e9e-5bf3-4e4b-abac-806053baa43a
-  flow: ''
-  udp: true
-  network: tcp
-- name: '🇦🇱 XolirX #104'
+    public-key: F2MKDw5CCtP1oXIej2EgNxB01k3eyNu7tKCFfucgnRA
+    short-id: 6ba85179e30d4fc3
+  network: grpc
+  grpc-opts:
+    grpc-service-name: xyz
+- name: '🇦🇱 XolirX #58'
   type: vless
   server: 216.234.141.24
   port: 443
@@ -1379,7 +776,7 @@ proxies:
     public-key: UtL7E0Gmxj3X5JdcPAutpTRKo7K2hugkR0vwk2XroUM
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #105'
+- name: '🇦🇱 XolirX #59'
   type: vless
   server: 162.210.197.238
   port: 443
@@ -1392,111 +789,7 @@ proxies:
     public-key: G2i-nsQgWiVf52tdCUV-G_VeuCJ3hggwDnTaEAgvg0Y
     short-id: ''
   network: tcp
-- name: '🇦🇱 XolirX #106'
-  type: vless
-  server: awsjkus1.fatdns.net
-  port: 443
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: s0.awsstatic.com
-  reality-opts:
-    public-key: 4TOzQ_zVYIDrpwWFYnyyiyd7_Fl-lPAH1Afqq9_X82Y
-    short-id: 093d398addb22462
-  network: tcp
-- name: '🇦🇱 XolirX #107'
-  type: vless
-  server: ct1.fi1-cosmostechnology.ru
-  port: 443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: fi1-cosmostechnology.ru
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #108'
-  type: vless
-  server: 31.58.50.8
-  port: 8443
-  uuid: 6a4f00c8-22b4-44e2-83e7-f80db3432b6d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.google.com
-  reality-opts:
-    public-key: N0QyBaacGqSpRv_Ib4jsSx5A1kfE8IE1w0HcDB5w1BE
-    short-id: ''
-  network: tcp
-- name: '🇦🇱 XolirX #109'
-  type: vless
-  server: us30.hy2use.net
-  port: 443
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: cdnjs.cloudflare.com
-  reality-opts:
-    public-key: JrWOojSFwFA93YjsiQkDydTItQzNAsXsHU24HuWGWjA
-    short-id: bc8e3658db7d1323
-  network: tcp
-- name: '🇦🇱 XolirX #110'
-  type: vless
-  server: us31.hy2use.net
-  port: 443
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: cdnjs.cloudflare.com
-  reality-opts:
-    public-key: JrWOojSFwFA93YjsiQkDydTItQzNAsXsHU24HuWGWjA
-    short-id: bc8e3658db7d1323
-  network: tcp
-- name: '🇦🇱 XolirX #111'
-  type: vless
-  server: us67.hy2use.net
-  port: 443
-  uuid: d49a85d5-aa2a-3b1f-843c-bc49be359e2d
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: cdnjs.cloudflare.com
-  reality-opts:
-    public-key: JrWOojSFwFA93YjsiQkDydTItQzNAsXsHU24HuWGWjA
-    short-id: bc8e3658db7d1323
-  network: tcp
-- name: '🇦🇱 XolirX #112'
-  type: vless
-  server: us01.lumixvpn.org
-  port: 443
-  uuid: 107d9e9e-5634-44ef-a90b-c5118832fae6
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: us01.lumixvpn.org
-  reality-opts:
-    public-key: Y4TRkvxDmVR_iIvCTHiixPYnkHVYxMI4d2P5HsXnaBk
-    short-id: 06341ef4c0fb6507
-  network: tcp
-- name: '🇦🇱 XolirX #113'
-  type: vless
-  server: zzhk5.ainivp.com
-  port: 13414
-  uuid: 9204afcd-026e-781f-1abc-c03efabd1344
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: www.microsoft.com
-  reality-opts:
-    public-key: epgveXEcUs0sbs4jV_1KldTkZGnWUHfMKcs0XNyP41Y
-    short-id: a1b2c3d4
-  network: tcp
-- name: '🇦🇱 XolirX #114'
+- name: '🇦🇱 XolirX #60'
   type: vless
   server: gwapp-ru01.freenets.store
   port: 443
@@ -1506,96 +799,19 @@ proxies:
   tls: true
   servername: gwapp-ru01.freenets.store
   network: tcp
-- name: '🇦🇱 XolirX #115'
+- name: '🇦🇱 XolirX #62'
   type: vless
-  server: 45.8.228.151
-  port: 8443
-  uuid: 81bc17b1-f73d-419c-a50b-9e2a4d255dfb
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: 5post-gate.x5.ru
-  reality-opts:
-    public-key: Rlb99ydpycac_s2tI6Q3FgYBGDURCD0JER9Y7xewJG8
-    short-id: 0883707f5384
-  network: tcp
-- name: '🇦🇱 XolirX #116'
-  type: vless
-  server: 50.62.198.124
-  port: 2083
-  uuid: 091fd4c7-4fec-49b2-a4e9-0000ca857dc3
-  flow: ''
-  udp: true
-  tls: true
-  servername: AR2.xuiprospeed.ir
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
-    headers:
-      Host:
-      - AR2.xuiprospeed.ir
-- name: '🇦🇱 XolirX #117'
-  type: vless
-  server: 50.62.198.124
-  port: 2083
-  uuid: 7955fe9b-0773-4b83-89ee-8dc85bab1372
-  flow: ''
-  udp: true
-  tls: true
-  servername: AR2.xuiprospeed.ir
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - /
-    headers:
-      Host:
-      - AR2.xuiprospeed.ir
-- name: '🇦🇱 XolirX #118'
-  type: vless
-  server: 194.180.189.194
+  server: 78.17.100.107.blanesik.space
   port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
+  uuid: ee0dceba-05e2-4212-a794-fc955f3a3027
   flow: ''
   udp: true
   tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #119'
-  type: vless
-  server: 160.16.91.248
-  port: 8443
-  uuid: 26524cce-d514-4014-a426-365fb266a14d
-  flow: ''
-  udp: true
-  tls: true
-  servername: i8dxb.media-cdn-us.chinav.indevs.in
-  network: ws
-  ws-opts:
-    path: '%2Fdanfeng-lo9ew8-vfksib-hwrl-84fg5mvlfp%3Dfirefox'
-    headers:
-      Host: i8dxb.media-cdn-us.chinav.indevs.in
-- name: '🇦🇱 XolirX #123'
-  type: vless
-  server: 208.103.161.5
-  port: 443
-  uuid: d042a74a-c305-4eec-a89f-39a348022c92
-  flow: ''
-  udp: true
-  tls: true
-  servername: dry-butterfly-8eb9.tmpgnacio83.workers.dev
-  network: ws
-  ws-opts:
-    path: '%2F'
-    headers:
-      Host: dry-butterfly-8eb9.tmpgnacio83.workers.dev
-- name: '🇦🇱 XolirX #124'
+  servername: 78.17.100.107.blanesik.space
+  network: grpc
+  grpc-opts:
+    grpc-service-name: '%2Fsequre%2Fgrpc'
+- name: '🇦🇱 XolirX #63'
   type: vless
   server: fvfefb6ssifr.hosted-in.iranray.online
   port: 2095
@@ -1610,63 +826,7 @@ proxies:
     headers:
       Host:
       - 5P0NzUISagCYRAUvPPBzRc.ch3.node.tnw.of.to
-- name: '🇦🇱 XolirX #125'
-  type: vless
-  server: 92.42.96.240
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #127'
-  type: vless
-  server: 81.95.4.189
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #130'
-  type: vless
-  server: 88.218.77.234
-  port: 8443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #131'
-  type: vless
-  server: 5.144.181.240
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #132'
+- name: '🇦🇱 XolirX #65'
   type: vless
   server: ru.washing.help
   port: 8443
@@ -1676,728 +836,7 @@ proxies:
   tls: true
   servername: ru.washing.help
   network: tcp
-- name: '🇦🇱 XolirX #133'
-  type: vless
-  server: 208.103.161.76
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #134'
-  type: vless
-  server: 50.62.198.124
-  port: 443
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  flow: ''
-  udp: true
-  tls: true
-  servername: jp.aniua.qzz.io
-  network: ws
-  ws-opts:
-    path: '%2F'
-    headers:
-      Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #135'
-  type: vless
-  server: 81.255.155.10-3s88hsau.nike77prime.ru
-  port: 443
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  flow: ''
-  udp: true
-  tls: true
-  servername: jp.aniua.qzz.io
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #137'
-  type: vless
-  server: 221.156.190.19
-  port: 10443
-  uuid: 26524cce-d514-4014-a426-365fb266a14d
-  flow: ''
-  udp: true
-  tls: true
-  servername: i8dxb.media-cdn-us.chinav.indevs.in
-  network: ws
-  ws-opts:
-    path: '%2Fdanfeng-lo9ew8-vfksib-hwrl-84fg5mvl'
-    headers:
-      Host: i8dxb.media-cdn-us.chinav.indevs.in
-- name: '🇦🇱 XolirX #139'
-  type: vless
-  server: 103.116.7.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: vms.lifetime35.workers.dev
-- name: '🇦🇱 XolirX #140'
-  type: vless
-  server: 104.129.164.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fhttps%3A%2F%2Ft.me%2FYouTube%40%E5%B0%8F%E9%9D%92%E7%A7%91%E5%AD%A6%E7%BD%91%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime40.workers.dev
-- name: '🇦🇱 XolirX #142'
-  type: vless
-  server: 104.238.71.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: vms.lifetime51.workers.dev
-- name: '🇦🇱 XolirX #143'
-  type: vless
-  server: 154.194.0.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F'
-    headers:
-      Host: vms.lifetime34.workers.dev
-- name: '🇦🇱 XolirX #144'
-  type: vless
-  server: 154.197.121.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F'
-    headers:
-      Host: vms.lifetime42.workers.dev
-- name: '🇦🇱 XolirX #145'
-  type: vless
-  server: 154.206.12.40
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2Fyoutube%40ZYFXS%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime44.workers.dev
-- name: '🇦🇱 XolirX #146'
-  type: vless
-  server: 160.153.138.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: vms.lifetime04.workers.dev
-- name: '🇦🇱 XolirX #148'
-  type: vless
-  server: 192.169.222.40
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2Fyoutube%40ZYFXS%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime40.workers.dev
-- name: '🇦🇱 XolirX #150'
-  type: vless
-  server: 50.62.175.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F'
-    headers:
-      Host: vms.lifetime36.workers.dev
-- name: '🇦🇱 XolirX #151'
-  type: vless
-  server: 62.72.166.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: vms.lifetime40.workers.dev
-- name: '🇦🇱 XolirX #152'
-  type: vless
-  server: 66.225.252.40
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2Fyoutube%40ZYFXS%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime46.workers.dev
-- name: '🇦🇱 XolirX #153'
-  type: vless
-  server: 208.103.161.172
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #154'
-  type: vless
-  server: 208.103.161.178
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #155'
-  type: vless
-  server: 208.103.161.67
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #156'
-  type: vless
-  server: 208.103.161.82
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #157'
-  type: vless
-  server: 208.103.161.138
-  port: 2096
-  uuid: Telegram%2525252525252525252525252525252525252525F0%25252525252525252525252525252525252525259F%252525252525252525252525252525252525252587%2525252525252525252525252525252525252525A8%2525252525252525252525252525252525252525F0%25252525252525252525252525252525252525259F%252525252525252525252525252525252525252587%2525252525252525252525252525252525252525B3%252525252525252525252525252525252525252520%252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #158'
-  type: vless
-  server: 208.103.161.186
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525A8%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525B3%25252525252525252525252525252525252520%25252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #159'
-  type: vless
-  server: 208.103.161.209
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525A8%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525B3%25252525252525252525252525252525252520%25252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #160'
-  type: vless
-  server: 208.103.161.236
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525A8%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525B3%25252525252525252525252525252525252520%25252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #161'
-  type: vless
-  server: 208.103.161.0
-  port: 2096
-  uuid: Telegram%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525A8%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525B3%252525252525252525252525252525252520%252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #162'
-  type: vless
-  server: 208.103.161.141
-  port: 2096
-  uuid: Telegram%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525A8%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525B3%252525252525252525252525252525252520%252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #163'
-  type: vless
-  server: 208.103.161.190
-  port: 2096
-  uuid: Telegram%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525A8%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525B3%252525252525252525252525252525252520%252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #168'
-  type: vless
-  server: 46.17.101.133
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #169'
-  type: vless
-  server: 46.17.97.176
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #170'
-  type: vless
-  server: 77.246.108.130
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #171'
-  type: vless
-  server: 89.150.35.129
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #172'
-  type: vless
-  server: 20.229.252.162
-  port: 443
-  uuid: 26524cce-d514-4014-a426-365fb266a14d
-  flow: ''
-  udp: true
-  tls: true
-  servername: i8dxb.media-cdn-us.chinav.indevs.in
-  network: ws
-  ws-opts:
-    path: '%2Fdanfeng-lo9ew8-vfksib-hwrl-84fg5mvlfp%3Dfirefox'
-    headers:
-      Host: i8dxb.media-cdn-us.chinav.indevs.in
-- name: '🇦🇱 XolirX #174'
-  type: vless
-  server: 185.244.218.189
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #175'
-  type: vless
-  server: 153.121.67.199
-  port: 8443
-  uuid: 26524cce-d514-4014-a426-365fb266a14d
-  flow: ''
-  udp: true
-  tls: true
-  servername: i8dxb.media-cdn-us.chinav.indevs.in
-  network: ws
-  ws-opts:
-    path: '%2Fdanfeng-lo9ew8-vfksib-hwrl-84fg5mvl'
-    headers:
-      Host: i8dxb.media-cdn-us.chinav.indevs.in
-- name: '🇦🇱 XolirX #180'
-  type: vless
-  server: 216.173.70.192
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #181'
-  type: vless
-  server: 91.197.3.7
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #183'
-  type: vless
-  server: 208.103.161.168
-  port: 2096
-  uuid: Telegram%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525A8%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525B3%252525252525252525252525252525252520%252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #185'
-  type: vless
-  server: 185.148.104.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: vms.lifetime51.workers.dev
-- name: '🇦🇱 XolirX #187'
-  type: vless
-  server: 14.102.228.76
-  port: 443
-  uuid: e258977b-e413-4718-a3af-02d75492c349
-  flow: ''
-  udp: true
-  tls: true
-  servername: jp.aniua.qzz.io
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #188'
-  type: vless
-  server: 103.113.68.210
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #189'
-  type: vless
-  server: 202.71.12.226
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #190'
-  type: vless
-  server: 212.237.219.183
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #191'
-  type: vless
-  server: 212.237.219.99
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #192'
-  type: vless
-  server: 35.228.168.221
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #193'
-  type: vless
-  server: 66.151.35.226
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #194'
-  type: vless
-  server: 84.252.75.139
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #196'
-  type: vless
-  server: 208.103.161.32
-  port: 443
-  uuid: e234245f-b66e-4eef-b8cb-6298500221ba
-  flow: ''
-  udp: true
-  tls: true
-  servername: panel-free.emergency-service.org
-  network: http
-  http-opts:
-    method: GET
-    path:
-    - '%2F'
-    headers:
-      Host:
-      - panel-free.emergency-service.org
-- name: '🇦🇱 XolirX #197'
-  type: vless
-  server: nl2.panel.cleanersaz.help
-  port: 4443
-  uuid: 9beef3b2-5749-4529-a91a-29af1c043d6b
-  flow: ''
-  udp: true
-  tls: true
-  servername: nl2.panel.cleanersaz.help
-  network: tcp
-- name: '🇦🇱 XolirX #198'
-  type: vless
-  server: 88.218.78.48
-  port: 443
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #200'
-  type: vless
-  server: 185.242.105.149
-  port: 443
-  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: g1.steptofreedom.one
-  reality-opts:
-    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
-    short-id: 6d6f13013d3e1d0c
-  network: tcp
-- name: '🇦🇱 XolirX #201'
-  type: vless
-  server: g1.steptofreedom.one
-  port: 443
-  uuid: 279828c6-13f2-439c-9a4e-ea7d4f470fa4
-  flow: xtls-rprx-vision
-  udp: true
-  tls: true
-  servername: g1.steptofreedom.one
-  reality-opts:
-    public-key: ivgTfLR13A6xBsicIA28OPoav2tXlsstTTmGuETfnSk
-    short-id: 6d6f13013d3e1d0c
-  network: tcp
-- name: '🇦🇱 XolirX #202'
-  type: vless
-  server: 104.129.167.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: ''
-    headers:
-      Host: vms.lifetime44.workers.dev
-- name: '🇦🇱 XolirX #203'
-  type: vless
-  server: 154.198.173.30
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2Fyoutube%40ZYFXS%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime43.workers.dev
-- name: '🇦🇱 XolirX #204'
-  type: vless
-  server: 154.211.8.40
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2Fyoutube%40ZYFXS%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime46.workers.dev
-- name: '🇦🇱 XolirX #206'
-  type: vless
-  server: 66.45.118.40
-  port: 8880
-  uuid: 6202b230-417c-4d8e-b624-0f71afa9c75d
-  flow: ''
-  udp: true
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2Fyoutube%40ZYFXS%F0%9F%87%A8%F0%9F%87%B3'
-    headers:
-      Host: vms.lifetime43.workers.dev
-- name: '🇦🇱 XolirX #207'
+- name: '🇦🇱 XolirX #66'
   type: vless
   server: 81.255.155.10
   port: 443
@@ -2411,121 +850,47 @@ proxies:
     path: /
     headers:
       Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #208'
+- name: '🇦🇱 XolirX #67'
   type: vless
-  server: 208.103.161.143
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #209'
-  type: vless
-  server: 208.103.161.1
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #210'
-  type: vless
-  server: 208.103.161.56
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252587%252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252520%25252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #211'
-  type: vless
-  server: 208.103.161.205
-  port: 2096
-  uuid: Telegram%2525252525252525252525252525252525252525F0%25252525252525252525252525252525252525259F%252525252525252525252525252525252525252587%2525252525252525252525252525252525252525A8%2525252525252525252525252525252525252525F0%25252525252525252525252525252525252525259F%252525252525252525252525252525252525252587%2525252525252525252525252525252525252525B3%252525252525252525252525252525252525252520%252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #212'
-  type: vless
-  server: 208.103.161.131
-  port: 2096
-  uuid: Telegram%25252525252525252525252525252525252525F0%252525252525252525252525252525252525259F%2525252525252525252525252525252525252587%25252525252525252525252525252525252525A8%25252525252525252525252525252525252525F0%252525252525252525252525252525252525259F%2525252525252525252525252525252525252587%25252525252525252525252525252525252525B3%2525252525252525252525252525252525252520%2525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #213'
-  type: vless
-  server: 208.103.161.112
-  port: 2096
-  uuid: Telegram%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525A8%252525252525252525252525252525252525F0%2525252525252525252525252525252525259F%25252525252525252525252525252525252587%252525252525252525252525252525252525B3%25252525252525252525252525252525252520%25252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #214'
-  type: vless
-  server: 103.6.207.108
-  port: 8080
-  uuid: Telegram%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525A8%252525252525252525252525252525252525252525252525252525252525252525252525252525F0%2525252525252525252525252525252525252525252525252525252525252525252525252525259F%25252525252525252525252525252525252525252525252525252525252525252525252525252587%252525252525252525252525252525252525252525252525252525252525252525252525252525B3%25252525252525252525252525252525252525252525252525252525252525252525252525252520%25252525252525252525252525252525252525252525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #216'
-  type: vless
-  server: 146.103.122.49
+  server: 50.62.198.124
   port: 443
-  uuid: Telegram%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525A8%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525B3%252525252525252525252525252525252520%252525252525252525252525252525252540WangCai2
+  uuid: e258977b-e413-4718-a3af-02d75492c349
   flow: ''
   udp: true
   tls: true
-  servername: cf.afrcloudnet1.dpdns.org
+  servername: jp.aniua.qzz.io
   network: ws
   ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
+    path: '%2F'
     headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #217'
+      Host: jp.aniua.qzz.io
+- name: '🇦🇱 XolirX #68'
   type: vless
-  server: 81.255.154.10
+  server: 14.102.228.76
+  port: 2096
+  uuid: e258977b-e413-4718-a3af-02d75492c349
+  flow: ''
+  udp: true
+  tls: true
+  servername: jp.aniua.qzz.io
+  network: ws
+  ws-opts:
+    path: '%2F'
+    headers:
+      Host: jp.aniua.qzz.io
+- name: '🇦🇱 XolirX #69'
+  type: vless
+  server: nl2.panel.cleanersaz.help
+  port: 4443
+  uuid: 9beef3b2-5749-4529-a91a-29af1c043d6b
+  flow: ''
+  udp: true
+  tls: true
+  servername: nl2.panel.cleanersaz.help
+  network: tcp
+- name: '🇦🇱 XolirX #70'
+  type: vless
+  server: 81.255.155.10-3s88hsau.nike77prime.ru
   port: 443
   uuid: e258977b-e413-4718-a3af-02d75492c349
   flow: ''
@@ -2537,34 +902,6 @@ proxies:
     path: /
     headers:
       Host: jp.aniua.qzz.io
-- name: '🇦🇱 XolirX #219'
-  type: vless
-  server: 144.124.229.34
-  port: 443
-  uuid: Telegram%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525A8%2525252525252525252525252525252525F0%25252525252525252525252525252525259F%252525252525252525252525252525252587%2525252525252525252525252525252525B3%252525252525252525252525252525252520%252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
-- name: '🇦🇱 XolirX #220'
-  type: vless
-  server: 208.103.161.59
-  port: 2096
-  uuid: Telegram%25252525252525252525252525252525252525F0%252525252525252525252525252525252525259F%2525252525252525252525252525252525252587%25252525252525252525252525252525252525A8%25252525252525252525252525252525252525F0%252525252525252525252525252525252525259F%2525252525252525252525252525252525252587%25252525252525252525252525252525252525B3%2525252525252525252525252525252525252520%2525252525252525252525252525252525252540WangCai2
-  flow: ''
-  udp: true
-  tls: true
-  servername: cf.afrcloudnet1.dpdns.org
-  network: ws
-  ws-opts:
-    path: '%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2'
-    headers:
-      Host: cf.afrcloudnet1.dpdns.org
 proxy-groups:
 - name: PROXY
   type: url-test
@@ -2631,138 +968,14 @@ proxy-groups:
   - '🇦🇱 XolirX #58'
   - '🇦🇱 XolirX #59'
   - '🇦🇱 XolirX #60'
-  - '🇦🇱 XolirX #61'
   - '🇦🇱 XolirX #62'
   - '🇦🇱 XolirX #63'
-  - '🇦🇱 XolirX #64'
   - '🇦🇱 XolirX #65'
   - '🇦🇱 XolirX #66'
   - '🇦🇱 XolirX #67'
   - '🇦🇱 XolirX #68'
   - '🇦🇱 XolirX #69'
   - '🇦🇱 XolirX #70'
-  - '🇦🇱 XolirX #71'
-  - '🇦🇱 XolirX #72'
-  - '🇦🇱 XolirX #73'
-  - '🇦🇱 XolirX #74'
-  - '🇦🇱 XolirX #75'
-  - '🇦🇱 XolirX #76'
-  - '🇦🇱 XolirX #77'
-  - '🇦🇱 XolirX #78'
-  - '🇦🇱 XolirX #79'
-  - '🇦🇱 XolirX #80'
-  - '🇦🇱 XolirX #81'
-  - '🇦🇱 XolirX #82'
-  - '🇦🇱 XolirX #83'
-  - '🇦🇱 XolirX #84'
-  - '🇦🇱 XolirX #85'
-  - '🇦🇱 XolirX #86'
-  - '🇦🇱 XolirX #87'
-  - '🇦🇱 XolirX #88'
-  - '🇦🇱 XolirX #89'
-  - '🇦🇱 XolirX #90'
-  - '🇦🇱 XolirX #91'
-  - '🇦🇱 XolirX #92'
-  - '🇦🇱 XolirX #93'
-  - '🇦🇱 XolirX #94'
-  - '🇦🇱 XolirX #95'
-  - '🇦🇱 XolirX #96'
-  - '🇦🇱 XolirX #97'
-  - '🇦🇱 XolirX #98'
-  - '🇦🇱 XolirX #99'
-  - '🇦🇱 XolirX #100'
-  - '🇦🇱 XolirX #101'
-  - '🇦🇱 XolirX #102'
-  - '🇦🇱 XolirX #103'
-  - '🇦🇱 XolirX #104'
-  - '🇦🇱 XolirX #105'
-  - '🇦🇱 XolirX #106'
-  - '🇦🇱 XolirX #107'
-  - '🇦🇱 XolirX #108'
-  - '🇦🇱 XolirX #109'
-  - '🇦🇱 XolirX #110'
-  - '🇦🇱 XolirX #111'
-  - '🇦🇱 XolirX #112'
-  - '🇦🇱 XolirX #113'
-  - '🇦🇱 XolirX #114'
-  - '🇦🇱 XolirX #115'
-  - '🇦🇱 XolirX #116'
-  - '🇦🇱 XolirX #117'
-  - '🇦🇱 XolirX #118'
-  - '🇦🇱 XolirX #119'
-  - '🇦🇱 XolirX #123'
-  - '🇦🇱 XolirX #124'
-  - '🇦🇱 XolirX #125'
-  - '🇦🇱 XolirX #127'
-  - '🇦🇱 XolirX #130'
-  - '🇦🇱 XolirX #131'
-  - '🇦🇱 XolirX #132'
-  - '🇦🇱 XolirX #133'
-  - '🇦🇱 XolirX #134'
-  - '🇦🇱 XolirX #135'
-  - '🇦🇱 XolirX #137'
-  - '🇦🇱 XolirX #139'
-  - '🇦🇱 XolirX #140'
-  - '🇦🇱 XolirX #142'
-  - '🇦🇱 XolirX #143'
-  - '🇦🇱 XolirX #144'
-  - '🇦🇱 XolirX #145'
-  - '🇦🇱 XolirX #146'
-  - '🇦🇱 XolirX #148'
-  - '🇦🇱 XolirX #150'
-  - '🇦🇱 XolirX #151'
-  - '🇦🇱 XolirX #152'
-  - '🇦🇱 XolirX #153'
-  - '🇦🇱 XolirX #154'
-  - '🇦🇱 XolirX #155'
-  - '🇦🇱 XolirX #156'
-  - '🇦🇱 XolirX #157'
-  - '🇦🇱 XolirX #158'
-  - '🇦🇱 XolirX #159'
-  - '🇦🇱 XolirX #160'
-  - '🇦🇱 XolirX #161'
-  - '🇦🇱 XolirX #162'
-  - '🇦🇱 XolirX #163'
-  - '🇦🇱 XolirX #168'
-  - '🇦🇱 XolirX #169'
-  - '🇦🇱 XolirX #170'
-  - '🇦🇱 XolirX #171'
-  - '🇦🇱 XolirX #172'
-  - '🇦🇱 XolirX #174'
-  - '🇦🇱 XolirX #175'
-  - '🇦🇱 XolirX #180'
-  - '🇦🇱 XolirX #181'
-  - '🇦🇱 XolirX #183'
-  - '🇦🇱 XolirX #185'
-  - '🇦🇱 XolirX #187'
-  - '🇦🇱 XolirX #188'
-  - '🇦🇱 XolirX #189'
-  - '🇦🇱 XolirX #190'
-  - '🇦🇱 XolirX #191'
-  - '🇦🇱 XolirX #192'
-  - '🇦🇱 XolirX #193'
-  - '🇦🇱 XolirX #194'
-  - '🇦🇱 XolirX #196'
-  - '🇦🇱 XolirX #197'
-  - '🇦🇱 XolirX #198'
-  - '🇦🇱 XolirX #200'
-  - '🇦🇱 XolirX #201'
-  - '🇦🇱 XolirX #202'
-  - '🇦🇱 XolirX #203'
-  - '🇦🇱 XolirX #204'
-  - '🇦🇱 XolirX #206'
-  - '🇦🇱 XolirX #207'
-  - '🇦🇱 XolirX #208'
-  - '🇦🇱 XolirX #209'
-  - '🇦🇱 XolirX #210'
-  - '🇦🇱 XolirX #211'
-  - '🇦🇱 XolirX #212'
-  - '🇦🇱 XolirX #213'
-  - '🇦🇱 XolirX #214'
-  - '🇦🇱 XolirX #216'
-  - '🇦🇱 XolirX #217'
-  - '🇦🇱 XolirX #219'
-  - '🇦🇱 XolirX #220'
 - name: DIRECT
   type: select
   proxies:
