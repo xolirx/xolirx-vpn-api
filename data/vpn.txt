@@ -1,9 +1,8 @@
-#profile-title: XolirX
+#profile-title: [ 🟢 XolirX 🟢 ] 
 #profile-update-interval: 1
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#announce: FREE VLESS By XolirX @xolirx - tg
 
 vless://0d974d97-fc0f-4e31-9f86-d4972c37b565@185.207.198.170:2053?mode=auto&path=/xn--q9jyb4c&security=tls&encryption=none&insecure=0&host=cdn.dns.xn--q9jyb4c&type=xhttp&allowInsecure=0&sni=cdn.dns.xn--q9jyb4c#🇦🇱 XolirX #1
 vless://2ee26119-94e5-40b4-ba3a-16354021b600@185.18.250.127:2096?allow_insecure=1&allowInsecure=1&host=69565ce3109804e7813f98ee.mmdbay.blog&insecure=1&path=%2Fgraphql&security=tls&sni=69565ce3109804e7813f98ee.mmdbay.blog&type=ws#🇦🇱 XolirX #2
