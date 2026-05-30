@@ -3,8 +3,6 @@
 #subscription-userinfo: upload=0; download=0; total=0; expire=0
 #support-url: https://t.me/xolirx
 #profile-web-page-url: https://github.com/xolirx
-#hide-settings: 1
-#hide-proxy-icon: 0
 
 
 vless://41d480fd-1dcc-4766-8e01-a67e7faa5934@129.6.29.253:443?encryption=none&type=ws&security=tls&path=/id-amz&host=investors.spotify.com.cyylr.eu.cc&sni=investors.spotify.com.cyylr.eu.cc&alpn=http/1.1&fp=chrome&allowInsecure=0#🇦🇱 XolirX #1
